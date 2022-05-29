@@ -1,0 +1,121 @@
+## -*- coding: utf-8 -*-
+<%namespace name="base" file="base_helper.tmpl" import="*"/>
+
+<%def name="html_header()">
+    <header id="header">
+        ${html_site_title()}
+        ${html_translation_header()}
+        ${html_navigation_links()}
+        ${html_palette_selector()}
+        %if search_form:
+            <div class="searchform" role="search">
+                ${search_form}
+            </div>
+        %endif
+    </header>
+    ${template_hooks['page_header']()}
+</%def>
+
+<%def name="html_site_title()">
+    <h1 id="brand"><a href="${_link("root", None, lang)}" title="${blog_title|h}" rel="home">
+    %if logo_url:
+        <img src="${logo_url}" alt="${blog_title|h}" id="logo">
+    %endif
+
+    % if show_blog_title:
+        <span id="blog-title">${blog_title|h}</span>
+    % endif
+    </a></h1>
+</%def>
+
+<%def name="html_navigation_links()">
+    <nav id="menu">
+    <ul>
+    ${html_navigation_links_entries(navigation_links)}
+    ${html_navigation_links_entries(navigation_alt_links)}
+    ${template_hooks['menu']()}
+    ${template_hooks['menu_alt']()}
+    </ul>
+    </nav>
+</%def>
+
+<%def name="html_navigation_links_entries(navigation_links_source)">
+    %for url, text in navigation_links_source[lang]:
+        % if isinstance(url, tuple):
+            <li> ${text}
+            <ul>
+            %for suburl, text in url:
+                % if rel_link(permalink, suburl) == "#":
+                    <li class="active"><a href="${permalink}">${text}<span class="sr-only"> ${messages("(active)", lang)}</span></a></li>
+                %else:
+                    <li><a href="${suburl}">${text}</a></li>
+                %endif
+            %endfor
+            </ul>
+        % else:
+            % if rel_link(permalink, url) == "#":
+                <li class="active"><a href="${permalink}">${text}<span class="sr-only"> ${messages("(active)", lang)}</span></a></li>
+            %else:
+                <li><a href="${url}">${text}</a></li>
+            %endif
+        % endif
+    %endfor
+</%def>
+
+<%def name="html_palette_selector()">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-sun" viewBox="0 0 24 24">
+        <title>Light Mode</title>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-moon" viewBox="0 0 24 24">
+        <title>Dark Mode</title>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+        </svg>
+      </symbol>
+      <symbol id="svg-sun-half" viewBox="0 0 24 24">
+        <title>Auto Light/Dark Mode</title>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M13 12h5" />
+          <path d="M13 15h4" />
+          <path d="M13 18h1" />
+          <path d="M13 9h4" />
+          <path d="M13 6h1" />
+        </svg>
+      </symbol>
+    </svg>
+    <p class="palette-selector-container palette-selector-content">
+    <button class="palette-selector">
+      <div class="visually-hidden">Toggle Light / Dark / Auto Color Theme</div>
+      <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+      <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+      <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+    </button>
+    </p>
+</%def>
+
+<%def name="html_translation_header()">
+    %if len(translations) > 1:
+        <div id="toptranslations">
+            <h2>${messages("Languages:")}</h2>
+            ${base.html_translations()}
+        </div>
+    %endif
+</%def>

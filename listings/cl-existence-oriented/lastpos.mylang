@@ -1,0 +1,11 @@
+from std.containers let PositionalCollection
+from std.system.current-process let stderr
+
+let run`+entrypoint` arguments`String [_]` does:
+    empty-items = [ ]
+    items = [ 42 ]
+    print-last-item items
+    print-last-item empty-items
+
+let print-last-item`PositionalCollection` items`PositionalCollection, return : 1` does:
+    with? last-item = items.[-1] do stderr "last item: {last-item}"

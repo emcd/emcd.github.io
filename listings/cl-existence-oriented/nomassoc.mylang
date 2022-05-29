@@ -1,0 +1,13 @@
+from std.containers let AssociativeCollection
+from std.system.current-process let stderr
+
+let run`+entrypoint` arguments`String [_]` does:
+    empty-haystack = { : }
+    haystack = { 'haystack' : 42 }
+    print-needle haystack
+    print-needle empty-haystack
+
+let print-needle`AssociativeCollection`
+    haystack`AssociativeCollection, return : 1`
+does:
+    with? needle = haystack.['needle'] do stderr "needle: {needle}"
