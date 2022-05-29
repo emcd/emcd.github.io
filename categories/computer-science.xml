@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Contemplations (Posts about computer science)</title><link>https://emcd.github.io/</link><description></description><atom:link href="https://emcd.github.io/categories/computer-science.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:emcd@users.noreply.github.com"&gt;Eric McDonald&lt;/a&gt; 
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"&gt;
+&lt;img alt="Creative Commons License"
+     style="border-width:0"
+     src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 29 May 2022 13:46:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Existence-Oriented Programming</title><link>https://emcd.github.io/posts/cl-existence-oriented/</link><dc:creator>Eric McDonald</dc:creator><description>&lt;p&gt;Let us start this conversation with some questions about your favorite or most
+familiar computational language.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Can a function accept optional arguments? If so, does a parameter,
+corresponding to an optional argument, need to have a default value assigned?
+If a default is required, can you unambiguously use this default as a
+sentinel to indicate that the argument was not supplied by the caller? If a
+default is not required, then what is the mechanism that you can use to
+detect whether the optional argument was or was not supplied by the caller?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Are &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Generator_(computer_programming)"&gt;generators&lt;/a&gt; available?
+If so, how does a generator indicate that it has no more values for its
+consumer?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;More generally, can a function have optional return values? If so, then what
+is the mechanism that you can use to detect whether an optional return value
+was supplied by the callee?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What happens when you try to access an item that does not exist in a
+collection? (Possibly because the collection is empty.)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With those questions in mind, let us walk through some code samples from
+various languages to look at how they handle select use cases.&lt;/p&gt;
+&lt;section id="illustrative-cases"&gt;
+&lt;h2&gt;Illustrative Cases&lt;/h2&gt;
+&lt;p&gt;Code snippets, each containing what is believed to be a safe and &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Programming_idiom"&gt;idiomatic&lt;/a&gt; way to perform a particular
+task in a given language, are used to illustrate each case. Links to the full
+code, which is runnable, can be found with each example. Furthermore, each
+piece of code attempts to use only the intrinsic types and standard library of
+its language. Also note that this is not an attempt to exhaustively catalog how
+to perform these tasks in every language, but rather to highlight various
+approaches and behaviors with popular or interesting representatives.&lt;/p&gt;
+&lt;section id="retrieve-element-by-positional-index"&gt;
+&lt;h3&gt;Retrieve Element by Positional Index&lt;/h3&gt;
+&lt;p&gt;Suppose that we wish to do something with the last element from a &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Collection_(abstract_data_type)"&gt;collection&lt;/a&gt;, the elements
+of which can be accessed by positonal index. Attempting to access the last
+element of an &lt;em&gt;empty collection&lt;/em&gt; can lead to a panic, a raised exception, or
+undefined behavior, depending on the language and the implementation of the
+container. Thus, a programmer may need to defend against the empty collection
+case by explicitly testing for it.&lt;/p&gt;
+&lt;section id="c-undefined-behavior"&gt;
+&lt;h4&gt;C++ (Undefined Behavior)&lt;/h4&gt;
+&lt;p&gt;Undefined behavior, quite possibly a segmentation violation, on attempt to use
+an out-of-bounds index, such as any index would be in the case of an empty
+vector.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.cxx.html"&gt;cl-existence-oriented/lastpos.cxx&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.cxx"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code c++"&gt;&lt;a id="rest_code_79ee9cdb24884a8989f1b7e5452621fc-1" name="rest_code_79ee9cdb24884a8989f1b7e5452621fc-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_79ee9cdb24884a8989f1b7e5452621fc-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_79ee9cdb24884a8989f1b7e5452621fc-2" name="rest_code_79ee9cdb24884a8989f1b7e5452621fc-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_79ee9cdb24884a8989f1b7e5452621fc-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cerr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"last item: "&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;back&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_79ee9cdb24884a8989f1b7e5452621fc-3" name="rest_code_79ee9cdb24884a8989f1b7e5452621fc-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_79ee9cdb24884a8989f1b7e5452621fc-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;No compilation checks are made about unguarded access to a vector. Burden is
+on programmer to remember to test that an index is within bounds before
+accessing an item from a vector.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Two separate operations which must be explicitly programmed: emptiness test
+and access.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inconsistent item access interface compared with &lt;code class="docutils literal"&gt;&lt;span class="pre"&gt;std::map&lt;/span&gt;&lt;/code&gt; type. Burden is
+on programmer to remember differences.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="go-panic"&gt;
+&lt;h4&gt;Go (Panic)&lt;/h4&gt;
+&lt;p&gt;Panics on attempt to use an out-of-bounds index, such as any index would be in
+the case of an empty slice.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.go.html"&gt;cl-existence-oriented/lastpos.go&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.go"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code go"&gt;&lt;a id="rest_code_40e203d9373548249faef8032735d20c-1" name="rest_code_40e203d9373548249faef8032735d20c-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_40e203d9373548249faef8032735d20c-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_40e203d9373548249faef8032735d20c-2" name="rest_code_40e203d9373548249faef8032735d20c-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_40e203d9373548249faef8032735d20c-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_40e203d9373548249faef8032735d20c-3" name="rest_code_40e203d9373548249faef8032735d20c-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_40e203d9373548249faef8032735d20c-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;lastItem&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;count&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_40e203d9373548249faef8032735d20c-4" name="rest_code_40e203d9373548249faef8032735d20c-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_40e203d9373548249faef8032735d20c-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Fprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;os&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Stderr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"last item: %d\n"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;lastItem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_40e203d9373548249faef8032735d20c-5" name="rest_code_40e203d9373548249faef8032735d20c-5" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_40e203d9373548249faef8032735d20c-5"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;No compilation checks are made about unguarded access to a slice. Burden is
+on programmer to remember to test that an index is within bounds before
+accessing an item from a slice.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Two separate operations which must be explicitly programmed: emptiness test
+and access.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inconsistent interface compared with &lt;code class="docutils literal"&gt;map&lt;/code&gt; type. Burden is on programmer to
+remember differences.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="python-raised-exception"&gt;
+&lt;h4&gt;Python (Raised Exception)&lt;/h4&gt;
+&lt;p&gt;Raises &lt;code class="docutils literal"&gt;IndexError&lt;/code&gt; exception on attempt to use an out-of-bounds index, such
+as any index would be in the case of an empty sequence.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.py.html"&gt;cl-existence-oriented/lastpos.py&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.py"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code python"&gt;&lt;a id="rest_code_8976bd8247af410c898cf5868362d88d-1" name="rest_code_8976bd8247af410c898cf5868362d88d-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_8976bd8247af410c898cf5868362d88d-1"&gt;&lt;/a&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;"last item: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;stderr&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test that an index is within bounds before
+accessing an item from a sequence.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Two separate operations which must be explicitly programmed: emptiness test
+and access.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Reasonably consistent item access interface compared with
+&lt;code class="docutils literal"&gt;collections.abc.Mapping&lt;/code&gt; types.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="rust-wrapped-value"&gt;
+&lt;h4&gt;Rust (Wrapped Value)&lt;/h4&gt;
+&lt;p&gt;Returns an &lt;code class="docutils literal"&gt;Option&lt;/code&gt;, which must be unwrapped before the accessed value, if it
+exists, can be used.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.rs.html"&gt;cl-existence-oriented/lastpos.rs&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.rs"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code rust"&gt;&lt;a id="rest_code_afbe9ea18533482681f42654bbc147d4-1" name="rest_code_afbe9ea18533482681f42654bbc147d4-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_afbe9ea18533482681f42654bbc147d4-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Some&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;last_item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_afbe9ea18533482681f42654bbc147d4-2" name="rest_code_afbe9ea18533482681f42654bbc147d4-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_afbe9ea18533482681f42654bbc147d4-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;writeln!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"last item: {}"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;last_item&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;ok&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_afbe9ea18533482681f42654bbc147d4-3" name="rest_code_afbe9ea18533482681f42654bbc147d4-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_afbe9ea18533482681f42654bbc147d4-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test whether wrapper contains a value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to unwrap value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Accidental use of raw &lt;code class="docutils literal"&gt;Option&lt;/code&gt; is possible in some cases.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information and value returned together.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Consistent return value interface compared with rest of standard library.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee against panics and undefined behavior.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="retrieve-entry-by-nominative-index"&gt;
+&lt;h3&gt;Retrieve Entry by Nominative Index&lt;/h3&gt;
+&lt;p&gt;Suppose that we want to retrieve a particular entry from an association table
+(dictionary, map, etc...) but that we have no guarantee on its presence in that
+table. Attempting to access the entry without first testing for its existence
+can lead to various problems, depending on the language and the table
+implementation.&lt;/p&gt;
+&lt;section id="c-wrapped-entry"&gt;
+&lt;h4&gt;C++ (Wrapped Entry)&lt;/h4&gt;
+&lt;p&gt;Returns an iterator, which must be unwrapped before the accessed value, if it
+exists, can be used.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.cxx.html"&gt;cl-existence-oriented/nomassoc.cxx&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.cxx"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code c++"&gt;&lt;a id="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-1" name="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_8a8435ce661745ed8e9b9d44fcaf1400-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;wrapped_needle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-2" name="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_8a8435ce661745ed8e9b9d44fcaf1400-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;wrapped_needle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-3" name="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_8a8435ce661745ed8e9b9d44fcaf1400-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cerr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle: "&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;wrapped_needle&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-4" name="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_8a8435ce661745ed8e9b9d44fcaf1400-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test whether wrapper contains a value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to unwrap value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Accidental use of raw iterator is possible in some cases.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;One of three different ways to access a value from a map.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information and value returned together.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="c-zero-initialized-value"&gt;
+&lt;h4&gt;C++ (Zero-Initialized Value)&lt;/h4&gt;
+&lt;p&gt;Creates and returns new entry with zero-initialized value if entry is absent.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.cxx.html"&gt;cl-existence-oriented/nomassoc.cxx&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.cxx"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code c++"&gt;&lt;a id="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-1" name="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34a14c994c7d4dd1981eecd1829b6cf5-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contains&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// Requires C++20 std::map.&lt;/span&gt;
+&lt;a id="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-2" name="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34a14c994c7d4dd1981eecd1829b6cf5-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mutable_haystack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-3" name="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34a14c994c7d4dd1981eecd1829b6cf5-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cerr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle: "&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mutable_haystack&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-4" name="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34a14c994c7d4dd1981eecd1829b6cf5-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;If the zero-initialized value can be valid data, then the burden is on
+programmer to test for presence to disambiguate a valid zero-initialized
+value from an absent entry.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inconsistent item access interface compared with &lt;code class="docutils literal"&gt;&lt;span class="pre"&gt;std::vector&lt;/span&gt;&lt;/code&gt; type. Burden
+is on programmer to remember differences.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Cannot work with &lt;code class="docutils literal"&gt;const&lt;/code&gt; maps as it must be able to create missing entry
+(internal mutation of data structure).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Two separate operations: existence test and access.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Key must be referenced twice: once for the existence test and once for the
+access. This poses a software maintenance issue since a change of key literal
+or key variable name would need to happen in two different places.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;One of three different ways to access a value from a map.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="c-raised-exception"&gt;
+&lt;h4&gt;C++ (Raised Exception)&lt;/h4&gt;
+&lt;p&gt;Raises &lt;code class="docutils literal"&gt;&lt;span class="pre"&gt;std::out_of_range&lt;/span&gt;&lt;/code&gt; exception on attempt to access an absent entry,
+such as in the empty collection case.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.cxx.html"&gt;cl-existence-oriented/nomassoc.cxx&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.cxx"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code c++"&gt;&lt;a id="rest_code_391e1d97210d47bebc66d7db4fbb17d9-1" name="rest_code_391e1d97210d47bebc66d7db4fbb17d9-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_391e1d97210d47bebc66d7db4fbb17d9-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contains&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// Requires C++20 std::map.&lt;/span&gt;
+&lt;a id="rest_code_391e1d97210d47bebc66d7db4fbb17d9-2" name="rest_code_391e1d97210d47bebc66d7db4fbb17d9-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_391e1d97210d47bebc66d7db4fbb17d9-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cerr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle: "&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;at&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_391e1d97210d47bebc66d7db4fbb17d9-3" name="rest_code_391e1d97210d47bebc66d7db4fbb17d9-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_391e1d97210d47bebc66d7db4fbb17d9-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test whether the entry is present prior to access.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Two separate operations: existence test and access.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Key must be referenced twice: once for the existence test and once for the
+access. This poses a software maintenance issue since a change of key literal
+or key variable name would need to happen in two different places.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;One of three different ways to access a value from a map.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="go-zero-value"&gt;
+&lt;h4&gt;Go (Zero Value)&lt;/h4&gt;
+&lt;p&gt;Returns the zero value for the value type if the entry is absent.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.go.html"&gt;cl-existence-oriented/nomassoc.go&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.go"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code go"&gt;&lt;a id="rest_code_47e18cc41b884df2af49085027a8a25a-1" name="rest_code_47e18cc41b884df2af49085027a8a25a-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_47e18cc41b884df2af49085027a8a25a-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;needle&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ok&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;"needle"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_47e18cc41b884df2af49085027a8a25a-2" name="rest_code_47e18cc41b884df2af49085027a8a25a-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_47e18cc41b884df2af49085027a8a25a-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ok&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_47e18cc41b884df2af49085027a8a25a-3" name="rest_code_47e18cc41b884df2af49085027a8a25a-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_47e18cc41b884df2af49085027a8a25a-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Fprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;os&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Stderr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle: %d\n"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;needle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_47e18cc41b884df2af49085027a8a25a-4" name="rest_code_47e18cc41b884df2af49085027a8a25a-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_47e18cc41b884df2af49085027a8a25a-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;If the zero value can be valid data, then the burden is on programmer to test
+the existence boolean to disambiguate a valid zero value from an absent
+entry.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inconsistent item access interface compared with slice type. Burden is on
+programmer to remember differences.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information and value returned together.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="python-raised-exception-1"&gt;
+&lt;h4&gt;Python (Raised Exception)&lt;/h4&gt;
+&lt;p&gt;Raises &lt;code class="docutils literal"&gt;KeyError&lt;/code&gt; exception on attempt to access an absent entry, such as in
+the empty collection case.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.py.html"&gt;cl-existence-oriented/nomassoc.py&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.py"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code python"&gt;&lt;a id="rest_code_2e5659bbc79f4ccd9bfd235628e8e317-1" name="rest_code_2e5659bbc79f4ccd9bfd235628e8e317-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_2e5659bbc79f4ccd9bfd235628e8e317-1"&gt;&lt;/a&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;'needle'&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a id="rest_code_2e5659bbc79f4ccd9bfd235628e8e317-2" name="rest_code_2e5659bbc79f4ccd9bfd235628e8e317-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_2e5659bbc79f4ccd9bfd235628e8e317-2"&gt;&lt;/a&gt;        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;"needle: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s1"&gt;'needle'&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;stderr&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test whether the entry is present prior to access.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Two separate operations: existence test and access.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Key must be referenced twice: once for the existence test and once for the
+access. This poses a software maintenance issue since a change of key literal
+or key variable name would need to happen in two different places.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Consistent interface compared with &lt;code class="docutils literal"&gt;collections.abc.Sequence&lt;/code&gt; types.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="python-sentinel-value"&gt;
+&lt;h4&gt;Python (Sentinel Value)&lt;/h4&gt;
+&lt;p&gt;Returns &lt;code class="docutils literal"&gt;None&lt;/code&gt; if the entry is absent.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.py.html"&gt;cl-existence-oriented/nomassoc.py&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.py"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code python"&gt;&lt;a id="rest_code_49fdd009cab948ef9b5995e15db48a5d-1" name="rest_code_49fdd009cab948ef9b5995e15db48a5d-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_49fdd009cab948ef9b5995e15db48a5d-1"&gt;&lt;/a&gt;    &lt;span class="n"&gt;needle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;'needle'&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a id="rest_code_49fdd009cab948ef9b5995e15db48a5d-2" name="rest_code_49fdd009cab948ef9b5995e15db48a5d-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_49fdd009cab948ef9b5995e15db48a5d-2"&gt;&lt;/a&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;needle&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a id="rest_code_49fdd009cab948ef9b5995e15db48a5d-3" name="rest_code_49fdd009cab948ef9b5995e15db48a5d-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_49fdd009cab948ef9b5995e15db48a5d-3"&gt;&lt;/a&gt;        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"needle: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;needle&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;stderr&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;If &lt;code class="docutils literal"&gt;None&lt;/code&gt; can be valid data, then there is an ambiguity problem which
+cannot be resolved with this approach to access.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Even if &lt;code class="docutils literal"&gt;None&lt;/code&gt; is an unambiguous sentinel, a test is still needed against
+it before the entry value can be used. Burden is on programmer to perform
+this test.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Single operation: existence information is encoded as the returned value.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="rust-wrapped-value-1"&gt;
+&lt;h4&gt;Rust (Wrapped Value)&lt;/h4&gt;
+&lt;p&gt;Returns an &lt;code class="docutils literal"&gt;Option&lt;/code&gt;, which must be unwrapped before the accessed value, if it
+exists, can be used.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.rs.html"&gt;cl-existence-oriented/nomassoc.rs&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.rs"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code rust"&gt;&lt;a id="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-1" name="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Some&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;needle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;haystack&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"needle"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-2" name="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;writeln!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"needle: {}"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;needle&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;ok&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-3" name="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test whether wrapper contains a value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to unwrap value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Accidental use of raw &lt;code class="docutils literal"&gt;Option&lt;/code&gt; possible in some cases.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information and value returned together.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Consistent return value interface compared with rest of standard library.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee against panics or undefined behavior.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="retrieve-once-from-iterator"&gt;
+&lt;h3&gt;Retrieve Once from Iterator&lt;/h3&gt;
+&lt;p&gt;Suppose that we want to get an element from a set without seeking any specific
+element. Set implementations are usually not indexable by position, as they are
+not ordered by position, so notions such as "first" or "last" are not that
+meaningful. And, if we do not know or care about a particular element in the
+set, then we are not going to retrieve by value either. However, most set
+implementations provide iterators over themselves and we can take advantage of
+this... provided we can handle the &lt;em&gt;empty set&lt;/em&gt; case properly.&lt;/p&gt;
+&lt;section id="c-wrapped-value"&gt;
+&lt;h4&gt;C++ (Wrapped Value)&lt;/h4&gt;
+&lt;p&gt;Returns an iterator, which must be unwrapped before the accessed value, if it
+exists, can be used.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/next-set-item.cxx.html"&gt;cl-existence-oriented/next-set-item.cxx&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/next-set-item.cxx"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code c++"&gt;&lt;a id="rest_code_0a7733429450438d89e1653a654440c1-1" name="rest_code_0a7733429450438d89e1653a654440c1-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_0a7733429450438d89e1653a654440c1-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;wrapped_element&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cbegin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_0a7733429450438d89e1653a654440c1-2" name="rest_code_0a7733429450438d89e1653a654440c1-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_0a7733429450438d89e1653a654440c1-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;wrapped_element&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_0a7733429450438d89e1653a654440c1-3" name="rest_code_0a7733429450438d89e1653a654440c1-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_0a7733429450438d89e1653a654440c1-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cerr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"set element: "&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;wrapped_element&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_0a7733429450438d89e1653a654440c1-4" name="rest_code_0a7733429450438d89e1653a654440c1-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_0a7733429450438d89e1653a654440c1-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test whether wrapper contains a value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to unwrap value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Accidental use of raw iterator is possible in some cases.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information and value returned together.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="python-raised-exception-2"&gt;
+&lt;h4&gt;Python (Raised Exception)&lt;/h4&gt;
+&lt;p&gt;Raises &lt;code class="docutils literal"&gt;StopIteration&lt;/code&gt; exception on attempt to get next value from an
+exhausted iterator.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/next-set-item.py.html"&gt;cl-existence-oriented/next-set-item.py&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/next-set-item.py"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code python"&gt;&lt;a id="rest_code_76bc77b16576453aab85c2083a1c9c88-1" name="rest_code_76bc77b16576453aab85c2083a1c9c88-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_76bc77b16576453aab85c2083a1c9c88-1"&gt;&lt;/a&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a id="rest_code_76bc77b16576453aab85c2083a1c9c88-2" name="rest_code_76bc77b16576453aab85c2083a1c9c88-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_76bc77b16576453aab85c2083a1c9c88-2"&gt;&lt;/a&gt;        &lt;span class="n"&gt;element&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;next&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nb"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;elements&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a id="rest_code_76bc77b16576453aab85c2083a1c9c88-3" name="rest_code_76bc77b16576453aab85c2083a1c9c88-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_76bc77b16576453aab85c2083a1c9c88-3"&gt;&lt;/a&gt;        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"set element: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;stderr&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test whether the underlying collection is empty
+prior to iteration over it.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Two separate operations: existence test and access.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="rust-wrapped-value-2"&gt;
+&lt;h4&gt;Rust (Wrapped Value)&lt;/h4&gt;
+&lt;p&gt;Returns an &lt;code class="docutils literal"&gt;Option&lt;/code&gt;, which must be unwrapped before the accessed value, if it
+exists, can be used.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/next-set-item.rs.html"&gt;cl-existence-oriented/next-set-item.rs&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/next-set-item.rs"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code rust"&gt;&lt;a id="rest_code_2167b3819eb34f17aabdcc17d87bab1b-1" name="rest_code_2167b3819eb34f17aabdcc17d87bab1b-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_2167b3819eb34f17aabdcc17d87bab1b-1"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;iterator&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_2167b3819eb34f17aabdcc17d87bab1b-2" name="rest_code_2167b3819eb34f17aabdcc17d87bab1b-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_2167b3819eb34f17aabdcc17d87bab1b-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Some&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;iterator&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_2167b3819eb34f17aabdcc17d87bab1b-3" name="rest_code_2167b3819eb34f17aabdcc17d87bab1b-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_2167b3819eb34f17aabdcc17d87bab1b-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;writeln!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"set element: {}"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;ok&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_2167b3819eb34f17aabdcc17d87bab1b-4" name="rest_code_2167b3819eb34f17aabdcc17d87bab1b-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_2167b3819eb34f17aabdcc17d87bab1b-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to test whether wrapper contains a value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Burden is on programmer to unwrap value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Accidental use of raw &lt;code class="docutils literal"&gt;Option&lt;/code&gt; possible in some cases.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information and value returned together.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Consistent return value interface compared with rest of standard library.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee against panics or undefined behavior.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="conditional-concatenation"&gt;
+&lt;h3&gt;Conditional Concatenation&lt;/h3&gt;
+&lt;p&gt;Suppose that we want to write a function that will concatenate a base string
+with some optionally-supplied supplemental strings in a particular way. Most
+languages do not support optional arguments without the use of default values,
+wrapped values, or a mechanism that avoids parameter declarations.&lt;/p&gt;
+&lt;section id="kotlin-nullable-value"&gt;
+&lt;h4&gt;Kotlin (Nullable Value)&lt;/h4&gt;
+&lt;p&gt;The optional parameters have nullable types and are assigned &lt;code class="docutils literal"&gt;null&lt;/code&gt; by
+default.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.kt.html"&gt;cl-existence-oriented/optional-arguments.kt&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.kt"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code kotlin"&gt;&lt;a id="rest_code_4821582e210e49c988fd168034278558-1" name="rest_code_4821582e210e49c988fd168034278558-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-1"&gt;&lt;/a&gt;&lt;span class="kd"&gt;fun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;format_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-2" name="rest_code_4821582e210e49c988fd168034278558-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;variant&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;String?&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;String?&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-3" name="rest_code_4821582e210e49c988fd168034278558-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-3"&gt;&lt;/a&gt;&lt;span class="p"&gt;):&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;String&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-4" name="rest_code_4821582e210e49c988fd168034278558-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;val&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;output&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mutableListOf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-5" name="rest_code_4821582e210e49c988fd168034278558-5" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-5"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;variant&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-6" name="rest_code_4821582e210e49c988fd168034278558-6" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-6"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;variant&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// Compilation error if not wrapped in null check.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-7" name="rest_code_4821582e210e49c988fd168034278558-7" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-7"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"[&lt;/span&gt;&lt;span class="si"&gt;$&lt;/span&gt;&lt;span class="n"&gt;variant&lt;/span&gt;&lt;span class="s"&gt;]"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-8" name="rest_code_4821582e210e49c988fd168034278558-8" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-8"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-9" name="rest_code_4821582e210e49c988fd168034278558-9" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-9"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-10" name="rest_code_4821582e210e49c988fd168034278558-10" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-10"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"(&lt;/span&gt;&lt;span class="si"&gt;$&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="s"&gt;)"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-11" name="rest_code_4821582e210e49c988fd168034278558-11" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-11"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-12" name="rest_code_4821582e210e49c988fd168034278558-12" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-12"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;joinToString&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;separator&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;" "&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_4821582e210e49c988fd168034278558-13" name="rest_code_4821582e210e49c988fd168034278558-13" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_4821582e210e49c988fd168034278558-13"&gt;&lt;/a&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Default value of &lt;code class="docutils literal"&gt;null&lt;/code&gt; must be assigned to each parameter to make it
+optional.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If &lt;code class="docutils literal"&gt;null&lt;/code&gt; can be valid data, then there is an ambiguity problem which
+cannot be resolved with this approach to optional arguments.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee only covers unguarded member access to a
+possibly null variable and not use of that variable itself.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Unused arguments do not need to be specified at invocation site.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Argument values do not need to be unwrapped prior to use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee againt unguarded member access to possibly null
+variable.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="python-sentinel-value-1"&gt;
+&lt;h4&gt;Python (Sentinel Value)&lt;/h4&gt;
+&lt;p&gt;The default values of the optional parameters are sentinel values.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.py.html"&gt;cl-existence-oriented/optional-arguments.py&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.py"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code python"&gt;&lt;a id="rest_code_24e0e6b6fa1243539c70e42917c54053-1" name="rest_code_24e0e6b6fa1243539c70e42917c54053-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_24e0e6b6fa1243539c70e42917c54053-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;format_title_sentinels&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;variant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a id="rest_code_24e0e6b6fa1243539c70e42917c54053-2" name="rest_code_24e0e6b6fa1243539c70e42917c54053-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_24e0e6b6fa1243539c70e42917c54053-2"&gt;&lt;/a&gt;    &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;a id="rest_code_24e0e6b6fa1243539c70e42917c54053-3" name="rest_code_24e0e6b6fa1243539c70e42917c54053-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_24e0e6b6fa1243539c70e42917c54053-3"&gt;&lt;/a&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;variant&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a id="rest_code_24e0e6b6fa1243539c70e42917c54053-4" name="rest_code_24e0e6b6fa1243539c70e42917c54053-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_24e0e6b6fa1243539c70e42917c54053-4"&gt;&lt;/a&gt;        &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"[&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;variant&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;]"&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a id="rest_code_24e0e6b6fa1243539c70e42917c54053-5" name="rest_code_24e0e6b6fa1243539c70e42917c54053-5" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_24e0e6b6fa1243539c70e42917c54053-5"&gt;&lt;/a&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a id="rest_code_24e0e6b6fa1243539c70e42917c54053-6" name="rest_code_24e0e6b6fa1243539c70e42917c54053-6" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_24e0e6b6fa1243539c70e42917c54053-6"&gt;&lt;/a&gt;        &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"(&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;)"&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a id="rest_code_24e0e6b6fa1243539c70e42917c54053-7" name="rest_code_24e0e6b6fa1243539c70e42917c54053-7" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_24e0e6b6fa1243539c70e42917c54053-7"&gt;&lt;/a&gt;    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;' '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;If sentinel value (&lt;code class="docutils literal"&gt;None&lt;/code&gt; in above case) can be valid data, then there is
+an ambiguity problem which cannot be resolved with this approach to optional
+arguments.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Even if the sentinel is unambiguous, a test is still needed against
+it before the argument can be correctly used. Burden is on programmer to
+perform this test.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Unused arguments do not need to be specified at invocation site.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Argument values do not need to be unwrapped prior to use.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="python-raised-exception-3"&gt;
+&lt;h4&gt;Python (Raised Exception)&lt;/h4&gt;
+&lt;p&gt;No explicit declaration of optional parameters. Arguments are passed via
+dictionary of extra arguments that do not bind to any declared parameters.
+Attempt to access an unbound argument in dictionary will result in a
+&lt;code class="docutils literal"&gt;KeyError&lt;/code&gt; exception.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.py.html"&gt;cl-existence-oriented/optional-arguments.py&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.py"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code python"&gt;&lt;a id="rest_code_34d49584af1d43368b0b406504fa6d72-1" name="rest_code_34d49584af1d43368b0b406504fa6d72-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34d49584af1d43368b0b406504fa6d72-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;format_title_args_dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;nomargs&lt;/span&gt; &lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a id="rest_code_34d49584af1d43368b0b406504fa6d72-2" name="rest_code_34d49584af1d43368b0b406504fa6d72-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34d49584af1d43368b0b406504fa6d72-2"&gt;&lt;/a&gt;    &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;a id="rest_code_34d49584af1d43368b0b406504fa6d72-3" name="rest_code_34d49584af1d43368b0b406504fa6d72-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34d49584af1d43368b0b406504fa6d72-3"&gt;&lt;/a&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;'variant'&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;nomargs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a id="rest_code_34d49584af1d43368b0b406504fa6d72-4" name="rest_code_34d49584af1d43368b0b406504fa6d72-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34d49584af1d43368b0b406504fa6d72-4"&gt;&lt;/a&gt;        &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;"[&lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s2"&gt;]"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;nomargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s1"&gt;'variant'&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a id="rest_code_34d49584af1d43368b0b406504fa6d72-5" name="rest_code_34d49584af1d43368b0b406504fa6d72-5" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34d49584af1d43368b0b406504fa6d72-5"&gt;&lt;/a&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s1"&gt;'version'&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;nomargs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;a id="rest_code_34d49584af1d43368b0b406504fa6d72-6" name="rest_code_34d49584af1d43368b0b406504fa6d72-6" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34d49584af1d43368b0b406504fa6d72-6"&gt;&lt;/a&gt;        &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;"(&lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s2"&gt;)"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;nomargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s1"&gt;'version'&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a id="rest_code_34d49584af1d43368b0b406504fa6d72-7" name="rest_code_34d49584af1d43368b0b406504fa6d72-7" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_34d49584af1d43368b0b406504fa6d72-7"&gt;&lt;/a&gt;    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;' '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on interface maintainer to ensure that usable parameters are
+properly documented since they will likley not be inferred by an automatic
+documentation generator.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Burden is on interface user to discover usable parameters in code, if they
+are not properly documented.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Test for existence in dictionary of optional arguments needed before optional
+argument can be used. Burden is on interface user to perform this test.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Key must be referenced twice: once for the existence test and once for the
+access. This poses a software maintenance issue since a change of key literal
+or key variable name would need to happen in two different places.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Unused arguments do not need to be specified at invocation site.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Argument values do not need to be unwrapped prior to use.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="rust-wrapped-value-3"&gt;
+&lt;h4&gt;Rust (Wrapped Value)&lt;/h4&gt;
+&lt;p&gt;Each optional parameter declared as with an &lt;code class="docutils literal"&gt;Option&lt;/code&gt; type. Arguments are
+either &lt;code class="docutils literal"&gt;None&lt;/code&gt; or a value-bearing &lt;code class="docutils literal"&gt;Some&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.rs.html"&gt;cl-existence-oriented/optional-arguments.rs&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.rs"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code rust"&gt;&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-1" name="rest_code_02dc877a16684c97b126deeea60d4b10-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="nf"&gt;format_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;: &lt;span class="kp"&gt;&amp;amp;&lt;/span&gt;&lt;span class="kt"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;variant&lt;/span&gt;: &lt;span class="nb"&gt;Option&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;amp;&lt;/span&gt;&lt;span class="kt"&gt;str&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;: &lt;span class="nb"&gt;Option&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;amp;&lt;/span&gt;&lt;span class="kt"&gt;str&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&amp;gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-2" name="rest_code_02dc877a16684c97b126deeea60d4b10-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-2"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;: &lt;span class="nb"&gt;Vec&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;vec!&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_string&lt;/span&gt;&lt;span class="p"&gt;()];&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-3" name="rest_code_02dc877a16684c97b126deeea60d4b10-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Some&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;variant&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-4" name="rest_code_02dc877a16684c97b126deeea60d4b10-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="fm"&gt;format!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"[{}]"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-5" name="rest_code_02dc877a16684c97b126deeea60d4b10-5" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-5"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-6" name="rest_code_02dc877a16684c97b126deeea60d4b10-6" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-6"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Some&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-7" name="rest_code_02dc877a16684c97b126deeea60d4b10-7" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-7"&gt;&lt;/a&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="fm"&gt;format!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"({})"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-8" name="rest_code_02dc877a16684c97b126deeea60d4b10-8" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-8"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-9" name="rest_code_02dc877a16684c97b126deeea60d4b10-9" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-9"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" "&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;a id="rest_code_02dc877a16684c97b126deeea60d4b10-10" name="rest_code_02dc877a16684c97b126deeea60d4b10-10" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_02dc877a16684c97b126deeea60d4b10-10"&gt;&lt;/a&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="cons simple"&gt;
+&lt;li&gt;&lt;p&gt;Burden is on function developer to inspect &lt;code class="docutils literal"&gt;Option&lt;/code&gt; and unwrap it into
+separate variable, if it exists, before use in function.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Accidental use of raw &lt;code class="docutils literal"&gt;Option&lt;/code&gt; possible in some cases.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Burden is on function invoker to pass an &lt;code class="docutils literal"&gt;Option&lt;/code&gt; variant for each argument
+with optional existence at each invocation site. A change of function
+signature could force an update of each invocation site, which is a code
+maintenance issue.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Consistent interface compared with other parts of the language.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee against panics or undefined behavior.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There is a nice blog post on &lt;a class="reference external" href="https://nullderef.com/blog/rust-parameters/"&gt;additional approaches to optional arguments in
+Rust&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="contemplation"&gt;
+&lt;h2&gt;Contemplation&lt;/h2&gt;
+&lt;p&gt;Determing whether a value exists prior to using it is a frequent and pervasive
+task. We do this again and again in different ways, depending on the langauge
+and data structures with which we are working. For a task so routine and so
+common, one would hope that it would be as facile and robust as possible. But,
+as demonstrated, the current state of affairs is contrary to that desire.&lt;/p&gt;
+&lt;section id="requirements"&gt;
+&lt;h3&gt;Requirements&lt;/h3&gt;
+&lt;p&gt;Can we do better than the showcased mechanisms? Let us set forth some
+requirements, based on what we have seen, and then propose a solution from
+those:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;No sentinel values.&lt;/strong&gt; No default values which serve as sentinels for
+optional existence. (I.e., no ambiguity. Also, as a bonus, reduced dependence
+on nulls.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;No wrapped values.&lt;/strong&gt; No explicit capture or unwrap of values from
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Tagged_union"&gt;algebraic sum types&lt;/a&gt; ("enums",
+like &lt;code class="docutils literal"&gt;Option&lt;/code&gt; in Rust) or &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Nullable_type"&gt;nullable box types&lt;/a&gt; to use an optionally-existent
+value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Retrieve and test in one operation.&lt;/strong&gt; No more than one explicit runtime
+operation against a container to safely use an optionally-existent value.
+(I.e., no need to program separate existence test and access operations.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Detect unprotected access during compilation.&lt;/strong&gt; No panics, raised
+exceptions, or undefined behavior at runtime from attempting to access an
+optionally-existent value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Consistency.&lt;/strong&gt; Single, consistent way of working with optionally-existent
+values across language and standard library.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="critiques"&gt;
+&lt;h3&gt;Critiques&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.rust-lang.org/"&gt;Rust&lt;/a&gt; meets most of the criteria above, except
+for "no wrapped values". But, unwrapping return values is an ergonomic issue,
+in spite of the availability of conveniences, such as &lt;code class="docutils literal"&gt;if let&lt;/code&gt;. Also,
+wrapping optional arguments is another ergonomic issue. These are issues for a
+programmer, both in the sense that they require additional work to perform very
+routine operations and in the sense that they reduce the legibility of the code
+by obfuscating it with machinery not related the problem that it is solving.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://ziglang.org"&gt;Zig&lt;/a&gt; is currently less consistent than Rust in its use
+of optional values, perhaps because of the relative immaturity of its standard
+library. More importantly, it conflates optional existence with nullability.
+However, to its credit, it has a &lt;code class="docutils literal"&gt;?&lt;/code&gt; type prefix and various bits of
+unwrapping shorthand, such as a capturing &lt;code class="docutils literal"&gt;if&lt;/code&gt; and the &lt;code class="docutils literal"&gt;orelse&lt;/code&gt; operator,
+which mitigates the ergonomic issues of unwrapping to some extent, but does not
+eliminate them.&lt;/p&gt;
+&lt;p&gt;Like Zig, &lt;a class="reference external" href="https://kotlinlang.org/"&gt;Kotlin&lt;/a&gt; conflates optional existence with
+nullability. And, similar to Zig, it has a &lt;code class="docutils literal"&gt;?&lt;/code&gt; type suffix and some syntactic
+sugar for handling nullable types, such as the &lt;code class="docutils literal"&gt;&lt;span class="pre"&gt;?.&lt;/span&gt;&lt;/code&gt; "safe call" operator and
+the &lt;code class="docutils literal"&gt;&lt;span class="pre"&gt;?:&lt;/span&gt;&lt;/code&gt; Elvis operator. One very nice feature of Kotlin is that the compiler
+will check if you attempt to access a member of a nullable object without
+guarding the access in appropriate null check first.&lt;/p&gt;
+&lt;p&gt;The way that the &lt;a class="reference external" href="https://go.dev/"&gt;Go&lt;/a&gt; &lt;code class="docutils literal"&gt;map&lt;/code&gt; handles entry retrieval is a
+nice idea in the sense that it collapses two explicit operations (existence
+test and access) into one. However, it is inconsistently applied with other
+container types across the language. And, the fact that the existence boolean
+can be ignored and that the default return value may be a valid piece of data
+makes it dangerous.&lt;/p&gt;
+&lt;p&gt;In &lt;a class="reference external" href="https://www.python.org/"&gt;Python&lt;/a&gt;, the dictionary of nominative arguments
+(&lt;code class="docutils literal"&gt;**&lt;/code&gt;) can be quite powerful and avoids both sentinel values and wrapped
+values for optional arguments. However, it requires two explicit operations to
+safely work. And, it loses the documentation that comes from explicit interface
+declaration.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="general-proposal"&gt;
+&lt;h2&gt;General Proposal&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Let programmer mark function parameters which can optionally accept
+arguments. (Similar to Kotlin and Zig, but without conflating nullability
+with optional existence.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Let programmer mark which return value slots of a function can be optionally
+filled. (Similar to Kotlin and Zig, but without conflating nullability with
+optional existence.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Provide an operator to test whether a variable is bound to a value or not.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Perform semantic analysis during compilation to ensure that access to any
+variable with an optional value has appropriate protection, such as being
+inside the scope of a conditional which tests for its existence.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;This is reasonable and achievable using contemporary techniques. (Kotlin
+already does this.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Need to treat logical disjunction (&lt;code class="docutils literal"&gt;or&lt;/code&gt;) and negation (&lt;code class="docutils literal"&gt;not&lt;/code&gt;) of
+existence conditions as false protection for all optionally-existent values
+under test by those conditions. Only single existence conditions or logical
+conjunction of existence conditions can guarantee safe runtime access for
+all optionally-existent values under test by those conditions.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Allow propagation of an optional argument from one function invocation into
+another, provided that the corresponding parameter can also accept an
+optional argument. Propagation is safe because the ultimate invocation target
+must either ignore the optional argument or else submit it to existence
+protection as a condition for access to it.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Allow propagation of an optional return value out of one function invocation
+through another, provided that corresponding return value slot can also be
+optionally filled. Propagation is safe because some invoker in the call chain
+must ultimately either ignore the optional return value or else submit it to
+existence protection as a condition for access to it.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Generate code such that there is a hidden value, which tracks optional
+existence in bit fields, pushed on the stack of each function invocation, for
+the purpose of satisfying existence tests.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The CPU cost of making a test against the bit field is almost certainly not
+more than the cost of the mechanisms implemented in contemporary languages,
+such as those showcased.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The memory overhead of the additional stack slot is almost certainly not
+more than that of nullable boxes or tagged unions.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Implement generators, including iterators, with optional return values.
+(Similar to Rust, but without wrapped values.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Implement standard consumers of generators, such as a &lt;code class="docutils literal"&gt;for .. in&lt;/code&gt; loop
+head, to work with optional existence. (Similar to Rust, but without wrapped
+values.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Implement indexed (and other more specialized) access to containers provide
+optional return values, such that absence of return value indicates absence
+of item for which access was attempted. (Similar to Rust, but without wrapped
+values.)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="exemplar-language"&gt;
+&lt;h2&gt;Exemplar Language&lt;/h2&gt;
+&lt;p&gt;Below is an informal, partial language definition, which we will use to revisit
+the llustrative cases to see how a language, satisfying our requirements, might
+look in action.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Uses &lt;code class="docutils literal"&gt;?&lt;/code&gt; as a prefix to mark type constraints on optional parameters.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Provides &lt;code class="docutils literal"&gt;is?&lt;/code&gt; as a prefix unary operator which tests whether a variable is
+bound to a value. When appearing in the head of a conditional clause, such as
+an &lt;code class="docutils literal"&gt;if .. do&lt;/code&gt; clause, it denontes semantics that the variable under test is
+safe to access within the clause. Logical negation or disjunction within the
+head of the conditional clause removes this guarantee of safety.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Provides a &lt;code class="docutils literal"&gt;with? .. do&lt;/code&gt; clause which only executes the body of the clause
+if each variable declared in the head of the clause is bound to a value.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Indicial accesses to items in a collection produce optional return values. If
+an index is absent, then no value is produced on return.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Generators produce optional return values. If no more values can be
+generated, then no value is produced on return.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section id="retrieve-element-by-positional-index-1"&gt;
+&lt;h3&gt;Retrieve Element by Positional Index&lt;/h3&gt;
+&lt;p&gt;Application of "maybe do" semantics via a &lt;code class="docutils literal"&gt;with? .. do&lt;/code&gt; clause, dependent on
+whether a transient variable is assigned from an optional return value.
+Will only do something with the last element if it exists.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.mylang.html"&gt;cl-existence-oriented/lastpos.mylang&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/lastpos.mylang"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_c81fcf9c1eff48e6ba28ea6c03d31d3b-1" name="rest_code_c81fcf9c1eff48e6ba28ea6c03d31d3b-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_c81fcf9c1eff48e6ba28ea6c03d31d3b-1"&gt;&lt;/a&gt;    with? last-item = items.[-1] do stderr "last item: {last-item}"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information (implicit) and value returned
+together.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Consistent interface for optional values across language.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee againt unguarded access to possibly unbound
+variable.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="retrieve-entry-by-nominative-index-1"&gt;
+&lt;h3&gt;Retrieve Entry by Nominative Index&lt;/h3&gt;
+&lt;p&gt;Application of "maybe do" semantics via a &lt;code class="docutils literal"&gt;with? .. do&lt;/code&gt; clause, dependent on
+whether a transient variable is assigned from an optional return value. Will
+only do something if the entry is present.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.mylang.html"&gt;cl-existence-oriented/nomassoc.mylang&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/nomassoc.mylang"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_e31b46299dcb415899aba0f07e512e2d-1" name="rest_code_e31b46299dcb415899aba0f07e512e2d-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_e31b46299dcb415899aba0f07e512e2d-1"&gt;&lt;/a&gt;    with? needle = haystack.['needle'] do stderr "needle: {needle}"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information (implicit) and value returned
+together.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Consistent interface for optional values across language.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee againt unguarded access to possibly unbound
+variable.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="retrieve-once-from-iterator-1"&gt;
+&lt;h3&gt;Retrieve Once from Iterator&lt;/h3&gt;
+&lt;p&gt;Application of "maybe do" semantics via a &lt;code class="docutils literal"&gt;with? .. do&lt;/code&gt; clause, dependent on
+whether a transient variable is assigned from an optional return value. Will
+only do something if the iterator returns a value.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/next-set-item.mylang.html"&gt;cl-existence-oriented/next-set-item.mylang&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/next-set-item.mylang"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-1" name="rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-1"&gt;&lt;/a&gt;    with? element = ( ( elements.as-iterator ).next )
+&lt;a id="rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-2" name="rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-2"&gt;&lt;/a&gt;    do stderr "set element: {element}"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;Returns a value which does not need to be unwrapped before use.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Single operation: both existence information (implicit) and value returned
+together.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Consistent interface for optional values across language.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee againt unguarded access to possibly unbound
+variable.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="conditional-concatenation-1"&gt;
+&lt;h3&gt;Conditional Concatenation&lt;/h3&gt;
+&lt;p&gt;Application of unary existential test operator, &lt;code class="docutils literal"&gt;is?&lt;/code&gt;, and specification of
+function parameters which take optional arguments. Will only execute the corpus
+for each &lt;code class="docutils literal"&gt;if .. do&lt;/code&gt; clause if the corresponding optional argument has a
+value.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.mylang.html"&gt;cl-existence-oriented/optional-arguments.mylang&lt;/a&gt;  &lt;a class="reference external" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.mylang"&gt;(Source)&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code text"&gt;&lt;a id="rest_code_fc76ac57ab794db396c037e5450a7928-1" name="rest_code_fc76ac57ab794db396c037e5450a7928-1" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_fc76ac57ab794db396c037e5450a7928-1"&gt;&lt;/a&gt;let format-title`String` base variant`?Any` version`?Any` does:
+&lt;a id="rest_code_fc76ac57ab794db396c037e5450a7928-2" name="rest_code_fc76ac57ab794db396c037e5450a7928-2" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_fc76ac57ab794db396c037e5450a7928-2"&gt;&lt;/a&gt;    let output = ( Dynstring base )
+&lt;a id="rest_code_fc76ac57ab794db396c037e5450a7928-3" name="rest_code_fc76ac57ab794db396c037e5450a7928-3" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_fc76ac57ab794db396c037e5450a7928-3"&gt;&lt;/a&gt;    if is? variant do output.append "[{variant}]"
+&lt;a id="rest_code_fc76ac57ab794db396c037e5450a7928-4" name="rest_code_fc76ac57ab794db396c037e5450a7928-4" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_fc76ac57ab794db396c037e5450a7928-4"&gt;&lt;/a&gt;    if is? version do output.append "({version})"
+&lt;a id="rest_code_fc76ac57ab794db396c037e5450a7928-5" name="rest_code_fc76ac57ab794db396c037e5450a7928-5" href="https://emcd.github.io/posts/cl-existence-oriented/#rest_code_fc76ac57ab794db396c037e5450a7928-5"&gt;&lt;/a&gt;    output.as-string ( separator : ' ' )
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="pros simple"&gt;
+&lt;li&gt;&lt;p&gt;No need to wrap argument values.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;No need to unwrap argument values.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Consistent interface for optional values across language.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile-time safety guarantee againt unguarded access to possibly unbound
+variable.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;There &lt;em&gt;is&lt;/em&gt; a way to work with optionally-existent values that is less intrusive
+than the mechanisms in use by contemporary computational languages and which,
+in theory, has no more runtime overhead than those mechanisms. We &lt;em&gt;can&lt;/em&gt; avoid
+exceptions, panics, sentinel values, undefined behavior, wrapped values, and
+zero values in our alternative, if we are willing to implement some additional
+semantic analysis during compilation and pay for an extra slot on the stack to
+store existence-tracking bit fields. And we can provide a clean, consistent
+interface for optional value access across a language and its standard library,
+unifying the way in which we handle optional arguments to functions and
+optionally-returned values from functions, including generators.&lt;/p&gt;
+&lt;/section&gt;</description><category>computational language</category><category>computer science</category><category>language design</category><guid>https://emcd.github.io/posts/cl-existence-oriented/</guid><pubDate>Fri, 27 May 2022 19:58:54 GMT</pubDate></item></channel></rss>

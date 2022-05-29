@@ -1,0 +1,12 @@
+from std.containers let Collection
+from std.system.current-process let stderr
+
+let run`+entrypoint` arguments`String [_]` does:
+    nothing = { }
+    things = { 42 }
+    print-set-element things
+    print-set-element nothing
+
+let print-set-element`Collection` elements`Collection, return : 1` does:
+    with? element = ( ( elements.as-iterator ).next )
+    do stderr "set element: {element}"

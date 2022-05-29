@@ -1,0 +1,14 @@
+from std.containers let Dynstring
+from std.system.current-process let stderr
+
+let run`+entrypoint` arguments`String [_]` does:
+    stderr ( format-title 'Hello, world!' )
+    stderr ( format-title 'Hello, world!' ( variant : '???' ) )
+    stderr ( format-title 'Hello, world!' ( version : '1.0' ) )
+    stderr ( format-title 'Hello, world!' ( variant : '???' ) ( version : '1.0' ) )
+
+let format-title`String` base variant`?Any` version`?Any` does:
+    let output = ( Dynstring base )
+    if is? variant do output.append "[{variant}]"
+    if is? version do output.append "({version})"
+    output.as-string ( separator : ' ' )

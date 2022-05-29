@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="optional-arguments.py">
+<meta name="viewport" content="width=device-width">
+<title>optional-arguments.py | Contemplations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../../assets/css/colors.css" type="text/css">
+<meta name="color-scheme" content="light dark">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.py.html">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+        
+    <header id="header"><h1 id="brand"><a href="../../" title="Contemplations" rel="home">
+
+        <span id="blog-title">Contemplations</span>
+    </a></h1>
+
+        
+
+        
+    <nav id="menu"><ul>
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+
+    
+
+    
+    
+    </ul></nav><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="svg-sun" viewbox="0 0 24 24"><title>Light Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></symbol><symbol id="svg-moon" viewbox="0 0 24 24"><title>Dark Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></symbol><symbol id="svg-sun-half" viewbox="0 0 24 24"><title>Auto Light/Dark Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><path d="M13 12h5"></path><path d="M13 15h4"></path><path d="M13 18h1"></path><path d="M13 9h4"></path><path d="M13 6h1"></path></svg></symbol></svg><p class="palette-selector-container palette-selector-content">
+    <button class="palette-selector">
+      <div class="visually-hidden">Toggle Light / Dark / Auto Color Theme</div>
+      <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg><svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg><svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg></button>
+    </p>
+
+    </header><main id="content"><nav class="breadcrumbs"><ul class="breadcrumb">
+<li><a href="../">listings</a></li>
+                <li><a href=".">cl-existence-oriented</a></li>
+                <li>optional-arguments.py</li>
+</ul></nav><h1>optional-arguments.py
+            <small><a href="optional-arguments.py">(Source)</a></small>
+        </h1>
+    <div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-1"><code data-line-number=" 1"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-1" name="listingscl-existence-orientedoptional-argumentspy-1"></a><span class="k">def</span> <span class="nf">format_title_sentinels</span><span class="p">(</span> <span class="n">base</span><span class="p">,</span> <span class="n">variant</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-2"><code data-line-number=" 2"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-2" name="listingscl-existence-orientedoptional-argumentspy-2"></a>    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span> <span class="n">base</span> <span class="p">]</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-3"><code data-line-number=" 3"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-3" name="listingscl-existence-orientedoptional-argumentspy-3"></a>    <span class="k">if</span> <span class="n">variant</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-4"><code data-line-number=" 4"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-4" name="listingscl-existence-orientedoptional-argumentspy-4"></a>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">variant</span><span class="si">}</span><span class="s2">]"</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-5"><code data-line-number=" 5"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-5" name="listingscl-existence-orientedoptional-argumentspy-5"></a>    <span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-6"><code data-line-number=" 6"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-6" name="listingscl-existence-orientedoptional-argumentspy-6"></a>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">)"</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-7"><code data-line-number=" 7"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-7" name="listingscl-existence-orientedoptional-argumentspy-7"></a>    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">output</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-8"><code data-line-number=" 8"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-8" name="listingscl-existence-orientedoptional-argumentspy-8"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-9"><code data-line-number=" 9"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-9" name="listingscl-existence-orientedoptional-argumentspy-9"></a><span class="k">def</span> <span class="nf">format_title_args_dict</span><span class="p">(</span> <span class="n">base</span><span class="p">,</span> <span class="o">**</span><span class="n">nomargs</span> <span class="p">):</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-10"><code data-line-number="10"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-10" name="listingscl-existence-orientedoptional-argumentspy-10"></a>    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span> <span class="n">base</span> <span class="p">]</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-11"><code data-line-number="11"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-11" name="listingscl-existence-orientedoptional-argumentspy-11"></a>    <span class="k">if</span> <span class="s1">'variant'</span> <span class="ow">in</span> <span class="n">nomargs</span><span class="p">:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-12"><code data-line-number="12"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-12" name="listingscl-existence-orientedoptional-argumentspy-12"></a>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s2">"[</span><span class="si">{}</span><span class="s2">]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">nomargs</span><span class="p">[</span> <span class="s1">'variant'</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-13"><code data-line-number="13"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-13" name="listingscl-existence-orientedoptional-argumentspy-13"></a>    <span class="k">if</span> <span class="s1">'version'</span> <span class="ow">in</span> <span class="n">nomargs</span><span class="p">:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-14"><code data-line-number="14"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-14" name="listingscl-existence-orientedoptional-argumentspy-14"></a>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s2">"(</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">nomargs</span><span class="p">[</span> <span class="s1">'version'</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-15"><code data-line-number="15"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-15" name="listingscl-existence-orientedoptional-argumentspy-15"></a>    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">output</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-16"><code data-line-number="16"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-16" name="listingscl-existence-orientedoptional-argumentspy-16"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-17"><code data-line-number="17"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-17" name="listingscl-existence-orientedoptional-argumentspy-17"></a><span class="k">if</span> <span class="s1">'__main__'</span> <span class="o">==</span> <span class="vm">__name__</span><span class="p">:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-18"><code data-line-number="18"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-18" name="listingscl-existence-orientedoptional-argumentspy-18"></a>    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span> <span class="k">as</span> <span class="n">partial_function</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-19"><code data-line-number="19"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-19" name="listingscl-existence-orientedoptional-argumentspy-19"></a>    <span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">stderr</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-20"><code data-line-number="20"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-20" name="listingscl-existence-orientedoptional-argumentspy-20"></a>    <span class="n">eprint</span> <span class="o">=</span> <span class="n">partial_function</span><span class="p">(</span> <span class="nb">print</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">stderr</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-21"><code data-line-number="21"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-21" name="listingscl-existence-orientedoptional-argumentspy-21"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_sentinels</span><span class="p">(</span> <span class="s1">'Hello, world!'</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-22"><code data-line-number="22"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-22" name="listingscl-existence-orientedoptional-argumentspy-22"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_sentinels</span><span class="p">(</span> <span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="n">variant</span> <span class="o">=</span> <span class="s1">'Python'</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-23"><code data-line-number="23"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-23" name="listingscl-existence-orientedoptional-argumentspy-23"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_sentinels</span><span class="p">(</span> <span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s1">'1.0'</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-24"><code data-line-number="24"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-24" name="listingscl-existence-orientedoptional-argumentspy-24"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_sentinels</span><span class="p">(</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-25"><code data-line-number="25"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-25" name="listingscl-existence-orientedoptional-argumentspy-25"></a>        <span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="n">variant</span> <span class="o">=</span> <span class="s1">'Python'</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s1">'1.0'</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-26"><code data-line-number="26"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-26" name="listingscl-existence-orientedoptional-argumentspy-26"></a>    <span class="c1"># prints: Hello, world!</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-27"><code data-line-number="27"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-27" name="listingscl-existence-orientedoptional-argumentspy-27"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_sentinels</span><span class="p">(</span> <span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="n">variant</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-28"><code data-line-number="28"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-28" name="listingscl-existence-orientedoptional-argumentspy-28"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_args_dict</span><span class="p">(</span> <span class="s1">'Hello, world!'</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-29"><code data-line-number="29"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-29" name="listingscl-existence-orientedoptional-argumentspy-29"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_args_dict</span><span class="p">(</span> <span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="n">variant</span> <span class="o">=</span> <span class="s1">'Python'</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-30"><code data-line-number="30"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-30" name="listingscl-existence-orientedoptional-argumentspy-30"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_args_dict</span><span class="p">(</span> <span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s1">'1.0'</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-31"><code data-line-number="31"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-31" name="listingscl-existence-orientedoptional-argumentspy-31"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_args_dict</span><span class="p">(</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-32"><code data-line-number="32"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-32" name="listingscl-existence-orientedoptional-argumentspy-32"></a>        <span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="n">variant</span> <span class="o">=</span> <span class="s1">'Python'</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s1">'1.0'</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-33"><code data-line-number="33"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-33" name="listingscl-existence-orientedoptional-argumentspy-33"></a>    <span class="c1"># prints: Hello, world! [None]</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentspy-34"><code data-line-number="34"></code></a></td>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentspy-34" name="listingscl-existence-orientedoptional-argumentspy-34"></a>    <span class="n">eprint</span><span class="p">(</span> <span class="n">format_title_args_dict</span><span class="p">(</span> <span class="s1">'Hello, world!'</span><span class="p">,</span> <span class="n">variant</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">)</span> <span class="p">)</span>
+</code></td>
+</tr>
+</table></div>
+
+        </main><br><footer id="footer"><p>
+    Contents © 2022 Eric McDonald, licensed under 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"></a>.<br>
+    Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>.
+</p>
+            
+        </footer>
+</div>
+    
+            <script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/palette.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

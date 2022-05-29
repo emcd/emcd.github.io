@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Existence-Oriented Programming | Contemplations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../../assets/css/colors.css" type="text/css">
+<meta name="color-scheme" content="light dark">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://emcd.github.io/posts/cl-existence-oriented/">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="Eric McDonald">
+<meta property="og:site_name" content="Contemplations">
+<meta property="og:title" content="Existence-Oriented Programming">
+<meta property="og:url" content="https://emcd.github.io/posts/cl-existence-oriented/">
+<meta property="og:description" content="Let us start this conversation with some questions about your favorite or most
+familiar computational language.
+
+Can a function accept optional arguments? If so, does a parameter,
+corresponding to an ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-05-27T12:58:54-07:00">
+<meta property="article:tag" content="computational language">
+<meta property="article:tag" content="computer science">
+<meta property="article:tag" content="language design">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+        
+    <header id="header"><h1 id="brand"><a href="../../" title="Contemplations" rel="home">
+
+        <span id="blog-title">Contemplations</span>
+    </a></h1>
+
+        
+
+        
+    <nav id="menu"><ul>
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+
+    
+
+    
+    
+    </ul></nav><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="svg-sun" viewbox="0 0 24 24"><title>Light Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></symbol><symbol id="svg-moon" viewbox="0 0 24 24"><title>Dark Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></symbol><symbol id="svg-sun-half" viewbox="0 0 24 24"><title>Auto Light/Dark Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><path d="M13 12h5"></path><path d="M13 15h4"></path><path d="M13 18h1"></path><path d="M13 9h4"></path><path d="M13 6h1"></path></svg></symbol></svg><p class="palette-selector-container palette-selector-content">
+    <button class="palette-selector">
+      <div class="visually-hidden">Toggle Light / Dark / Auto Color Theme</div>
+      <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg><svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg><svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg></button>
+    </p>
+
+    </header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Existence-Oriented Programming</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Eric McDonald
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-05-27T12:58:54-07:00" itemprop="datePublished" title="2022-05-27 12:58">2022-05-27 12:58</time></a>
+            </p>
+            
+        <p class="sourceline"><a href="index.rst" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>Let us start this conversation with some questions about your favorite or most
+familiar computational language.</p>
+<ul class="simple">
+<li><p>Can a function accept optional arguments? If so, does a parameter,
+corresponding to an optional argument, need to have a default value assigned?
+If a default is required, can you unambiguously use this default as a
+sentinel to indicate that the argument was not supplied by the caller? If a
+default is not required, then what is the mechanism that you can use to
+detect whether the optional argument was or was not supplied by the caller?</p></li>
+<li><p>Are <a class="reference external" href="https://en.wikipedia.org/wiki/Generator_(computer_programming)">generators</a> available?
+If so, how does a generator indicate that it has no more values for its
+consumer?</p></li>
+<li><p>More generally, can a function have optional return values? If so, then what
+is the mechanism that you can use to detect whether an optional return value
+was supplied by the callee?</p></li>
+<li><p>What happens when you try to access an item that does not exist in a
+collection? (Possibly because the collection is empty.)</p></li>
+</ul>
+<p>With those questions in mind, let us walk through some code samples from
+various languages to look at how they handle select use cases.</p>
+<section id="illustrative-cases"><h2>Illustrative Cases</h2>
+<p>Code snippets, each containing what is believed to be a safe and <a class="reference external" href="https://en.wikipedia.org/wiki/Programming_idiom">idiomatic</a> way to perform a particular
+task in a given language, are used to illustrate each case. Links to the full
+code, which is runnable, can be found with each example. Furthermore, each
+piece of code attempts to use only the intrinsic types and standard library of
+its language. Also note that this is not an attempt to exhaustively catalog how
+to perform these tasks in every language, but rather to highlight various
+approaches and behaviors with popular or interesting representatives.</p>
+<section id="retrieve-element-by-positional-index"><h3>Retrieve Element by Positional Index</h3>
+<p>Suppose that we wish to do something with the last element from a <a class="reference external" href="https://en.wikipedia.org/wiki/Collection_(abstract_data_type)">collection</a>, the elements
+of which can be accessed by positonal index. Attempting to access the last
+element of an <em>empty collection</em> can lead to a panic, a raised exception, or
+undefined behavior, depending on the language and the implementation of the
+container. Thus, a programmer may need to defend against the empty collection
+case by explicitly testing for it.</p>
+<section id="c-undefined-behavior"><h4>C++ (Undefined Behavior)</h4>
+<p>Undefined behavior, quite possibly a segmentation violation, on attempt to use
+an out-of-bounds index, such as any index would be in the case of an empty
+vector.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/lastpos.cxx.html">cl-existence-oriented/lastpos.cxx</a>  <a class="reference external" href="../../listings/cl-existence-oriented/lastpos.cxx">(Source)</a></p>
+<div class="code"><pre class="code c++"><a id="rest_code_79ee9cdb24884a8989f1b7e5452621fc-1" name="rest_code_79ee9cdb24884a8989f1b7e5452621fc-1" href="#rest_code_79ee9cdb24884a8989f1b7e5452621fc-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="n">items</span><span class="p">.</span><span class="n">empty</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_79ee9cdb24884a8989f1b7e5452621fc-2" name="rest_code_79ee9cdb24884a8989f1b7e5452621fc-2" href="#rest_code_79ee9cdb24884a8989f1b7e5452621fc-2"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"last item: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="n">back</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="rest_code_79ee9cdb24884a8989f1b7e5452621fc-3" name="rest_code_79ee9cdb24884a8989f1b7e5452621fc-3" href="#rest_code_79ee9cdb24884a8989f1b7e5452621fc-3"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>No compilation checks are made about unguarded access to a vector. Burden is
+on programmer to remember to test that an index is within bounds before
+accessing an item from a vector.</p></li>
+<li><p>Two separate operations which must be explicitly programmed: emptiness test
+and access.</p></li>
+<li><p>Inconsistent item access interface compared with <code class="docutils literal"><span class="pre">std::map</span></code> type. Burden is
+on programmer to remember differences.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+</ul></section><section id="go-panic"><h4>Go (Panic)</h4>
+<p>Panics on attempt to use an out-of-bounds index, such as any index would be in
+the case of an empty slice.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/lastpos.go.html">cl-existence-oriented/lastpos.go</a>  <a class="reference external" href="../../listings/cl-existence-oriented/lastpos.go">(Source)</a></p>
+<div class="code"><pre class="code go"><a id="rest_code_40e203d9373548249faef8032735d20c-1" name="rest_code_40e203d9373548249faef8032735d20c-1" href="#rest_code_40e203d9373548249faef8032735d20c-1"></a><span class="w">        </span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span><span class="w"></span>
+<a id="rest_code_40e203d9373548249faef8032735d20c-2" name="rest_code_40e203d9373548249faef8032735d20c-2" href="#rest_code_40e203d9373548249faef8032735d20c-2"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_40e203d9373548249faef8032735d20c-3" name="rest_code_40e203d9373548249faef8032735d20c-3" href="#rest_code_40e203d9373548249faef8032735d20c-3"></a><span class="w">                </span><span class="nx">lastItem</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">items</span><span class="p">[</span><span class="nx">count</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<a id="rest_code_40e203d9373548249faef8032735d20c-4" name="rest_code_40e203d9373548249faef8032735d20c-4" href="#rest_code_40e203d9373548249faef8032735d20c-4"></a><span class="w">                </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"last item: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">lastItem</span><span class="p">)</span><span class="w"></span>
+<a id="rest_code_40e203d9373548249faef8032735d20c-5" name="rest_code_40e203d9373548249faef8032735d20c-5" href="#rest_code_40e203d9373548249faef8032735d20c-5"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>No compilation checks are made about unguarded access to a slice. Burden is
+on programmer to remember to test that an index is within bounds before
+accessing an item from a slice.</p></li>
+<li><p>Two separate operations which must be explicitly programmed: emptiness test
+and access.</p></li>
+<li><p>Inconsistent interface compared with <code class="docutils literal">map</code> type. Burden is on programmer to
+remember differences.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+</ul></section><section id="python-raised-exception"><h4>Python (Raised Exception)</h4>
+<p>Raises <code class="docutils literal">IndexError</code> exception on attempt to use an out-of-bounds index, such
+as any index would be in the case of an empty sequence.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/lastpos.py.html">cl-existence-oriented/lastpos.py</a>  <a class="reference external" href="../../listings/cl-existence-oriented/lastpos.py">(Source)</a></p>
+<div class="code"><pre class="code python"><a id="rest_code_8976bd8247af410c898cf5868362d88d-1" name="rest_code_8976bd8247af410c898cf5868362d88d-1" href="#rest_code_8976bd8247af410c898cf5868362d88d-1"></a>    <span class="k">if</span> <span class="n">items</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span> <span class="s2">"last item: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">items</span><span class="p">[</span> <span class="o">-</span><span class="mi">1</span> <span class="p">]</span> <span class="p">),</span> <span class="n">file</span> <span class="o">=</span> <span class="n">stderr</span> <span class="p">)</span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test that an index is within bounds before
+accessing an item from a sequence.</p></li>
+<li><p>Two separate operations which must be explicitly programmed: emptiness test
+and access.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+<li><p>Reasonably consistent item access interface compared with
+<code class="docutils literal">collections.abc.Mapping</code> types.</p></li>
+</ul></section><section id="rust-wrapped-value"><h4>Rust (Wrapped Value)</h4>
+<p>Returns an <code class="docutils literal">Option</code>, which must be unwrapped before the accessed value, if it
+exists, can be used.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/lastpos.rs.html">cl-existence-oriented/lastpos.rs</a>  <a class="reference external" href="../../listings/cl-existence-oriented/lastpos.rs">(Source)</a></p>
+<div class="code"><pre class="code rust"><a id="rest_code_afbe9ea18533482681f42654bbc147d4-1" name="rest_code_afbe9ea18533482681f42654bbc147d4-1" href="#rest_code_afbe9ea18533482681f42654bbc147d4-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">last_item</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="n">last</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_afbe9ea18533482681f42654bbc147d4-2" name="rest_code_afbe9ea18533482681f42654bbc147d4-2" href="#rest_code_afbe9ea18533482681f42654bbc147d4-2"></a><span class="w">        </span><span class="fm">writeln!</span><span class="p">(</span><span class="n">stderr</span><span class="p">(),</span><span class="w"> </span><span class="s">"last item: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">last_item</span><span class="p">).</span><span class="n">ok</span><span class="p">();</span><span class="w"></span>
+<a id="rest_code_afbe9ea18533482681f42654bbc147d4-3" name="rest_code_afbe9ea18533482681f42654bbc147d4-3" href="#rest_code_afbe9ea18533482681f42654bbc147d4-3"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test whether wrapper contains a value.</p></li>
+<li><p>Burden is on programmer to unwrap value.</p></li>
+<li><p>Accidental use of raw <code class="docutils literal">Option</code> is possible in some cases.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Single operation: both existence information and value returned together.</p></li>
+<li><p>Consistent return value interface compared with rest of standard library.</p></li>
+<li><p>Compile-time safety guarantee against panics and undefined behavior.</p></li>
+</ul></section></section><section id="retrieve-entry-by-nominative-index"><h3>Retrieve Entry by Nominative Index</h3>
+<p>Suppose that we want to retrieve a particular entry from an association table
+(dictionary, map, etc...) but that we have no guarantee on its presence in that
+table. Attempting to access the entry without first testing for its existence
+can lead to various problems, depending on the language and the table
+implementation.</p>
+<section id="c-wrapped-entry"><h4>C++ (Wrapped Entry)</h4>
+<p>Returns an iterator, which must be unwrapped before the accessed value, if it
+exists, can be used.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.cxx.html">cl-existence-oriented/nomassoc.cxx</a>  <a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.cxx">(Source)</a></p>
+<div class="code"><pre class="code c++"><a id="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-1" name="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-1" href="#rest_code_8a8435ce661745ed8e9b9d44fcaf1400-1"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">wrapped_needle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">haystack</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="w"> </span><span class="s">"needle"</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<a id="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-2" name="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-2" href="#rest_code_8a8435ce661745ed8e9b9d44fcaf1400-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">wrapped_needle</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">haystack</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-3" name="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-3" href="#rest_code_8a8435ce661745ed8e9b9d44fcaf1400-3"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"needle: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">wrapped_needle</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-4" name="rest_code_8a8435ce661745ed8e9b9d44fcaf1400-4" href="#rest_code_8a8435ce661745ed8e9b9d44fcaf1400-4"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test whether wrapper contains a value.</p></li>
+<li><p>Burden is on programmer to unwrap value.</p></li>
+<li><p>Accidental use of raw iterator is possible in some cases.</p></li>
+<li><p>One of three different ways to access a value from a map.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Single operation: both existence information and value returned together.</p></li>
+</ul></section><section id="c-zero-initialized-value"><h4>C++ (Zero-Initialized Value)</h4>
+<p>Creates and returns new entry with zero-initialized value if entry is absent.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.cxx.html">cl-existence-oriented/nomassoc.cxx</a>  <a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.cxx">(Source)</a></p>
+<div class="code"><pre class="code c++"><a id="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-1" name="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-1" href="#rest_code_34a14c994c7d4dd1981eecd1829b6cf5-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">haystack</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="w"> </span><span class="s">"needle"</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Requires C++20 std::map.</span>
+<a id="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-2" name="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-2" href="#rest_code_34a14c994c7d4dd1981eecd1829b6cf5-2"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mutable_haystack</span><span class="p">(</span><span class="w"> </span><span class="n">haystack</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<a id="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-3" name="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-3" href="#rest_code_34a14c994c7d4dd1981eecd1829b6cf5-3"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"needle: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mutable_haystack</span><span class="p">[</span><span class="w"> </span><span class="s">"needle"</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-4" name="rest_code_34a14c994c7d4dd1981eecd1829b6cf5-4" href="#rest_code_34a14c994c7d4dd1981eecd1829b6cf5-4"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>If the zero-initialized value can be valid data, then the burden is on
+programmer to test for presence to disambiguate a valid zero-initialized
+value from an absent entry.</p></li>
+<li><p>Inconsistent item access interface compared with <code class="docutils literal"><span class="pre">std::vector</span></code> type. Burden
+is on programmer to remember differences.</p></li>
+<li><p>Cannot work with <code class="docutils literal">const</code> maps as it must be able to create missing entry
+(internal mutation of data structure).</p></li>
+<li><p>Two separate operations: existence test and access.</p></li>
+<li><p>Key must be referenced twice: once for the existence test and once for the
+access. This poses a software maintenance issue since a change of key literal
+or key variable name would need to happen in two different places.</p></li>
+<li><p>One of three different ways to access a value from a map.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+</ul></section><section id="c-raised-exception"><h4>C++ (Raised Exception)</h4>
+<p>Raises <code class="docutils literal"><span class="pre">std::out_of_range</span></code> exception on attempt to access an absent entry,
+such as in the empty collection case.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.cxx.html">cl-existence-oriented/nomassoc.cxx</a>  <a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.cxx">(Source)</a></p>
+<div class="code"><pre class="code c++"><a id="rest_code_391e1d97210d47bebc66d7db4fbb17d9-1" name="rest_code_391e1d97210d47bebc66d7db4fbb17d9-1" href="#rest_code_391e1d97210d47bebc66d7db4fbb17d9-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">haystack</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="w"> </span><span class="s">"needle"</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Requires C++20 std::map.</span>
+<a id="rest_code_391e1d97210d47bebc66d7db4fbb17d9-2" name="rest_code_391e1d97210d47bebc66d7db4fbb17d9-2" href="#rest_code_391e1d97210d47bebc66d7db4fbb17d9-2"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"needle: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">haystack</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="w"> </span><span class="s">"needle"</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="rest_code_391e1d97210d47bebc66d7db4fbb17d9-3" name="rest_code_391e1d97210d47bebc66d7db4fbb17d9-3" href="#rest_code_391e1d97210d47bebc66d7db4fbb17d9-3"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test whether the entry is present prior to access.</p></li>
+<li><p>Two separate operations: existence test and access.</p></li>
+<li><p>Key must be referenced twice: once for the existence test and once for the
+access. This poses a software maintenance issue since a change of key literal
+or key variable name would need to happen in two different places.</p></li>
+<li><p>One of three different ways to access a value from a map.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+</ul></section><section id="go-zero-value"><h4>Go (Zero Value)</h4>
+<p>Returns the zero value for the value type if the entry is absent.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.go.html">cl-existence-oriented/nomassoc.go</a>  <a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.go">(Source)</a></p>
+<div class="code"><pre class="code go"><a id="rest_code_47e18cc41b884df2af49085027a8a25a-1" name="rest_code_47e18cc41b884df2af49085027a8a25a-1" href="#rest_code_47e18cc41b884df2af49085027a8a25a-1"></a><span class="w">        </span><span class="nx">needle</span><span class="p">,</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">haystack</span><span class="p">[</span><span class="s">"needle"</span><span class="p">]</span><span class="w"></span>
+<a id="rest_code_47e18cc41b884df2af49085027a8a25a-2" name="rest_code_47e18cc41b884df2af49085027a8a25a-2" href="#rest_code_47e18cc41b884df2af49085027a8a25a-2"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_47e18cc41b884df2af49085027a8a25a-3" name="rest_code_47e18cc41b884df2af49085027a8a25a-3" href="#rest_code_47e18cc41b884df2af49085027a8a25a-3"></a><span class="w">                </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"needle: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">needle</span><span class="p">)</span><span class="w"></span>
+<a id="rest_code_47e18cc41b884df2af49085027a8a25a-4" name="rest_code_47e18cc41b884df2af49085027a8a25a-4" href="#rest_code_47e18cc41b884df2af49085027a8a25a-4"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>If the zero value can be valid data, then the burden is on programmer to test
+the existence boolean to disambiguate a valid zero value from an absent
+entry.</p></li>
+<li><p>Inconsistent item access interface compared with slice type. Burden is on
+programmer to remember differences.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+<li><p>Single operation: both existence information and value returned together.</p></li>
+</ul></section><section id="python-raised-exception-1"><h4>Python (Raised Exception)</h4>
+<p>Raises <code class="docutils literal">KeyError</code> exception on attempt to access an absent entry, such as in
+the empty collection case.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.py.html">cl-existence-oriented/nomassoc.py</a>  <a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.py">(Source)</a></p>
+<div class="code"><pre class="code python"><a id="rest_code_2e5659bbc79f4ccd9bfd235628e8e317-1" name="rest_code_2e5659bbc79f4ccd9bfd235628e8e317-1" href="#rest_code_2e5659bbc79f4ccd9bfd235628e8e317-1"></a>    <span class="k">if</span> <span class="s1">'needle'</span> <span class="ow">in</span> <span class="n">haystack</span><span class="p">:</span>
+<a id="rest_code_2e5659bbc79f4ccd9bfd235628e8e317-2" name="rest_code_2e5659bbc79f4ccd9bfd235628e8e317-2" href="#rest_code_2e5659bbc79f4ccd9bfd235628e8e317-2"></a>        <span class="nb">print</span><span class="p">(</span> <span class="s2">"needle: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">haystack</span><span class="p">[</span> <span class="s1">'needle'</span> <span class="p">],</span> <span class="n">file</span> <span class="o">=</span> <span class="n">stderr</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test whether the entry is present prior to access.</p></li>
+<li><p>Two separate operations: existence test and access.</p></li>
+<li><p>Key must be referenced twice: once for the existence test and once for the
+access. This poses a software maintenance issue since a change of key literal
+or key variable name would need to happen in two different places.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+<li><p>Consistent interface compared with <code class="docutils literal">collections.abc.Sequence</code> types.</p></li>
+</ul></section><section id="python-sentinel-value"><h4>Python (Sentinel Value)</h4>
+<p>Returns <code class="docutils literal">None</code> if the entry is absent.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.py.html">cl-existence-oriented/nomassoc.py</a>  <a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.py">(Source)</a></p>
+<div class="code"><pre class="code python"><a id="rest_code_49fdd009cab948ef9b5995e15db48a5d-1" name="rest_code_49fdd009cab948ef9b5995e15db48a5d-1" href="#rest_code_49fdd009cab948ef9b5995e15db48a5d-1"></a>    <span class="n">needle</span> <span class="o">=</span> <span class="n">haystack</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="s1">'needle'</span> <span class="p">)</span>
+<a id="rest_code_49fdd009cab948ef9b5995e15db48a5d-2" name="rest_code_49fdd009cab948ef9b5995e15db48a5d-2" href="#rest_code_49fdd009cab948ef9b5995e15db48a5d-2"></a>    <span class="k">if</span> <span class="n">needle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="rest_code_49fdd009cab948ef9b5995e15db48a5d-3" name="rest_code_49fdd009cab948ef9b5995e15db48a5d-3" href="#rest_code_49fdd009cab948ef9b5995e15db48a5d-3"></a>        <span class="nb">print</span><span class="p">(</span> <span class="sa">f</span><span class="s2">"needle: </span><span class="si">{</span><span class="n">needle</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">stderr</span> <span class="p">)</span>
+</pre></div>
+<ul class="cons simple">
+<li><p>If <code class="docutils literal">None</code> can be valid data, then there is an ambiguity problem which
+cannot be resolved with this approach to access.</p></li>
+<li><p>Even if <code class="docutils literal">None</code> is an unambiguous sentinel, a test is still needed against
+it before the entry value can be used. Burden is on programmer to perform
+this test.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+<li><p>Single operation: existence information is encoded as the returned value.</p></li>
+</ul></section><section id="rust-wrapped-value-1"><h4>Rust (Wrapped Value)</h4>
+<p>Returns an <code class="docutils literal">Option</code>, which must be unwrapped before the accessed value, if it
+exists, can be used.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.rs.html">cl-existence-oriented/nomassoc.rs</a>  <a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.rs">(Source)</a></p>
+<div class="code"><pre class="code rust"><a id="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-1" name="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-1" href="#rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">needle</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">haystack</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"needle"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-2" name="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-2" href="#rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-2"></a><span class="w">        </span><span class="fm">writeln!</span><span class="p">(</span><span class="n">stderr</span><span class="p">(),</span><span class="w"> </span><span class="s">"needle: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">needle</span><span class="p">).</span><span class="n">ok</span><span class="p">();</span><span class="w"></span>
+<a id="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-3" name="rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-3" href="#rest_code_c2f7de064dd8453b973c3ea4c4c6f3cc-3"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test whether wrapper contains a value.</p></li>
+<li><p>Burden is on programmer to unwrap value.</p></li>
+<li><p>Accidental use of raw <code class="docutils literal">Option</code> possible in some cases.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Single operation: both existence information and value returned together.</p></li>
+<li><p>Consistent return value interface compared with rest of standard library.</p></li>
+<li><p>Compile-time safety guarantee against panics or undefined behavior.</p></li>
+</ul></section></section><section id="retrieve-once-from-iterator"><h3>Retrieve Once from Iterator</h3>
+<p>Suppose that we want to get an element from a set without seeking any specific
+element. Set implementations are usually not indexable by position, as they are
+not ordered by position, so notions such as "first" or "last" are not that
+meaningful. And, if we do not know or care about a particular element in the
+set, then we are not going to retrieve by value either. However, most set
+implementations provide iterators over themselves and we can take advantage of
+this... provided we can handle the <em>empty set</em> case properly.</p>
+<section id="c-wrapped-value"><h4>C++ (Wrapped Value)</h4>
+<p>Returns an iterator, which must be unwrapped before the accessed value, if it
+exists, can be used.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/next-set-item.cxx.html">cl-existence-oriented/next-set-item.cxx</a>  <a class="reference external" href="../../listings/cl-existence-oriented/next-set-item.cxx">(Source)</a></p>
+<div class="code"><pre class="code c++"><a id="rest_code_0a7733429450438d89e1653a654440c1-1" name="rest_code_0a7733429450438d89e1653a654440c1-1" href="#rest_code_0a7733429450438d89e1653a654440c1-1"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elements</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<a id="rest_code_0a7733429450438d89e1653a654440c1-2" name="rest_code_0a7733429450438d89e1653a654440c1-2" href="#rest_code_0a7733429450438d89e1653a654440c1-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">elements</span><span class="p">.</span><span class="n">cend</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_0a7733429450438d89e1653a654440c1-3" name="rest_code_0a7733429450438d89e1653a654440c1-3" href="#rest_code_0a7733429450438d89e1653a654440c1-3"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"set element: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="rest_code_0a7733429450438d89e1653a654440c1-4" name="rest_code_0a7733429450438d89e1653a654440c1-4" href="#rest_code_0a7733429450438d89e1653a654440c1-4"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test whether wrapper contains a value.</p></li>
+<li><p>Burden is on programmer to unwrap value.</p></li>
+<li><p>Accidental use of raw iterator is possible in some cases.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Single operation: both existence information and value returned together.</p></li>
+</ul></section><section id="python-raised-exception-2"><h4>Python (Raised Exception)</h4>
+<p>Raises <code class="docutils literal">StopIteration</code> exception on attempt to get next value from an
+exhausted iterator.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/next-set-item.py.html">cl-existence-oriented/next-set-item.py</a>  <a class="reference external" href="../../listings/cl-existence-oriented/next-set-item.py">(Source)</a></p>
+<div class="code"><pre class="code python"><a id="rest_code_76bc77b16576453aab85c2083a1c9c88-1" name="rest_code_76bc77b16576453aab85c2083a1c9c88-1" href="#rest_code_76bc77b16576453aab85c2083a1c9c88-1"></a>    <span class="k">if</span> <span class="n">elements</span><span class="p">:</span>
+<a id="rest_code_76bc77b16576453aab85c2083a1c9c88-2" name="rest_code_76bc77b16576453aab85c2083a1c9c88-2" href="#rest_code_76bc77b16576453aab85c2083a1c9c88-2"></a>        <span class="n">element</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span> <span class="nb">iter</span><span class="p">(</span> <span class="n">elements</span> <span class="p">)</span> <span class="p">)</span>
+<a id="rest_code_76bc77b16576453aab85c2083a1c9c88-3" name="rest_code_76bc77b16576453aab85c2083a1c9c88-3" href="#rest_code_76bc77b16576453aab85c2083a1c9c88-3"></a>        <span class="nb">print</span><span class="p">(</span> <span class="sa">f</span><span class="s2">"set element: </span><span class="si">{</span><span class="n">element</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">stderr</span> <span class="p">)</span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test whether the underlying collection is empty
+prior to iteration over it.</p></li>
+<li><p>Two separate operations: existence test and access.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+</ul></section><section id="rust-wrapped-value-2"><h4>Rust (Wrapped Value)</h4>
+<p>Returns an <code class="docutils literal">Option</code>, which must be unwrapped before the accessed value, if it
+exists, can be used.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/next-set-item.rs.html">cl-existence-oriented/next-set-item.rs</a>  <a class="reference external" href="../../listings/cl-existence-oriented/next-set-item.rs">(Source)</a></p>
+<div class="code"><pre class="code rust"><a id="rest_code_2167b3819eb34f17aabdcc17d87bab1b-1" name="rest_code_2167b3819eb34f17aabdcc17d87bab1b-1" href="#rest_code_2167b3819eb34f17aabdcc17d87bab1b-1"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elements</span><span class="p">.</span><span class="n">iter</span><span class="p">();</span><span class="w"></span>
+<a id="rest_code_2167b3819eb34f17aabdcc17d87bab1b-2" name="rest_code_2167b3819eb34f17aabdcc17d87bab1b-2" href="#rest_code_2167b3819eb34f17aabdcc17d87bab1b-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iterator</span><span class="p">.</span><span class="n">next</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_2167b3819eb34f17aabdcc17d87bab1b-3" name="rest_code_2167b3819eb34f17aabdcc17d87bab1b-3" href="#rest_code_2167b3819eb34f17aabdcc17d87bab1b-3"></a><span class="w">        </span><span class="fm">writeln!</span><span class="p">(</span><span class="n">stderr</span><span class="p">(),</span><span class="w"> </span><span class="s">"set element: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">).</span><span class="n">ok</span><span class="p">();</span><span class="w"></span>
+<a id="rest_code_2167b3819eb34f17aabdcc17d87bab1b-4" name="rest_code_2167b3819eb34f17aabdcc17d87bab1b-4" href="#rest_code_2167b3819eb34f17aabdcc17d87bab1b-4"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on programmer to test whether wrapper contains a value.</p></li>
+<li><p>Burden is on programmer to unwrap value.</p></li>
+<li><p>Accidental use of raw <code class="docutils literal">Option</code> possible in some cases.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Single operation: both existence information and value returned together.</p></li>
+<li><p>Consistent return value interface compared with rest of standard library.</p></li>
+<li><p>Compile-time safety guarantee against panics or undefined behavior.</p></li>
+</ul></section></section><section id="conditional-concatenation"><h3>Conditional Concatenation</h3>
+<p>Suppose that we want to write a function that will concatenate a base string
+with some optionally-supplied supplemental strings in a particular way. Most
+languages do not support optional arguments without the use of default values,
+wrapped values, or a mechanism that avoids parameter declarations.</p>
+<section id="kotlin-nullable-value"><h4>Kotlin (Nullable Value)</h4>
+<p>The optional parameters have nullable types and are assigned <code class="docutils literal">null</code> by
+default.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.kt.html">cl-existence-oriented/optional-arguments.kt</a>  <a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.kt">(Source)</a></p>
+<div class="code"><pre class="code kotlin"><a id="rest_code_4821582e210e49c988fd168034278558-1" name="rest_code_4821582e210e49c988fd168034278558-1" href="#rest_code_4821582e210e49c988fd168034278558-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">format_title</span><span class="p">(</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-2" name="rest_code_4821582e210e49c988fd168034278558-2" href="#rest_code_4821582e210e49c988fd168034278558-2"></a><span class="w">    </span><span class="n">base</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">variant</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-3" name="rest_code_4821582e210e49c988fd168034278558-3" href="#rest_code_4821582e210e49c988fd168034278558-3"></a><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-4" name="rest_code_4821582e210e49c988fd168034278558-4" href="#rest_code_4821582e210e49c988fd168034278558-4"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-5" name="rest_code_4821582e210e49c988fd168034278558-5" href="#rest_code_4821582e210e49c988fd168034278558-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">variant</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-6" name="rest_code_4821582e210e49c988fd168034278558-6" href="#rest_code_4821582e210e49c988fd168034278558-6"></a><span class="w">        </span><span class="n">variant</span><span class="p">.</span><span class="na">length</span><span class="w">  </span><span class="c1">// Compilation error if not wrapped in null check.</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-7" name="rest_code_4821582e210e49c988fd168034278558-7" href="#rest_code_4821582e210e49c988fd168034278558-7"></a><span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"[</span><span class="si">$</span><span class="n">variant</span><span class="s">]"</span><span class="p">)</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-8" name="rest_code_4821582e210e49c988fd168034278558-8" href="#rest_code_4821582e210e49c988fd168034278558-8"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-9" name="rest_code_4821582e210e49c988fd168034278558-9" href="#rest_code_4821582e210e49c988fd168034278558-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">version</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-10" name="rest_code_4821582e210e49c988fd168034278558-10" href="#rest_code_4821582e210e49c988fd168034278558-10"></a><span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"(</span><span class="si">$</span><span class="n">version</span><span class="s">)"</span><span class="p">)</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-11" name="rest_code_4821582e210e49c988fd168034278558-11" href="#rest_code_4821582e210e49c988fd168034278558-11"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-12" name="rest_code_4821582e210e49c988fd168034278558-12" href="#rest_code_4821582e210e49c988fd168034278558-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="na">joinToString</span><span class="p">(</span><span class="n">separator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">" "</span><span class="p">)</span><span class="w"></span>
+<a id="rest_code_4821582e210e49c988fd168034278558-13" name="rest_code_4821582e210e49c988fd168034278558-13" href="#rest_code_4821582e210e49c988fd168034278558-13"></a><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Default value of <code class="docutils literal">null</code> must be assigned to each parameter to make it
+optional.</p></li>
+<li><p>If <code class="docutils literal">null</code> can be valid data, then there is an ambiguity problem which
+cannot be resolved with this approach to optional arguments.</p></li>
+<li><p>Compile-time safety guarantee only covers unguarded member access to a
+possibly null variable and not use of that variable itself.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Unused arguments do not need to be specified at invocation site.</p></li>
+<li><p>Argument values do not need to be unwrapped prior to use.</p></li>
+<li><p>Compile-time safety guarantee againt unguarded member access to possibly null
+variable.</p></li>
+</ul></section><section id="python-sentinel-value-1"><h4>Python (Sentinel Value)</h4>
+<p>The default values of the optional parameters are sentinel values.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.py.html">cl-existence-oriented/optional-arguments.py</a>  <a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.py">(Source)</a></p>
+<div class="code"><pre class="code python"><a id="rest_code_24e0e6b6fa1243539c70e42917c54053-1" name="rest_code_24e0e6b6fa1243539c70e42917c54053-1" href="#rest_code_24e0e6b6fa1243539c70e42917c54053-1"></a><span class="k">def</span> <span class="nf">format_title_sentinels</span><span class="p">(</span> <span class="n">base</span><span class="p">,</span> <span class="n">variant</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
+<a id="rest_code_24e0e6b6fa1243539c70e42917c54053-2" name="rest_code_24e0e6b6fa1243539c70e42917c54053-2" href="#rest_code_24e0e6b6fa1243539c70e42917c54053-2"></a>    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span> <span class="n">base</span> <span class="p">]</span>
+<a id="rest_code_24e0e6b6fa1243539c70e42917c54053-3" name="rest_code_24e0e6b6fa1243539c70e42917c54053-3" href="#rest_code_24e0e6b6fa1243539c70e42917c54053-3"></a>    <span class="k">if</span> <span class="n">variant</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="rest_code_24e0e6b6fa1243539c70e42917c54053-4" name="rest_code_24e0e6b6fa1243539c70e42917c54053-4" href="#rest_code_24e0e6b6fa1243539c70e42917c54053-4"></a>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">variant</span><span class="si">}</span><span class="s2">]"</span> <span class="p">)</span>
+<a id="rest_code_24e0e6b6fa1243539c70e42917c54053-5" name="rest_code_24e0e6b6fa1243539c70e42917c54053-5" href="#rest_code_24e0e6b6fa1243539c70e42917c54053-5"></a>    <span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="rest_code_24e0e6b6fa1243539c70e42917c54053-6" name="rest_code_24e0e6b6fa1243539c70e42917c54053-6" href="#rest_code_24e0e6b6fa1243539c70e42917c54053-6"></a>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">)"</span> <span class="p">)</span>
+<a id="rest_code_24e0e6b6fa1243539c70e42917c54053-7" name="rest_code_24e0e6b6fa1243539c70e42917c54053-7" href="#rest_code_24e0e6b6fa1243539c70e42917c54053-7"></a>    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">output</span> <span class="p">)</span>
+</pre></div>
+<ul class="cons simple">
+<li><p>If sentinel value (<code class="docutils literal">None</code> in above case) can be valid data, then there is
+an ambiguity problem which cannot be resolved with this approach to optional
+arguments.</p></li>
+<li><p>Even if the sentinel is unambiguous, a test is still needed against
+it before the argument can be correctly used. Burden is on programmer to
+perform this test.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Unused arguments do not need to be specified at invocation site.</p></li>
+<li><p>Argument values do not need to be unwrapped prior to use.</p></li>
+</ul></section><section id="python-raised-exception-3"><h4>Python (Raised Exception)</h4>
+<p>No explicit declaration of optional parameters. Arguments are passed via
+dictionary of extra arguments that do not bind to any declared parameters.
+Attempt to access an unbound argument in dictionary will result in a
+<code class="docutils literal">KeyError</code> exception.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.py.html">cl-existence-oriented/optional-arguments.py</a>  <a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.py">(Source)</a></p>
+<div class="code"><pre class="code python"><a id="rest_code_34d49584af1d43368b0b406504fa6d72-1" name="rest_code_34d49584af1d43368b0b406504fa6d72-1" href="#rest_code_34d49584af1d43368b0b406504fa6d72-1"></a><span class="k">def</span> <span class="nf">format_title_args_dict</span><span class="p">(</span> <span class="n">base</span><span class="p">,</span> <span class="o">**</span><span class="n">nomargs</span> <span class="p">):</span>
+<a id="rest_code_34d49584af1d43368b0b406504fa6d72-2" name="rest_code_34d49584af1d43368b0b406504fa6d72-2" href="#rest_code_34d49584af1d43368b0b406504fa6d72-2"></a>    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span> <span class="n">base</span> <span class="p">]</span>
+<a id="rest_code_34d49584af1d43368b0b406504fa6d72-3" name="rest_code_34d49584af1d43368b0b406504fa6d72-3" href="#rest_code_34d49584af1d43368b0b406504fa6d72-3"></a>    <span class="k">if</span> <span class="s1">'variant'</span> <span class="ow">in</span> <span class="n">nomargs</span><span class="p">:</span>
+<a id="rest_code_34d49584af1d43368b0b406504fa6d72-4" name="rest_code_34d49584af1d43368b0b406504fa6d72-4" href="#rest_code_34d49584af1d43368b0b406504fa6d72-4"></a>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s2">"[</span><span class="si">{}</span><span class="s2">]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">nomargs</span><span class="p">[</span> <span class="s1">'variant'</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+<a id="rest_code_34d49584af1d43368b0b406504fa6d72-5" name="rest_code_34d49584af1d43368b0b406504fa6d72-5" href="#rest_code_34d49584af1d43368b0b406504fa6d72-5"></a>    <span class="k">if</span> <span class="s1">'version'</span> <span class="ow">in</span> <span class="n">nomargs</span><span class="p">:</span>
+<a id="rest_code_34d49584af1d43368b0b406504fa6d72-6" name="rest_code_34d49584af1d43368b0b406504fa6d72-6" href="#rest_code_34d49584af1d43368b0b406504fa6d72-6"></a>        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s2">"(</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">nomargs</span><span class="p">[</span> <span class="s1">'version'</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+<a id="rest_code_34d49584af1d43368b0b406504fa6d72-7" name="rest_code_34d49584af1d43368b0b406504fa6d72-7" href="#rest_code_34d49584af1d43368b0b406504fa6d72-7"></a>    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">output</span> <span class="p">)</span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on interface maintainer to ensure that usable parameters are
+properly documented since they will likley not be inferred by an automatic
+documentation generator.</p></li>
+<li><p>Burden is on interface user to discover usable parameters in code, if they
+are not properly documented.</p></li>
+<li><p>Test for existence in dictionary of optional arguments needed before optional
+argument can be used. Burden is on interface user to perform this test.</p></li>
+<li><p>Key must be referenced twice: once for the existence test and once for the
+access. This poses a software maintenance issue since a change of key literal
+or key variable name would need to happen in two different places.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Unused arguments do not need to be specified at invocation site.</p></li>
+<li><p>Argument values do not need to be unwrapped prior to use.</p></li>
+</ul></section><section id="rust-wrapped-value-3"><h4>Rust (Wrapped Value)</h4>
+<p>Each optional parameter declared as with an <code class="docutils literal">Option</code> type. Arguments are
+either <code class="docutils literal">None</code> or a value-bearing <code class="docutils literal">Some</code>.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.rs.html">cl-existence-oriented/optional-arguments.rs</a>  <a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.rs">(Source)</a></p>
+<div class="code"><pre class="code rust"><a id="rest_code_02dc877a16684c97b126deeea60d4b10-1" name="rest_code_02dc877a16684c97b126deeea60d4b10-1" href="#rest_code_02dc877a16684c97b126deeea60d4b10-1"></a><span class="k">fn</span> <span class="nf">format_title</span><span class="p">(</span><span class="n">base</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">variant</span>: <span class="nb">Option</span><span class="o">&lt;&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span>: <span class="nb">Option</span><span class="o">&lt;&amp;</span><span class="kt">str</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">String</span> <span class="p">{</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-2" name="rest_code_02dc877a16684c97b126deeea60d4b10-2" href="#rest_code_02dc877a16684c97b126deeea60d4b10-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">output</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="n">base</span><span class="p">.</span><span class="n">to_string</span><span class="p">()];</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-3" name="rest_code_02dc877a16684c97b126deeea60d4b10-3" href="#rest_code_02dc877a16684c97b126deeea60d4b10-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">variant</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-4" name="rest_code_02dc877a16684c97b126deeea60d4b10-4" href="#rest_code_02dc877a16684c97b126deeea60d4b10-4"></a><span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">"[{}]"</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">));</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-5" name="rest_code_02dc877a16684c97b126deeea60d4b10-5" href="#rest_code_02dc877a16684c97b126deeea60d4b10-5"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-6" name="rest_code_02dc877a16684c97b126deeea60d4b10-6" href="#rest_code_02dc877a16684c97b126deeea60d4b10-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-7" name="rest_code_02dc877a16684c97b126deeea60d4b10-7" href="#rest_code_02dc877a16684c97b126deeea60d4b10-7"></a><span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="fm">format!</span><span class="p">(</span><span class="s">"({})"</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">));</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-8" name="rest_code_02dc877a16684c97b126deeea60d4b10-8" href="#rest_code_02dc877a16684c97b126deeea60d4b10-8"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-9" name="rest_code_02dc877a16684c97b126deeea60d4b10-9" href="#rest_code_02dc877a16684c97b126deeea60d4b10-9"></a><span class="w">    </span><span class="n">output</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="s">" "</span><span class="p">)</span><span class="w"></span>
+<a id="rest_code_02dc877a16684c97b126deeea60d4b10-10" name="rest_code_02dc877a16684c97b126deeea60d4b10-10" href="#rest_code_02dc877a16684c97b126deeea60d4b10-10"></a><span class="p">}</span><span class="w"></span>
+</pre></div>
+<ul class="cons simple">
+<li><p>Burden is on function developer to inspect <code class="docutils literal">Option</code> and unwrap it into
+separate variable, if it exists, before use in function.</p></li>
+<li><p>Accidental use of raw <code class="docutils literal">Option</code> possible in some cases.</p></li>
+<li><p>Burden is on function invoker to pass an <code class="docutils literal">Option</code> variant for each argument
+with optional existence at each invocation site. A change of function
+signature could force an update of each invocation site, which is a code
+maintenance issue.</p></li>
+</ul>
+<ul class="pros simple">
+<li><p>Consistent interface compared with other parts of the language.</p></li>
+<li><p>Compile-time safety guarantee against panics or undefined behavior.</p></li>
+</ul>
+<p>There is a nice blog post on <a class="reference external" href="https://nullderef.com/blog/rust-parameters/">additional approaches to optional arguments in
+Rust</a>.</p>
+</section></section></section><section id="contemplation"><h2>Contemplation</h2>
+<p>Determing whether a value exists prior to using it is a frequent and pervasive
+task. We do this again and again in different ways, depending on the langauge
+and data structures with which we are working. For a task so routine and so
+common, one would hope that it would be as facile and robust as possible. But,
+as demonstrated, the current state of affairs is contrary to that desire.</p>
+<section id="requirements"><h3>Requirements</h3>
+<p>Can we do better than the showcased mechanisms? Let us set forth some
+requirements, based on what we have seen, and then propose a solution from
+those:</p>
+<ul class="simple">
+<li><p><strong>No sentinel values.</strong> No default values which serve as sentinels for
+optional existence. (I.e., no ambiguity. Also, as a bonus, reduced dependence
+on nulls.)</p></li>
+<li><p><strong>No wrapped values.</strong> No explicit capture or unwrap of values from
+<a class="reference external" href="https://en.wikipedia.org/wiki/Tagged_union">algebraic sum types</a> ("enums",
+like <code class="docutils literal">Option</code> in Rust) or <a class="reference external" href="https://en.wikipedia.org/wiki/Nullable_type">nullable box types</a> to use an optionally-existent
+value.</p></li>
+<li><p><strong>Retrieve and test in one operation.</strong> No more than one explicit runtime
+operation against a container to safely use an optionally-existent value.
+(I.e., no need to program separate existence test and access operations.)</p></li>
+<li><p><strong>Detect unprotected access during compilation.</strong> No panics, raised
+exceptions, or undefined behavior at runtime from attempting to access an
+optionally-existent value.</p></li>
+<li><p><strong>Consistency.</strong> Single, consistent way of working with optionally-existent
+values across language and standard library.</p></li>
+</ul></section><section id="critiques"><h3>Critiques</h3>
+<p><a class="reference external" href="https://www.rust-lang.org/">Rust</a> meets most of the criteria above, except
+for "no wrapped values". But, unwrapping return values is an ergonomic issue,
+in spite of the availability of conveniences, such as <code class="docutils literal">if let</code>. Also,
+wrapping optional arguments is another ergonomic issue. These are issues for a
+programmer, both in the sense that they require additional work to perform very
+routine operations and in the sense that they reduce the legibility of the code
+by obfuscating it with machinery not related the problem that it is solving.</p>
+<p><a class="reference external" href="https://ziglang.org">Zig</a> is currently less consistent than Rust in its use
+of optional values, perhaps because of the relative immaturity of its standard
+library. More importantly, it conflates optional existence with nullability.
+However, to its credit, it has a <code class="docutils literal">?</code> type prefix and various bits of
+unwrapping shorthand, such as a capturing <code class="docutils literal">if</code> and the <code class="docutils literal">orelse</code> operator,
+which mitigates the ergonomic issues of unwrapping to some extent, but does not
+eliminate them.</p>
+<p>Like Zig, <a class="reference external" href="https://kotlinlang.org/">Kotlin</a> conflates optional existence with
+nullability. And, similar to Zig, it has a <code class="docutils literal">?</code> type suffix and some syntactic
+sugar for handling nullable types, such as the <code class="docutils literal"><span class="pre">?.</span></code> "safe call" operator and
+the <code class="docutils literal"><span class="pre">?:</span></code> Elvis operator. One very nice feature of Kotlin is that the compiler
+will check if you attempt to access a member of a nullable object without
+guarding the access in appropriate null check first.</p>
+<p>The way that the <a class="reference external" href="https://go.dev/">Go</a> <code class="docutils literal">map</code> handles entry retrieval is a
+nice idea in the sense that it collapses two explicit operations (existence
+test and access) into one. However, it is inconsistently applied with other
+container types across the language. And, the fact that the existence boolean
+can be ignored and that the default return value may be a valid piece of data
+makes it dangerous.</p>
+<p>In <a class="reference external" href="https://www.python.org/">Python</a>, the dictionary of nominative arguments
+(<code class="docutils literal">**</code>) can be quite powerful and avoids both sentinel values and wrapped
+values for optional arguments. However, it requires two explicit operations to
+safely work. And, it loses the documentation that comes from explicit interface
+declaration.</p>
+</section></section><section id="general-proposal"><h2>General Proposal</h2>
+<ul class="simple">
+<li><p>Let programmer mark function parameters which can optionally accept
+arguments. (Similar to Kotlin and Zig, but without conflating nullability
+with optional existence.)</p></li>
+<li><p>Let programmer mark which return value slots of a function can be optionally
+filled. (Similar to Kotlin and Zig, but without conflating nullability with
+optional existence.)</p></li>
+<li><p>Provide an operator to test whether a variable is bound to a value or not.</p></li>
+<li>
+<p>Perform semantic analysis during compilation to ensure that access to any
+variable with an optional value has appropriate protection, such as being
+inside the scope of a conditional which tests for its existence.</p>
+<ul>
+<li><p>This is reasonable and achievable using contemporary techniques. (Kotlin
+already does this.)</p></li>
+<li><p>Need to treat logical disjunction (<code class="docutils literal">or</code>) and negation (<code class="docutils literal">not</code>) of
+existence conditions as false protection for all optionally-existent values
+under test by those conditions. Only single existence conditions or logical
+conjunction of existence conditions can guarantee safe runtime access for
+all optionally-existent values under test by those conditions.</p></li>
+</ul>
+</li>
+<li><p>Allow propagation of an optional argument from one function invocation into
+another, provided that the corresponding parameter can also accept an
+optional argument. Propagation is safe because the ultimate invocation target
+must either ignore the optional argument or else submit it to existence
+protection as a condition for access to it.</p></li>
+<li><p>Allow propagation of an optional return value out of one function invocation
+through another, provided that corresponding return value slot can also be
+optionally filled. Propagation is safe because some invoker in the call chain
+must ultimately either ignore the optional return value or else submit it to
+existence protection as a condition for access to it.</p></li>
+<li>
+<p>Generate code such that there is a hidden value, which tracks optional
+existence in bit fields, pushed on the stack of each function invocation, for
+the purpose of satisfying existence tests.</p>
+<ul>
+<li><p>The CPU cost of making a test against the bit field is almost certainly not
+more than the cost of the mechanisms implemented in contemporary languages,
+such as those showcased.</p></li>
+<li><p>The memory overhead of the additional stack slot is almost certainly not
+more than that of nullable boxes or tagged unions.</p></li>
+</ul>
+</li>
+<li><p>Implement generators, including iterators, with optional return values.
+(Similar to Rust, but without wrapped values.)</p></li>
+<li><p>Implement standard consumers of generators, such as a <code class="docutils literal">for .. in</code> loop
+head, to work with optional existence. (Similar to Rust, but without wrapped
+values.)</p></li>
+<li><p>Implement indexed (and other more specialized) access to containers provide
+optional return values, such that absence of return value indicates absence
+of item for which access was attempted. (Similar to Rust, but without wrapped
+values.)</p></li>
+</ul></section><section id="exemplar-language"><h2>Exemplar Language</h2>
+<p>Below is an informal, partial language definition, which we will use to revisit
+the llustrative cases to see how a language, satisfying our requirements, might
+look in action.</p>
+<ul class="simple">
+<li><p>Uses <code class="docutils literal">?</code> as a prefix to mark type constraints on optional parameters.</p></li>
+<li><p>Provides <code class="docutils literal">is?</code> as a prefix unary operator which tests whether a variable is
+bound to a value. When appearing in the head of a conditional clause, such as
+an <code class="docutils literal">if .. do</code> clause, it denontes semantics that the variable under test is
+safe to access within the clause. Logical negation or disjunction within the
+head of the conditional clause removes this guarantee of safety.</p></li>
+<li><p>Provides a <code class="docutils literal">with? .. do</code> clause which only executes the body of the clause
+if each variable declared in the head of the clause is bound to a value.</p></li>
+<li><p>Indicial accesses to items in a collection produce optional return values. If
+an index is absent, then no value is produced on return.</p></li>
+<li><p>Generators produce optional return values. If no more values can be
+generated, then no value is produced on return.</p></li>
+</ul>
+<section id="retrieve-element-by-positional-index-1"><h3>Retrieve Element by Positional Index</h3>
+<p>Application of "maybe do" semantics via a <code class="docutils literal">with? .. do</code> clause, dependent on
+whether a transient variable is assigned from an optional return value.
+Will only do something with the last element if it exists.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/lastpos.mylang.html">cl-existence-oriented/lastpos.mylang</a>  <a class="reference external" href="../../listings/cl-existence-oriented/lastpos.mylang">(Source)</a></p>
+<div class="code"><pre class="code text"><a id="rest_code_c81fcf9c1eff48e6ba28ea6c03d31d3b-1" name="rest_code_c81fcf9c1eff48e6ba28ea6c03d31d3b-1" href="#rest_code_c81fcf9c1eff48e6ba28ea6c03d31d3b-1"></a>    with? last-item = items.[-1] do stderr "last item: {last-item}"
+</pre></div>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+<li><p>Single operation: both existence information (implicit) and value returned
+together.</p></li>
+<li><p>Consistent interface for optional values across language.</p></li>
+<li><p>Compile-time safety guarantee againt unguarded access to possibly unbound
+variable.</p></li>
+</ul></section><section id="retrieve-entry-by-nominative-index-1"><h3>Retrieve Entry by Nominative Index</h3>
+<p>Application of "maybe do" semantics via a <code class="docutils literal">with? .. do</code> clause, dependent on
+whether a transient variable is assigned from an optional return value. Will
+only do something if the entry is present.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.mylang.html">cl-existence-oriented/nomassoc.mylang</a>  <a class="reference external" href="../../listings/cl-existence-oriented/nomassoc.mylang">(Source)</a></p>
+<div class="code"><pre class="code text"><a id="rest_code_e31b46299dcb415899aba0f07e512e2d-1" name="rest_code_e31b46299dcb415899aba0f07e512e2d-1" href="#rest_code_e31b46299dcb415899aba0f07e512e2d-1"></a>    with? needle = haystack.['needle'] do stderr "needle: {needle}"
+</pre></div>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+<li><p>Single operation: both existence information (implicit) and value returned
+together.</p></li>
+<li><p>Consistent interface for optional values across language.</p></li>
+<li><p>Compile-time safety guarantee againt unguarded access to possibly unbound
+variable.</p></li>
+</ul></section><section id="retrieve-once-from-iterator-1"><h3>Retrieve Once from Iterator</h3>
+<p>Application of "maybe do" semantics via a <code class="docutils literal">with? .. do</code> clause, dependent on
+whether a transient variable is assigned from an optional return value. Will
+only do something if the iterator returns a value.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/next-set-item.mylang.html">cl-existence-oriented/next-set-item.mylang</a>  <a class="reference external" href="../../listings/cl-existence-oriented/next-set-item.mylang">(Source)</a></p>
+<div class="code"><pre class="code text"><a id="rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-1" name="rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-1" href="#rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-1"></a>    with? element = ( ( elements.as-iterator ).next )
+<a id="rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-2" name="rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-2" href="#rest_code_88f2b94809bb4f6e990f1a43fdc36f7d-2"></a>    do stderr "set element: {element}"
+</pre></div>
+<ul class="pros simple">
+<li><p>Returns a value which does not need to be unwrapped before use.</p></li>
+<li><p>Single operation: both existence information (implicit) and value returned
+together.</p></li>
+<li><p>Consistent interface for optional values across language.</p></li>
+<li><p>Compile-time safety guarantee againt unguarded access to possibly unbound
+variable.</p></li>
+</ul></section><section id="conditional-concatenation-1"><h3>Conditional Concatenation</h3>
+<p>Application of unary existential test operator, <code class="docutils literal">is?</code>, and specification of
+function parameters which take optional arguments. Will only execute the corpus
+for each <code class="docutils literal">if .. do</code> clause if the corresponding optional argument has a
+value.</p>
+<p><a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.mylang.html">cl-existence-oriented/optional-arguments.mylang</a>  <a class="reference external" href="../../listings/cl-existence-oriented/optional-arguments.mylang">(Source)</a></p>
+<div class="code"><pre class="code text"><a id="rest_code_fc76ac57ab794db396c037e5450a7928-1" name="rest_code_fc76ac57ab794db396c037e5450a7928-1" href="#rest_code_fc76ac57ab794db396c037e5450a7928-1"></a>let format-title`String` base variant`?Any` version`?Any` does:
+<a id="rest_code_fc76ac57ab794db396c037e5450a7928-2" name="rest_code_fc76ac57ab794db396c037e5450a7928-2" href="#rest_code_fc76ac57ab794db396c037e5450a7928-2"></a>    let output = ( Dynstring base )
+<a id="rest_code_fc76ac57ab794db396c037e5450a7928-3" name="rest_code_fc76ac57ab794db396c037e5450a7928-3" href="#rest_code_fc76ac57ab794db396c037e5450a7928-3"></a>    if is? variant do output.append "[{variant}]"
+<a id="rest_code_fc76ac57ab794db396c037e5450a7928-4" name="rest_code_fc76ac57ab794db396c037e5450a7928-4" href="#rest_code_fc76ac57ab794db396c037e5450a7928-4"></a>    if is? version do output.append "({version})"
+<a id="rest_code_fc76ac57ab794db396c037e5450a7928-5" name="rest_code_fc76ac57ab794db396c037e5450a7928-5" href="#rest_code_fc76ac57ab794db396c037e5450a7928-5"></a>    output.as-string ( separator : ' ' )
+</pre></div>
+<ul class="pros simple">
+<li><p>No need to wrap argument values.</p></li>
+<li><p>No need to unwrap argument values.</p></li>
+<li><p>Consistent interface for optional values across language.</p></li>
+<li><p>Compile-time safety guarantee againt unguarded access to possibly unbound
+variable.</p></li>
+</ul></section></section><section id="conclusion"><h2>Conclusion</h2>
+<p>There <em>is</em> a way to work with optionally-existent values that is less intrusive
+than the mechanisms in use by contemporary computational languages and which,
+in theory, has no more runtime overhead than those mechanisms. We <em>can</em> avoid
+exceptions, panics, sentinel values, undefined behavior, wrapped values, and
+zero values in our alternative, if we are willing to implement some additional
+semantic analysis during compilation and pay for an extra slot on the stack to
+store existence-tracking bit fields. And we can provide a clean, consistent
+interface for optional value access across a language and its standard library,
+unifying the way in which we handle optional arguments to functions and
+optionally-returned values from functions, including generators.</p>
+</section>
+</div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/computational-language/" rel="tag">computational language</a></li>
+            <li><a class="tag p-category" href="../../categories/computer-science/" rel="tag">computer science</a></li>
+            <li><a class="tag p-category" href="../../categories/language-design/" rel="tag">language design</a></li>
+        </ul></nav></aside></article></main><br><footer id="footer"><p>
+    Contents © 2022 Eric McDonald, licensed under 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"></a>.<br>
+    Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>.
+</p>
+            
+        </footer>
+</div>
+    
+            <script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/palette.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

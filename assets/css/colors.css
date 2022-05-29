@@ -1,0 +1,198 @@
+/* Useful References:
+ * - https://www.w3schools.com/colors/colors_converter.asp
+ * - https://ethanschoonover.com/solarized
+ * - https://ethanschoonover.com/solarized/#usage-development
+ * - https://pygments.org/docs/tokens/
+ */
+
+:root {
+    --solarized-base03: #002b36;
+    --solarized-base02: #073642;
+    --solarized-base01: #586e75;
+    --solarized-base00: #657b83;
+    --solarized-base0:  #839496;
+    --solarized-base1:  #93a1a1;
+    --solarized-base2:  #eee8d5;
+    --solarized-base3:  #fdf6e3;
+    --yellow:           #b58900;
+    --orange:           #cb4b16;
+    --red:              #dc322f;
+    --magenta:          #d33682;
+    --violet:           #6c71c4;
+    --blue:             #268bd2;
+    --cyan:             #2aa198;
+    --green:            #859900;
+    --white:            #ffffff;
+    --black:            #000000;
+    --dark-gray:        #121212;
+}
+
+.solarized-dark {
+    --body-bg-color:        var(--dark-gray);
+    --body-fg-color:        var(--white);
+    --main-bg-color:        var(--solarized-base03);
+    --standout-bg-color:    var(--solarized-base02);
+    --main-fg-color:        var(--solarized-base0);
+    --strong-fg-color:      var(--solarized-base1);
+    --faint-fg-color:       var(--solarized-base01);
+}
+
+.solarized-light {
+    --body-bg-color:        var(--white);
+    --body-fg-color:        var(--black);
+    --main-bg-color:        var(--solarized-base3);
+    --standout-bg-color:    var(--solarized-base2);
+    --main-fg-color:        var(--solarized-base00);
+    --strong-fg-color:      var(--solarized-base01);
+    --faint-fg-color:       var(--solarized-base1);
+}
+
+body {
+    background-color: var(--body-bg-color);
+    color: var(--body-fg-color);
+}
+
+/* Code and Special Text */
+pre,
+code,
+table.codetable,
+.code,
+.highlight {
+    background-color: var(--main-bg-color);
+    color: var(--main-fg-color);
+}
+td.linenos.linenodiv {
+    background-color: var(--main-bg-color);
+    color: var(--faint-fg-color);
+}
+.docutils.literal {
+    background-color: inherit;
+}
+strong {
+    color: var(--strong-fg-color);
+}
+
+/* Links */
+
+:link { color: var(--blue); }
+:visited { color: var(--violet); }
+:link:hover,
+:visited:hover {
+	color: var(--blue);
+}
+#brand :link,
+#brand :visited {
+	color: inherit;
+}
+
+/* Navigation */
+
+.archivenav .pager .disabled,
+.archivenav .pager .disabled a,
+.archivenav .pager .disabled:link {
+	color: var(--faint-fg-color);
+}
+.breadcrumb > li::after { color: var(--main-fg-color); }
+
+/* Color Palette Selector */
+
+.palette-selector svg {
+  color: var(--main-fg-color);
+}
+
+/* Syntax Highlights */
+
+.code::selection, .code *::selection,
+.highlight::selection, .highlight *::selection,
+.code::-moz-selection, .code *::-moz-selection,
+.highlight::-moz-selection, .highlight *::-moz-selection {
+    background-color: var(--main-fg-color) !important;
+    color: var(--main-bg-color) !important;
+}
+
+.code .err, .highlight .err {
+    background-color: var(--main-fg-color);
+    color: var(--red);
+}  /* Error */
+
+.code .c  , .highlight .c   { color: var(--faint-fg-color); font-style: italic }  /* Comment */
+.code .ch , .highlight .ch  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Hashbang */
+.code .cm , .highlight .cm  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Multiline */
+.code .cp , .highlight .cp  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Preproc */
+.code .cpf, .highlight .cpf { color: var(--faint-fg-color); font-style: italic }  /* Comment.PreprocFile */
+.code .c1 , .highlight .c1  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Single */
+.code .cs , .highlight .cs  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Special */
+
+.code .n  , .highlight .n   { color: var(--strong-fg-color) }  /* Name */
+.code .w  , .highlight .w   { color: var(--strong-fg-color) }  /* Text.Whitespace */
+.code .p  , .highlight .p   { color: var(--faint-fg-color ) }  /* Punctuation */
+
+.code .k  , .highlight .k   { color: var(--green  ); font-weight: bold }  /* Keyword */
+.code .kd , .highlight .kd  { color: var(--green  ); font-weight: bold }  /* Keyword.Declaration */
+.code .kp , .highlight .kp  { color: var(--green  ); font-weight: bold }  /* Keyword.Pseudo */
+.code .kr , .highlight .kr  { color: var(--green  ); font-weight: bold }  /* Keyword.Reserved */
+.code .kt , .highlight .kt  { color: var(--green  ); font-weight: bold }  /* Keyword.Type */
+
+.code .o  , .highlight .o   { color: var(--green  ) }                     /* Operator */
+.code .ow , .highlight .ow  { color: var(--green  ); font-weight: bold }  /* Operator.Word */
+
+.code .kn , .highlight .kn  { color: var(--green  ); font-weight: bold }   /* Keyword.Namespace */
+.code .kc , .highlight .kc  { color: var(--orange ); font-weight: normal } /* Keyword.Constant (None) */
+.code .bp , .highlight .bp  { color: var(--orange ); font-weight: normal } /* Builtin.Pseudo (True/False) */
+
+.code .l  , .highlight .l   { color: var(--faint-fg-color  ) }  /* Literal */
+.code .ld , .highlight .ld  { color: var(--faint-fg-color  ) }  /* Literal.Date */
+.code .m  , .highlight .m   { color: var(--faint-fg-color  ) }  /* Literal.Number */
+.code .mb , .highlight .mb  { color: var(--faint-fg-color  ) }  /* Literal.Number.Bin */
+.code .mf , .highlight .mf  { color: var(--faint-fg-color  ) }  /* Literal.Number.Float */
+.code .mh , .highlight .mh  { color: var(--faint-fg-color  ) }  /* Literal.Number.Hex */
+.code .mi , .highlight .mi  { color: var(--faint-fg-color  ) }  /* Literal.Number.Integer */
+.code .il , .highlight .il  { color: var(--faint-fg-color  ) }  /* Literal.Number.Integer.Long */
+.code .mo , .highlight .mo  { color: var(--faint-fg-color  ) }  /* Literal.Number.Oct */
+
+.code .s  , .highlight .s   { color: var(--faint-fg-color  ) }  /* Literal.String */
+.code .sa , .highlight .sa  { color: var(--magenta) }  /* Literal.String.Affix */
+.code .sb , .highlight .sb  { color: var(--faint-fg-color  ) }  /* Literal.String.Backtick */
+.code .sc , .highlight .sc  { color: var(--faint-fg-color  ) }  /* Literal.String.Char */
+.code .dl , .highlight .dl  { color: var(--faint-fg-color  ) }  /* Literal.String.Delimiter */
+.code .sd , .highlight .sd  { color: var(--faint-fg-color  ) }  /* Literal.String.Doc */
+.code .s2 , .highlight .s2  { color: var(--faint-fg-color  ) }  /* Literal.String.Double */
+.code .se , .highlight .se  { color: var(--magenta) }  /* Literal.String.Escape */
+.code .sh , .highlight .sh  { color: var(--faint-fg-color  ) }  /* Literal.String.Heredoc */
+.code .si , .highlight .si  { color: var(--magenta) }  /* Literal.String.Interpol */
+.code .sx , .highlight .sx  { color: var(--faint-fg-color  ) }  /* Literal.String.Other */
+.code .sr , .highlight .sr  { color: var(--faint-fg-color  ) }  /* Literal.String.Regex */
+.code .s1 , .highlight .s1  { color: var(--faint-fg-color  ) }  /* Literal.String.Single */
+.code .ss , .highlight .ss  { color: var(--faint-fg-color  ) }  /* Literal.String.Symbol */
+
+.code .nc , .highlight .nc  { color: var(--blue   ); font-weight: bold }  /* Name.Class */
+.code .nf , .highlight .nf  { color: var(--blue   ) }  /* Name.Function */
+.code .fm , .highlight .fm  { color: var(--orange ) }  /* Name.Function.Magic */
+.code .nb , .highlight .nb  { color: var(--yellow ) }  /* Name.Builtin (lib functions) */
+
+.code .nv , .highlight .nv  { color: var(--strong-fg-color  ) }  /* Name.Variable */
+.code .vc , .highlight .vc  { color: var(--strong-fg-color  ) }  /* Name.Variable.Class */
+.code .vg , .highlight .vg  { color: var(--strong-fg-color  ) }  /* Name.Variable.Global */
+.code .vi , .highlight .vi  { color: var(--strong-fg-color  ) }  /* Name.Variable.Instance */
+.code .vm , .highlight .vm  { color: var(--yellow ) }  /* Name.Variable.Magic */
+
+.code .nt , .highlight .nt  { color: var(--green  ); font-weight: bold  }  /* Name.Tag */
+.code .na , .highlight .na  { color: var(--yellow ); font-style: italic }  /* Name.Attribute */
+
+.code .no , .highlight .no  { color: var(--strong-fg-color  ) }  /* Name.Constant */
+.code .nd , .highlight .nd  { color: var(--blue   ) }  /* Name.Decorator */
+.code .ni , .highlight .ni  { color: var(--violet ) }  /* Name.Entity */
+.code .ne , .highlight .ne  { color: var(--blue   ) }  /* Name.Exception */
+.code .nl , .highlight .nl  { color: var(--violet ) }  /* Name.Label */
+.code .nn , .highlight .nn  { color: var(--strong-fg-color  ) }  /* Name.Namespace */
+.code .nx , .highlight .nx  { color: var(--strong-fg-color  ) }  /* Name.Other */
+.code .py , .highlight .py  { color: var(--strong-fg-color  ) }  /* Name.Property */
+
+.code .gp , .highlight .gp  { color: var(--strong-fg-color  ) }  /* Generic.Prompt */
+.code .go , .highlight .go  { color: var(--strong-fg-color  ) }  /* Generic.Output */
+.code .gd , .highlight .gd  { color: var(--red    ) }  /* Generic.Deleted */
+.code .gi , .highlight .gi  { color: var(--green  ) }  /* Generic.Inserted */
+.code .gh , .highlight .gh  { color: var(--strong-fg-color  ) }  /* Generic.Heading */
+.code .gu , .highlight .gu  { color: var(--main-fg-color    ) }  /* Generic.Subheading */
+.code .ge , .highlight .ge  { font-style: italic }  /* Generic.Emph */
+.code .gs , .highlight .gs  { font-weight: bold  }  /* Generic.Strong */
