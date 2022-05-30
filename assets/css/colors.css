@@ -1,106 +1,6 @@
-/* Useful References:
- * - https://www.w3schools.com/colors/colors_converter.asp
- * - https://ethanschoonover.com/solarized
- * - https://ethanschoonover.com/solarized/#usage-development
+/* Code Syntax Highlighting:
  * - https://pygments.org/docs/tokens/
  */
-
-:root {
-    --solarized-base03: #002b36;
-    --solarized-base02: #073642;
-    --solarized-base01: #586e75;
-    --solarized-base00: #657b83;
-    --solarized-base0:  #839496;
-    --solarized-base1:  #93a1a1;
-    --solarized-base2:  #eee8d5;
-    --solarized-base3:  #fdf6e3;
-    --yellow:           #b58900;
-    --orange:           #cb4b16;
-    --red:              #dc322f;
-    --magenta:          #d33682;
-    --violet:           #6c71c4;
-    --blue:             #268bd2;
-    --cyan:             #2aa198;
-    --green:            #859900;
-    --white:            #ffffff;
-    --black:            #000000;
-    --dark-gray:        #121212;
-}
-
-.solarized-dark {
-    --body-bg-color:        var(--dark-gray);
-    --body-fg-color:        var(--white);
-    --main-bg-color:        var(--solarized-base03);
-    --standout-bg-color:    var(--solarized-base02);
-    --main-fg-color:        var(--solarized-base0);
-    --strong-fg-color:      var(--solarized-base1);
-    --faint-fg-color:       var(--solarized-base01);
-}
-
-.solarized-light {
-    --body-bg-color:        var(--white);
-    --body-fg-color:        var(--black);
-    --main-bg-color:        var(--solarized-base3);
-    --standout-bg-color:    var(--solarized-base2);
-    --main-fg-color:        var(--solarized-base00);
-    --strong-fg-color:      var(--solarized-base01);
-    --faint-fg-color:       var(--solarized-base1);
-}
-
-body {
-    background-color: var(--body-bg-color);
-    color: var(--body-fg-color);
-}
-
-/* Code and Special Text */
-pre,
-code,
-table.codetable,
-.code,
-.highlight {
-    background-color: var(--main-bg-color);
-    color: var(--main-fg-color);
-}
-td.linenos.linenodiv {
-    background-color: var(--main-bg-color);
-    color: var(--faint-fg-color);
-}
-.docutils.literal {
-    background-color: inherit;
-}
-strong {
-    color: var(--strong-fg-color);
-}
-
-/* Links */
-
-:link { color: var(--blue); }
-:visited { color: var(--violet); }
-:link:hover,
-:visited:hover {
-	color: var(--blue);
-}
-#brand :link,
-#brand :visited {
-	color: inherit;
-}
-
-/* Navigation */
-
-.archivenav .pager .disabled,
-.archivenav .pager .disabled a,
-.archivenav .pager .disabled:link {
-	color: var(--faint-fg-color);
-}
-.breadcrumb > li::after { color: var(--main-fg-color); }
-
-/* Color Palette Selector */
-
-.palette-selector svg {
-  color: var(--main-fg-color);
-}
-
-/* Syntax Highlights */
 
 .code::selection, .code *::selection,
 .highlight::selection, .highlight *::selection,
@@ -118,7 +18,9 @@ strong {
 .code .c  , .highlight .c   { color: var(--faint-fg-color); font-style: italic }  /* Comment */
 .code .ch , .highlight .ch  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Hashbang */
 .code .cm , .highlight .cm  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Multiline */
-.code .cp , .highlight .cp  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Preproc */
+.code .cp , .highlight .cp  {
+    color: var(--orange);
+}  /* Comment.Preproc */
 .code .cpf, .highlight .cpf { color: var(--faint-fg-color); font-style: italic }  /* Comment.PreprocFile */
 .code .c1 , .highlight .c1  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Single */
 .code .cs , .highlight .cs  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Special */

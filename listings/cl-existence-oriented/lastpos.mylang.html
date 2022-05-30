@@ -53,12 +53,12 @@
     <div class="code"><table class="codetable">
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposmylang-1"><code data-line-number=" 1"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-1" name="listingscl-existence-orientedlastposmylang-1"></a><span class="kr">from </span><span class="nv">std</span><span class="o">.</span><span class="nv">containers</span> <span class="kr">let </span><span class="nv">PositionalCollection</span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-1" name="listingscl-existence-orientedlastposmylang-1"></a><span class="kr">from</span> <span class="nv">std</span><span class="o">.</span><span class="nv">containers</span> <span class="kr">let</span> <span class="nv">PositionalCollection</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposmylang-2"><code data-line-number=" 2"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-2" name="listingscl-existence-orientedlastposmylang-2"></a><span class="kr">from </span><span class="nv">std</span><span class="o">.</span><span class="nv">system</span><span class="o">.</span><span class="nv">current-process</span> <span class="kr">let </span><span class="nv">stderr</span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-2" name="listingscl-existence-orientedlastposmylang-2"></a><span class="kr">from</span> <span class="nv">std</span><span class="o">.</span><span class="nv">system</span><span class="o">.</span><span class="nv">current-process</span> <span class="kr">let</span> <span class="nv">stderr</span>
 </code></td>
 </tr>
 <tr>
@@ -68,17 +68,17 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposmylang-4"><code data-line-number=" 4"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-4" name="listingscl-existence-orientedlastposmylang-4"></a><span class="kr">let </span><span class="nv">run</span><span class="cp">`+entrypoint`</span> <span class="nv">arguments</span><span class="cp">`String [_]`</span> <span class="kr">does:</span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-4" name="listingscl-existence-orientedlastposmylang-4"></a><span class="kr">let</span> <span class="nv">run</span><span class="cp">`+entrypoint`</span> <span class="nv">arguments</span><span class="cp">`String [_]`</span> <span class="kr">does</span><span class="p">:</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposmylang-5"><code data-line-number=" 5"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-5" name="listingscl-existence-orientedlastposmylang-5"></a>    <span class="nv">empty-items</span> <span class="kr">= </span><span class="p">[</span> <span class="p">]</span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-5" name="listingscl-existence-orientedlastposmylang-5"></a>    <span class="nv">empty-items</span> <span class="kr">=</span> <span class="p">[</span> <span class="p">]</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposmylang-6"><code data-line-number=" 6"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-6" name="listingscl-existence-orientedlastposmylang-6"></a>    <span class="nv">items</span> <span class="kr">= </span><span class="p">[</span> <span class="nv">42</span> <span class="p">]</span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-6" name="listingscl-existence-orientedlastposmylang-6"></a>    <span class="nv">items</span> <span class="kr">=</span> <span class="p">[</span> <span class="m">42</span> <span class="p">]</span>
 </code></td>
 </tr>
 <tr>
@@ -98,12 +98,12 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposmylang-10"><code data-line-number="10"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-10" name="listingscl-existence-orientedlastposmylang-10"></a><span class="kr">let </span><span class="nv">print-last-item</span><span class="cp">`PositionalCollection`</span> <span class="nv">items</span><span class="cp">`PositionalCollection, return : 1`</span> <span class="kr">does:</span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-10" name="listingscl-existence-orientedlastposmylang-10"></a><span class="kr">let</span> <span class="nv">print-last-item</span><span class="cp">`PositionalCollection`</span> <span class="nv">items</span><span class="cp">`PositionalCollection, return : 1`</span> <span class="kr">does</span><span class="p">:</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposmylang-11"><code data-line-number="11"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-11" name="listingscl-existence-orientedlastposmylang-11"></a>    <span class="kr">with? </span><span class="nv">last-item</span> <span class="kr">= </span><span class="nv">items</span><span class="o">.</span><span class="p">[</span><span class="nv">-1</span><span class="p">]</span> <span class="kr">do </span><span class="nv">stderr</span> <span class="s2">"last item: {last-item}"</span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposmylang-11" name="listingscl-existence-orientedlastposmylang-11"></a>    <span class="kr">with?</span> <span class="nv">last-item</span> <span class="kr">=</span> <span class="nv">items</span><span class="o">.</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span> <span class="kr">do</span> <span class="nv">stderr</span> <span class="s2">"last item: {last-item}"</span>
 </code></td>
 </tr>
 </table></div>
