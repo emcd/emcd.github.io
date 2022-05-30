@@ -723,7 +723,7 @@ Application of "maybe do" semantics via a ``with? .. do`` clause, dependent on
 whether a transient variable is assigned from an optional return value.
 Will only do something with the last element if it exists.
 
-.. listing:: cl-existence-oriented/lastpos.mylang text
+.. listing:: cl-existence-oriented/lastpos.mylang mylang
     :start-line: 10
     :end-line: 11
 
@@ -746,7 +746,7 @@ Application of "maybe do" semantics via a ``with? .. do`` clause, dependent on
 whether a transient variable is assigned from an optional return value. Will
 only do something if the entry is present.
 
-.. listing:: cl-existence-oriented/nomassoc.mylang text
+.. listing:: cl-existence-oriented/nomassoc.mylang mylang
     :start-line: 12
     :end-line: 13
 
@@ -769,7 +769,7 @@ Application of "maybe do" semantics via a ``with? .. do`` clause, dependent on
 whether a transient variable is assigned from an optional return value. Will
 only do something if the iterator returns a value.
 
-.. listing:: cl-existence-oriented/next-set-item.mylang text
+.. listing:: cl-existence-oriented/next-set-item.mylang mylang
     :start-line: 10
     :end-line: 12
 
@@ -793,7 +793,7 @@ function parameters which take optional arguments. Will only execute the corpus
 for each ``if .. do`` clause if the corresponding optional argument has a
 value.
 
-.. listing:: cl-existence-oriented/optional-arguments.mylang text
+.. listing:: cl-existence-oriented/optional-arguments.mylang mylang
     :start-line: 9
     :end-line: 14
 

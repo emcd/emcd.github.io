@@ -2,6 +2,19 @@
 
 import time
 
+# Hack in custom Pygments lexer.
+from pathlib import Path
+from sys import path as modules_paths
+modules_paths.insert(
+    0, str( Path( __file__ ).parent / 'utilities' / 'pygments' )
+)
+from pygments.lexers import LEXERS
+LEXERS[ 'MylangLexer' ] = (
+    'mylang', '???', ( 'mylang', ), ( '*.mylang', ), ( )
+)
+del LEXERS, Path, modules_paths
+
+
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
 
