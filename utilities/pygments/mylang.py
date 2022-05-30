@@ -3,6 +3,7 @@ from pygments.token import (
     Comment,
     Keyword,
     Name,
+    Number,
     Operator,
     Punctuation,
     String,
@@ -10,23 +11,25 @@ from pygments.token import (
 )
 
 
-KEYWORDS = (
-    '=',
-    'do', 'does',
+HEADSTART_KEYWORDS = (
     'elif',
-    'else',
     'for',
     'from',
     'if',
     'let',
-    'moreover',
     'with', 'with?',
     'while',
 )
-
+HEADEND_KEYWORDS = (
+    '=',
+    'do', 'does',
+    'else',
+)
 ISOLATED_OPERATORS = (
     'is?',
 )
+HEADSTART_SUFFIX = r'(?=\s+)'
+HEADEND_SUFFIX = r'(?=(?:\s+|:))'
 
 class MylangLexer( ExtendedRegexLexer ):
 
@@ -37,10 +40,15 @@ class MylangLexer( ExtendedRegexLexer ):
     tokens = {
         'root': [
             ( r'\s+', Text ),
-            ( words( KEYWORDS, suffix = r'[\s:]' ), Keyword.Reserved ),
-            ( words( ISOLATED_OPERATORS, suffix = r'\s' ), Operator.Word ),
-            ( r'[\w\-_]+', Name.Variable ),
-            ( r'[\(\[,:\]\)]', Punctuation ),
+            ( words( HEADSTART_KEYWORDS, suffix = HEADSTART_SUFFIX ),
+              Keyword.Reserved ),
+            ( words( HEADEND_KEYWORDS, suffix = HEADEND_SUFFIX ),
+              Keyword.Reserved ),
+            ( words( ISOLATED_OPERATORS, suffix = HEADSTART_SUFFIX ),
+              Operator ),
+            ( r'(?:\+|\-)?\d(?:[\d_]*)?', Number ),
+            ( r'\w(?:[\w\-_]*\w)?', Name.Variable ),
+            ( r'[\(\[\{,:\}\]\)]', Punctuation ),
             ( r'\.', Operator ),
             ( r'`[^`]*`', Comment.Preproc ),
             ( r'"[^"]*"', String.Double ),
@@ -48,5 +56,6 @@ class MylangLexer( ExtendedRegexLexer ):
             ( r'.*\n', Text ),
         ]
     }
+
 
 __all__ = [ 'MylangLexer' ]

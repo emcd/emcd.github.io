@@ -30,6 +30,7 @@
  * - https://getnikola.com/theming.html
  * - https://www.w3schools.com/cssref/css_selectors.asp
  * - https://developer.mozilla.org/en-US/docs/Web/CSS/length
+ * - https://www.w3schools.com/colors/colors_converter.asp
  */
 
 /* Font families per https://systemfontstack.com/
@@ -38,15 +39,87 @@
 :root {
     --serif-fonts: Georgia, Lora, Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     --monospace-fonts: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
-    --body-font-size: 14pt;
-    --code-font-size: 12pt;
+    --body-font-size:  14pt;
+    --code-font-size:  12pt;
     --tier4-font-size: 16pt;
     --tier3-font-size: 20pt;
     --tier2-font-size: 24pt;
     --tier1-font-size: 28pt;
 }
 
+/* Google Material Recommended Base Colors:
+ * - https://material.io/design/color/dark-theme.html
+ * - https://material.io/design/color/dark-theme.html#properties
+ */
+:root {
+    --black:     #000000;
+    --dark-gray: #121212;
+    --off-white: #faf9f6;
+    --white:     #ffffff;
+}
+
+/* Solarized Colors:
+ * - https://ethanschoonover.com/solarized
+ * - https://ethanschoonover.com/solarized/#usage-development
+ */
+:root {
+    --solarized-base03:  #002b36;
+    --solarized-base02:  #073642;
+    --solarized-base01:  #586e75;
+    --solarized-base00:  #657b83;
+    --solarized-base0:   #839496;
+    --solarized-base1:   #93a1a1;
+    --solarized-base2:   #eee8d5;
+    --solarized-base3:   #fdf6e3;
+    --solarized-blue:    #268bd2;
+    --solarized-cyan:    #2aa198;
+    --solarized-green:   #859900;
+    --solarized-magenta: #d33682;
+    --solarized-orange:  #cb4b16;
+    --solarized-red:     #dc322f;
+    --solarized-violet:  #6c71c4;
+    --solarized-yellow:  #b58900;
+}
+
+.solarized-dark {
+    --body-bg-color:        var(--dark-gray);
+    --body-fg-color:        var(--off-white);
+    --main-bg-color:        var(--solarized-base03);
+    --standout-bg-color:    var(--solarized-base02);
+    --main-fg-color:        var(--solarized-base0);
+    --strong-fg-color:      var(--solarized-base1);
+    --faint-fg-color:       var(--solarized-base01);
+    --blue:                 var(--solarized-blue);
+    --cyan:                 var(--solarized-cyan);
+    --green:                var(--solarized-green);
+    --magenta:              var(--solarized-magenta);
+    --orange:               var(--solarized-orange);
+    --red:                  var(--solarized-red);
+    --violet:               var(--solarized-violet);
+    --yellow:               var(--solarized-yellow);
+}
+
+.solarized-light {
+    --body-bg-color:        var(--white);
+    --body-fg-color:        var(--black);
+    --main-bg-color:        var(--solarized-base3);
+    --standout-bg-color:    var(--solarized-base2);
+    --main-fg-color:        var(--solarized-base00);
+    --strong-fg-color:      var(--solarized-base01);
+    --faint-fg-color:       var(--solarized-base1);
+    --blue:                 var(--solarized-blue);
+    --cyan:                 var(--solarized-cyan);
+    --green:                var(--solarized-green);
+    --magenta:              var(--solarized-magenta);
+    --orange:               var(--solarized-orange);
+    --red:                  var(--solarized-red);
+    --violet:               var(--solarized-violet);
+    --yellow:               var(--solarized-yellow);
+}
+
 body {
+    background-color: var(--body-bg-color);
+    color: var(--body-fg-color);
     font-family: var(--serif-fonts);
 	font-size: var(--body-font-size);
 	line-height: 1.4;
@@ -96,7 +169,6 @@ ul li {
 
 ul li::before {
 	content: "\2756"; /* Black Diamond Minus White X */
-    color: var(--faint-fg-color);
 	position: absolute;
 	left: 0;
 }
@@ -186,18 +258,24 @@ aside.admonition p {
     color: var(--blue);
 }
 
+/* Code and Special Text */
+
+pre, code, table.codetable,
+.code, .highlight {
+    background-color: var(--main-bg-color);
+    color: var(--main-fg-color);
+}
+
 .docutils.literal,
 pre.literal-block, pre.doctest-block, pre.math, pre.code, code {
     font-family: var(--monospace-fonts);
     font-size: var(--code-font-size);
 }
-
 pre.code, pre.literal-block, code {
 	white-space: pre;
 	word-wrap: normal;
 	overflow: auto;
 }
-
 
 div.line-block div.line-block, pre { margin: 0px; }
 div.topic, pre.literal-block, pre.doctest-block, pre.math, pre.code, div.code {
@@ -210,12 +288,18 @@ pre.code, pre.literal-block, code, table.codetable {
     border-radius: 5px;
 }
 table.codetable code { border-radius: 0; }
+
 .docutils.literal {
+    background-color: inherit;
+    border-radius: 0;
     font-size: var(--body-font-size);
     padding: 0;
-    border-radius: 0;
 }
 
+td.linenos.linenodiv {
+    background-color: var(--main-bg-color);
+    color: var(--faint-fg-color);
+}
 td.linenos.linenodiv a code::before {
     content: attr(data-line-number);
 }
@@ -224,34 +308,29 @@ td.linenos.linenodiv a code::before {
     display: inline-block;
     vertical-align: middle;
 }
-
 .palette-selector {
+    color: var(--main-fg-color);
     cursor: pointer;
     border: none;
     padding: 0;
     background: transparent;
 }
-
 .palette-selector svg {
     vertical-align: middle;
     height: 1rem;
     width: 1rem;
     display: none;
 }
-
 .palette-selector-header {
     float: left;
     padding: 1rem 0.5rem;
 }
-
 body[data-theme="auto"] .palette-selector svg.theme-icon-when-auto {
     display: block;
 }
-
 body[data-theme="dark"] .palette-selector svg.theme-icon-when-dark {
     display: block;
 }
-
 body[data-theme="light"] .palette-selector svg.theme-icon-when-light {
     display: block;
 }
@@ -343,7 +422,7 @@ html[dir="rtl"] #toptranslations {
 }
 
 .metadata p {
-    font-size: 12pt;
+    font-size: var(--code-font-size);
 }
 div.metadata {
     margin: 2em;
@@ -438,11 +517,15 @@ html[dir="rtl"] .archivenav .pager .previous {
 	float: right;
 }
 
+/* Navigation */
+
 .archivenav .pager .disabled,
 .archivenav .pager .disabled a,
 .archivenav .pager .disabled:link {
+	color: var(--faint-fg-color);
 	cursor: not-allowed;
 }
+.breadcrumb > li::after { color: var(--main-fg-color); }
 
 .metadata p,
 .translationslist p {
@@ -455,7 +538,22 @@ html[dir="rtl"] .archivenav .pager .previous {
 }
 
 /* Links */
-:link { text-decoration: none; }
+
+:link {
+    color: var(--blue);
+    text-decoration: none;
+}
+:visited {
+    color: var(--violet);
+}
+:link:hover,
+:visited:hover {
+	color: var(--blue);
+}
+#brand :link,
+#brand :visited {
+	color: inherit;
+}
 
 /* Images */
 img {
