@@ -53,12 +53,12 @@
     <div class="code"><table class="codetable">
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-1"><code data-line-number=" 1"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-1" name="listingscl-existence-orientedoptional-argumentsmylang-1"></a><span class="n">from</span><span class="w"> </span><span class="n">std</span><span class="o">.</span><span class="n">containers</span><span class="w"> </span><span class="n">let</span><span class="w"> </span><span class="n">Dynstring</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-1" name="listingscl-existence-orientedoptional-argumentsmylang-1"></a><span class="kr">from </span><span class="nv">std</span><span class="o">.</span><span class="nv">containers</span> <span class="kr">let </span><span class="nv">Dynstring</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-2"><code data-line-number=" 2"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-2" name="listingscl-existence-orientedoptional-argumentsmylang-2"></a><span class="n">from</span><span class="w"> </span><span class="n">std</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">current</span><span class="o">-</span><span class="n">process</span><span class="w"> </span><span class="n">let</span><span class="w"> </span><span class="n">stderr</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-2" name="listingscl-existence-orientedoptional-argumentsmylang-2"></a><span class="kr">from </span><span class="nv">std</span><span class="o">.</span><span class="nv">system</span><span class="o">.</span><span class="nv">current-process</span> <span class="kr">let </span><span class="nv">stderr</span>
 </code></td>
 </tr>
 <tr>
@@ -68,27 +68,27 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-4"><code data-line-number=" 4"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-4" name="listingscl-existence-orientedoptional-argumentsmylang-4"></a><span class="n">let</span><span class="w"> </span><span class="n">run</span><span class="err">`</span><span class="o">+</span><span class="n">entrypoint</span><span class="err">`</span><span class="w"> </span><span class="n">arguments</span><span class="err">`</span><span class="nb nb-Type">String</span><span class="w"> </span><span class="p">[</span><span class="n">_</span><span class="p">]</span><span class="err">`</span><span class="w"> </span><span class="n">does</span><span class="p">:</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-4" name="listingscl-existence-orientedoptional-argumentsmylang-4"></a><span class="kr">let </span><span class="nv">run</span><span class="cp">`+entrypoint`</span> <span class="nv">arguments</span><span class="cp">`String [_]`</span> <span class="kr">does:</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-5"><code data-line-number=" 5"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-5" name="listingscl-existence-orientedoptional-argumentsmylang-5"></a><span class="w">    </span><span class="n">stderr</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">format</span><span class="o">-</span><span class="n">title</span><span class="w"> </span><span class="s1">'Hello, world!'</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-5" name="listingscl-existence-orientedoptional-argumentsmylang-5"></a>    <span class="nv">stderr</span> <span class="p">(</span> <span class="nv">format-title</span> <span class="s1">'Hello, world!'</span> <span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-6"><code data-line-number=" 6"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-6" name="listingscl-existence-orientedoptional-argumentsmylang-6"></a><span class="w">    </span><span class="n">stderr</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">format</span><span class="o">-</span><span class="n">title</span><span class="w"> </span><span class="s1">'Hello, world!'</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">variant</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">'???'</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-6" name="listingscl-existence-orientedoptional-argumentsmylang-6"></a>    <span class="nv">stderr</span> <span class="p">(</span> <span class="nv">format-title</span> <span class="s1">'Hello, world!'</span> <span class="p">(</span> <span class="nv">variant</span> <span class="p">:</span> <span class="s1">'???'</span> <span class="p">)</span> <span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-7"><code data-line-number=" 7"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-7" name="listingscl-existence-orientedoptional-argumentsmylang-7"></a><span class="w">    </span><span class="n">stderr</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">format</span><span class="o">-</span><span class="n">title</span><span class="w"> </span><span class="s1">'Hello, world!'</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">'1.0'</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-7" name="listingscl-existence-orientedoptional-argumentsmylang-7"></a>    <span class="nv">stderr</span> <span class="p">(</span> <span class="nv">format-title</span> <span class="s1">'Hello, world!'</span> <span class="p">(</span> <span class="nv">version</span> <span class="p">:</span> <span class="s1">'1.0'</span> <span class="p">)</span> <span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-8"><code data-line-number=" 8"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-8" name="listingscl-existence-orientedoptional-argumentsmylang-8"></a><span class="w">    </span><span class="n">stderr</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">format</span><span class="o">-</span><span class="n">title</span><span class="w"> </span><span class="s1">'Hello, world!'</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">variant</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">'???'</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">'1.0'</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-8" name="listingscl-existence-orientedoptional-argumentsmylang-8"></a>    <span class="nv">stderr</span> <span class="p">(</span> <span class="nv">format-title</span> <span class="s1">'Hello, world!'</span> <span class="p">(</span> <span class="nv">variant</span> <span class="p">:</span> <span class="s1">'???'</span> <span class="p">)</span> <span class="p">(</span> <span class="nv">version</span> <span class="p">:</span> <span class="s1">'1.0'</span> <span class="p">)</span> <span class="p">)</span>
 </code></td>
 </tr>
 <tr>
@@ -98,27 +98,27 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-10"><code data-line-number="10"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-10" name="listingscl-existence-orientedoptional-argumentsmylang-10"></a><span class="n">let</span><span class="w"> </span><span class="n">format</span><span class="o">-</span><span class="n">title</span><span class="err">`</span><span class="nb nb-Type">String</span><span class="err">`</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">variant</span><span class="err">`?</span><span class="n">Any</span><span class="err">`</span><span class="w"> </span><span class="n">version</span><span class="err">`?</span><span class="n">Any</span><span class="err">`</span><span class="w"> </span><span class="n">does</span><span class="p">:</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-10" name="listingscl-existence-orientedoptional-argumentsmylang-10"></a><span class="kr">let </span><span class="nv">format-title</span><span class="cp">`String`</span> <span class="nv">base</span> <span class="nv">variant</span><span class="cp">`?Any`</span> <span class="nv">version</span><span class="cp">`?Any`</span> <span class="kr">does:</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-11"><code data-line-number="11"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-11" name="listingscl-existence-orientedoptional-argumentsmylang-11"></a><span class="w">    </span><span class="n">let</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">Dynstring</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-11" name="listingscl-existence-orientedoptional-argumentsmylang-11"></a>    <span class="kr">let </span><span class="nv">output</span> <span class="kr">= </span><span class="p">(</span> <span class="nv">Dynstring</span> <span class="nv">base</span> <span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-12"><code data-line-number="12"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-12" name="listingscl-existence-orientedoptional-argumentsmylang-12"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">is</span><span class="err">?</span><span class="w"> </span><span class="n">variant</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="w"> </span><span class="s2">"[{variant}]"</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-12" name="listingscl-existence-orientedoptional-argumentsmylang-12"></a>    <span class="kr">if </span><span class="ow">is? </span><span class="nv">variant</span> <span class="kr">do </span><span class="nv">output</span><span class="o">.</span><span class="nv">append</span> <span class="s2">"[{variant}]"</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-13"><code data-line-number="13"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-13" name="listingscl-existence-orientedoptional-argumentsmylang-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">is</span><span class="err">?</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="w"> </span><span class="s2">"({version})"</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-13" name="listingscl-existence-orientedoptional-argumentsmylang-13"></a>    <span class="kr">if </span><span class="ow">is? </span><span class="nv">version</span> <span class="kr">do </span><span class="nv">output</span><span class="o">.</span><span class="nv">append</span> <span class="s2">"({version})"</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedoptional-argumentsmylang-14"><code data-line-number="14"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-14" name="listingscl-existence-orientedoptional-argumentsmylang-14"></a><span class="w">    </span><span class="n">output</span><span class="o">.</span><span class="k">as</span><span class="o">-</span><span class="n">string</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">separator</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">' '</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedoptional-argumentsmylang-14" name="listingscl-existence-orientedoptional-argumentsmylang-14"></a>    <span class="nv">output</span><span class="o">.</span><span class="nv">as-string</span> <span class="p">(</span> <span class="nv">separator</span> <span class="p">:</span> <span class="s1">' '</span> <span class="p">)</span>
 </code></td>
 </tr>
 </table></div>
