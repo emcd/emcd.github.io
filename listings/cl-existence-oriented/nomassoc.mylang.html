@@ -68,7 +68,7 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocmylang-4"><code data-line-number=" 4"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-4" name="listingscl-existence-orientednomassocmylang-4"></a><span class="kr">let</span> <span class="nv">run</span><span class="cp">`+entrypoint`</span> <span class="nv">arguments</span><span class="cp">`String [_]`</span> <span class="kr">does</span><span class="p">:</span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-4" name="listingscl-existence-orientednomassocmylang-4"></a><span class="kr">let</span> <span class="nv">run</span><span class="cp">`</span><span class="na">+entrypoint</span><span class="cp">`</span> <span class="kr">does</span><span class="p">:</span>
 </code></td>
 </tr>
 <tr>
@@ -78,7 +78,7 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocmylang-6"><code data-line-number=" 6"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-6" name="listingscl-existence-orientednomassocmylang-6"></a>    <span class="nv">haystack</span> <span class="kr">=</span> <span class="p">{</span> <span class="s1">'haystack'</span> <span class="p">:</span> <span class="m">42</span> <span class="p">}</span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-6" name="listingscl-existence-orientednomassocmylang-6"></a>    <span class="nv">haystack</span> <span class="kr">=</span> <span class="p">{</span> <span class="s1">'needle'</span> <span class="p">:</span> <span class="m">42</span> <span class="p">}</span>
 </code></td>
 </tr>
 <tr>
@@ -98,12 +98,12 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocmylang-10"><code data-line-number="10"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-10" name="listingscl-existence-orientednomassocmylang-10"></a><span class="kr">let</span> <span class="nv">print-needle</span><span class="cp">`AssociativeCollection`</span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-10" name="listingscl-existence-orientednomassocmylang-10"></a><span class="kr">let</span> <span class="nv">print-needle</span><span class="cp">`</span><span class="nc">AssociativeCollection</span><span class="cp">`</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocmylang-11"><code data-line-number="11"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-11" name="listingscl-existence-orientednomassocmylang-11"></a>    <span class="nv">haystack</span><span class="cp">`AssociativeCollection, return : 1`</span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-11" name="listingscl-existence-orientednomassocmylang-11"></a>    <span class="nv">haystack</span><span class="cp">`</span><span class="nc">AssociativeCollection</span><span class="p">,</span> <span class="na">return</span> <span class="p">:</span> <span class="m">1</span><span class="cp">`</span>
 </code></td>
 </tr>
 <tr>
@@ -113,7 +113,7 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocmylang-13"><code data-line-number="13"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-13" name="listingscl-existence-orientednomassocmylang-13"></a>    <span class="kr">with?</span> <span class="nv">needle</span> <span class="kr">=</span> <span class="nv">haystack</span><span class="o">.</span><span class="p">[</span><span class="s1">'needle'</span><span class="p">]</span> <span class="kr">do</span> <span class="nv">stderr</span> <span class="s2">"needle: {needle}"</span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocmylang-13" name="listingscl-existence-orientednomassocmylang-13"></a>    <span class="kr">with?</span> <span class="nv">needle</span> <span class="kr">=</span> <span class="nv">haystack</span><span class="o">.</span><span class="p">[</span><span class="s1">'needle'</span><span class="p">]</span> <span class="kr">do</span> <span class="nv">stderr</span> <span class="s2">"needle: </span><span class="si">{</span><span class="nv">needle</span><span class="si">}</span><span class="s2">"</span>
 </code></td>
 </tr>
 </table></div>

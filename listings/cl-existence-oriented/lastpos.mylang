@@ -1,7 +1,7 @@
 from std.containers let PositionalCollection
 from std.system.current-process let stderr
 
-let run`+entrypoint` arguments`String [_]` does:
+let run`+entrypoint` does:
     empty-items = [ ]
     items = [ 42 ]
     print-last-item items
