@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
+# References:
+#   https://getnikola.com/handbook.html
+#   https://getnikola.com/sampleconfig.html
+
+
 import time
+
 
 # Hack in custom Pygments lexer.
 from pathlib import Path

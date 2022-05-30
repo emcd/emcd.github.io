@@ -1,9 +1,9 @@
 from std.containers let AssociativeCollection
 from std.system.current-process let stderr
 
-let run`+entrypoint` arguments`String [_]` does:
+let run`+entrypoint` does:
     empty-haystack = { : }
-    haystack = { 'haystack' : 42 }
+    haystack = { 'needle' : 42 }
     print-needle haystack
     print-needle empty-haystack
 

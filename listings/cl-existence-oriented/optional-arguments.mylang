@@ -1,7 +1,7 @@
 from std.containers let Dynstring
 from std.system.current-process let stderr
 
-let run`+entrypoint` arguments`String [_]` does:
+let run`+entrypoint` does:
     stderr ( format-title 'Hello, world!' )
     stderr ( format-title 'Hello, world!' ( variant : '???' ) )
     stderr ( format-title 'Hello, world!' ( version : '1.0' ) )

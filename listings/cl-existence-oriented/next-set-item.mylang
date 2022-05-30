@@ -1,7 +1,7 @@
 from std.containers let Collection
 from std.system.current-process let stderr
 
-let run`+entrypoint` arguments`String [_]` does:
+let run`+entrypoint` does:
     nothing = { }
     things = { 42 }
     print-set-element things
