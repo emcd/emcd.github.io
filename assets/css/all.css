@@ -681,6 +681,10 @@ ul.simple li::before {
 	left: 0;
 }
 
+ul.simple li ul li::before {
+    content: "\27A2"; /* Three-D Top-Lighted Rightwards Arrowhead */
+}
+
 ul.pros li::before {
     content: url(../../assets/svg/plus-in-circle.svg);
     display: block;
