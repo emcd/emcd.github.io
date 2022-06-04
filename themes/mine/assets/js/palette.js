@@ -25,6 +25,14 @@ function setTheme(theme) {
     }
   }
   document.body.dataset.theme = theme;
+  const utterancesTheme = trueTheme === 'dark' ? 'github-dark' : 'github-light';
+  const utterancesIframe = document.querySelector('.utterances-frame');
+  if (utterancesIframe) {
+    utterancesIframe.contentWindow.postMessage(
+        { type: 'set-theme', theme: utterancesTheme },
+        'https://utteranc.es'
+    );
+  }
   localStorage.setItem("theme", theme);
 }
 
