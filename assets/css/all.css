@@ -675,7 +675,7 @@ ul li {
     padding: 0.2rem;
 }
 
-ul li::before {
+ul.simple li::before {
 	content: "\2756"; /* Black Diamond Minus White X */
 	position: absolute;
 	left: 0;

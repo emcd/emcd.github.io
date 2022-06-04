@@ -1,6 +1,7 @@
 /* Adapted from:
     - https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#aa-combining-all-the-things
     - https://github.com/pradyunsg/furo/blob/main/src/furo/assets/scripts/furo.js
+    - https://github.com/utterance/utterances/issues/549#issuecomment-907606127
  */
 const btn = document.querySelector(".palette-selector");
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
