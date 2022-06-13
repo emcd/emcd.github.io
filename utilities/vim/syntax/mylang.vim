@@ -26,5 +26,5 @@ highlight link mylangKeyword Keyword
 syntax region mylangRemarkLine start="\v#\s" end="$" display
 highlight link mylangRemarkLine Comment
 syntax region mylangHelpHeadline matchgroup=Todo start="#:" end="$" contained display transparent
-syntax region mylangHelpBlock start="\v^\z(\s*)#:.*" skip="\v^(\z1\s+|$)" end="\v^(\z1\s+)@!"he=s-1,re=s-1 keepend fold contains=mylangHelpHeadline,@Spell
+syntax region mylangHelpBlock start="\v^\z(\s*)#:\s+.*" skip="\v^(\z1\s+|$)" end="\v^(\z1\s+)@!"he=s-1,re=s-1 keepend fold contains=mylangHelpHeadline,@Spell
 highlight link mylangHelpBlock Comment

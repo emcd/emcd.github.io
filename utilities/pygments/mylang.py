@@ -87,6 +87,8 @@ class MylangLexer( ExtendedRegexLexer ):
             ( r'.*"', Error, '#pop' ),
         ],
         'root': [
+            ( r'(?s)(^\s*)(#:)(\s+)(.*)(?=^\1\S)',
+              bygroups( Text, Comment.Special, Text, Comment.Multiline ) ),
             ( r'\s+', Text ),
             ( words( HEADSTART_KEYWORDS, suffix = HEADSTART_SUFFIX ),
               Keyword.Reserved ),
