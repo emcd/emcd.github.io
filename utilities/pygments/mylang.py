@@ -50,6 +50,7 @@ HEADEND_KEYWORDS = (
     'else',
 )
 ISOLATED_OPERATORS = (
+    '*', '+', '-', '/',
     'is?',
 )
 STDLIB_SYMBOLS = (
@@ -103,6 +104,7 @@ class MylangLexer( ExtendedRegexLexer ):
             ( r'[\(\[\{,:\}\]\)]', Punctuation ),
             ( r'\.', Operator ),
             ( r'`', Comment.Preproc, 'compilation-directives' ),
+            ( r'#\s+.*$', Comment ),
             ( r'.*\n', Text ),
         ],
         'compilation-directives': [
