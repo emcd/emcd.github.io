@@ -49,10 +49,6 @@ HEADEND_KEYWORDS = (
     'do', 'does',
     'else',
 )
-ISOLATED_OPERATORS = (
-    '*', '+', '-', '/',
-    'is?',
-)
 STDLIB_SYMBOLS = (
     'Dynstring',
 )
@@ -68,6 +64,12 @@ class MylangLexer( ExtendedRegexLexer ):
     filenames = [ '*.mylang' ]
 
     tokens = {
+        'delimiter': [
+            ( r'[,:]', Punctuation ),
+            ( r'(?:\(\.?|\.?\))', Punctuation ),
+            ( r'(?:\[~?|~?\])', Punctuation ),
+            ( r'(?:\{~?|~?\})', Punctuation ),
+        ],
         'literal': [
             ( r'(?:\+|\-)?\d(?:[\d_]*)?', Number ),
             ( r'"', String.Double, 'interpolatory-text' ),
@@ -87,22 +89,31 @@ class MylangLexer( ExtendedRegexLexer ):
             # TODO: Format mini-language.
             ( r'.*"', Error, '#pop' ),
         ],
+        'operator': [
+            ( r'(?:\.{3})', Operator ),
+            ( r'(?:\.)(?=\w)', Operator ),
+            ( r'(?:<|!=|>|>=|==|<=)' + HEADSTART_SUFFIX, Operator ),
+            ( r'(?:is\?)' + HEADSTART_SUFFIX, Operator ),
+            ( r'(?:\+|\-|\*|/)' + HEADSTART_SUFFIX, Operator ),
+            ( r'(?:\*(?:\*|<|>))' + HEADSTART_SUFFIX, Operator ),
+            ( r'(?:Z(?:/|\%))' + HEADSTART_SUFFIX, Operator ),
+            ( r'(?:b(?:&|\||\^))' + HEADSTART_SUFFIX, Operator ),
+            ( r'(?:b~)' + HEADSTART_SUFFIX, Operator ),
+        ],
         'root': [
-            ( r'(?s)(^\s*)(#:)(\s+)(.*)(?=^\1\S)',
+            ( r'(?s)(^\s*)(#:)(\s+)(.*?)(?=^\1\S)',
               bygroups( Text, Comment.Special, Text, Comment.Multiline ) ),
             ( r'\s+', Text ),
             ( words( HEADSTART_KEYWORDS, suffix = HEADSTART_SUFFIX ),
               Keyword.Reserved ),
             ( words( HEADEND_KEYWORDS, suffix = HEADEND_SUFFIX ),
               Keyword.Reserved ),
-            ( words( ISOLATED_OPERATORS, suffix = HEADSTART_SUFFIX ),
-              Operator ),
+            include( 'literal' ),
+            include( 'operator' ),
             ( words( STDLIB_SYMBOLS, suffix = HEADSTART_SUFFIX ),
               Name.Builtin ),
-            include( 'literal' ),
             ( IDENTIFIER_PATTERN, Name.Variable ),
-            ( r'[\(\[\{,:\}\]\)]', Punctuation ),
-            ( r'\.', Operator ),
+            include( 'delimiter' ),
             ( r'`', Comment.Preproc, 'compilation-directives' ),
             ( r'#\s+.*$', Comment ),
             ( r'.*\n', Text ),
