@@ -12,7 +12,7 @@ end_of_line = lf
 insert_final_newline = false
 trim_trailing_whitespace = true
 
-[*.py]
+[*.{mylang,py}]
 max_line_length = 79
 insert_final_newline = true
 

@@ -54,18 +54,22 @@ syntax match mylangDelimiter "\v(\[\~?|\~?\])"
 syntax match mylangDelimiter "\v(\{\~?|\~?\})"
 highlight link mylangDelimiter Comment
 
-" Unary Prefix Operators
+" Operators
+syntax match mylangOperator "\v\.\ze[\w\[]"
+syntax match mylangOperator "\v\s\zs\.{2}\ze\s"
 syntax match mylangOperator "\v\.{3}"
-syntax match mylangOperator "\v\.\ze\w"
-syntax match mylangOperator "\v(^|\s)\zsb\~\ze\s"
-
-" Binary Infix Operators
-syntax match mylangOperator "\v\s\zs(\<|\!\=|\>|\>\=|\=\=|\<\=)\ze\s"
 syntax match mylangOperator "\v\s\zs(\+|\-|\*|/)\ze\s"
+syntax match mylangOperator "\v\((\+|\*)\)\ze\s"
 syntax match mylangOperator "\v\s\zs\*(\*|\<|\>)\ze\s"
 syntax match mylangOperator "\v\s\zsZ(/|\%)\ze\s"
-syntax match mylangOperator "\v\s\zsb(\&|\||\^)\ze\s"
-
+syntax match mylangOperator "\v\s\zs(\<|\<\>|\>|\<\=|\=\=|\>\=|\!\=)\ze\s"
+syntax match mylangOperator "\v\((\<\>|\=\=|\!\=)\)\ze\s"
+syntax match mylangOperator "\vis\?\ze\s"
+syntax match mylangOperator "\v\s\zs(and\??|or\??)\ze\s"
+syntax match mylangOperator "\v\((and\??|or\??)\)\ze\s"
+syntax match mylangOperator "\vnot\?\ze\s"
+syntax match mylangOperator "\v\s\zsb(\&|\||\^|\<\<|\>\>)\ze\s"
+syntax match mylangOperator "\v(^|\s)\zsb\~\ze\s"
 highlight link mylangOperator Operator
 
 " Comments
