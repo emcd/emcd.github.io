@@ -1,0 +1,44 @@
+(* Octal Literals *)
+
+octal complex flp number literal =
+    ( [ "+" | "-" ], "\o", octal flp number literal core,
+      "+" | "-", octal flp number literal core ) |
+    [ "+" | "-" ], "\o", octal flp number literal core,
+    "I" | "J" | "i" | "j",
+    [ complex flp number classification ];
+
+octal flp number literal =
+    [ "+" | "-" ], "\o", octal flp number literal core,
+    [ flp number classification ];
+
+octal flp number literal core =
+    octal digits,
+    ( ".", octal digits, [ octal flp number exponentiation ] ) |
+    octal flp number exponentiation;
+
+octal flp number exponentiation =
+    "P" | "p", [ "+" | "-" ], octal digits;
+
+octal complex integer literal =
+    ( [ "+" | "-" ], "\o", octal digits,
+      "+" | "-", octal digits ) |
+    [ "+" | "-" ], "\o", octal digits,
+    "I" | "J" | "i" | "j",
+    [ complex integer classification ];
+
+octal complementary integer literal =
+    [ "+" | "-" ], "\o", octal digits,
+    [ complementary integer classification ];
+
+octal nonnegative integer literal =
+    "\o", octal digits,
+    ( "N" | "n", [ nonnegative integer classification ] ) |
+    nonnegative integer classification;
+
+octal byte escape sequence =
+    "\o", ( "0" | "1" | "2" | "3" ), octal digit, octal digit;
+
+octal digits =
+    octal digit, [ { "_" | octal digit }, octal digit ];
+octal digit =
+    "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7";

@@ -12,6 +12,9 @@ end_of_line = lf
 insert_final_newline = false
 trim_trailing_whitespace = true
 
+[*.ebnf]
+max_line_length = 79
+
 [*.{mylang,py}]
 max_line_length = 79
 insert_final_newline = true
