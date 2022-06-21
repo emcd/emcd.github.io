@@ -1,5 +1,6 @@
 /* Code Syntax Highlighting:
  * - https://pygments.org/docs/tokens/
+ * - https://github.com/pygments/pygments/blob/master/pygments/token.py
  */
 
 .code::selection, .code *::selection,
@@ -10,91 +11,263 @@
     color: var(--main-bg-color) !important;
 }
 
+/* Text.Whitespace */
+.code .w, .highlight .w { }
+
+/* Escape */
+.code .esc, .highlight .esc {
+    color: var(--magenta);
+}
+
+/* Error */
 .code .err, .highlight .err {
-    background-color: var(--main-fg-color);
+    background-color: var(--standout-bg-color);
+    border: 1px solid var(--red);
     color: var(--red);
-}  /* Error */
+    font-weight: bold;
+    padding: 0 0.1em;
+}
 
-.code .c  , .highlight .c   { color: var(--faint-fg-color); font-style: italic }  /* Comment */
-.code .ch , .highlight .ch  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Hashbang */
-.code .cm , .highlight .cm  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Multiline */
-.code .cp , .highlight .cp  {
+/* Other */
+.code .x, .highlight .x {
+    border: 1px dotted;
+    color: var(--faint-fg-color);
+}
+
+/* Keywords
+ *
+ * k: Keyword; kd: Keyword.Declaration; kn: Keyword.Namespace
+ * kc: Keyword.Constant; kp: Keyword.Pseudo
+ * kr: Keyword.Reserved
+ * kt: Keyword.Type
+ */
+.code .k, .code .kd, .code .kn, .code .kr,
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr {
+    /* See also: Name.Tag (nt) */
+    color: var(--green);
+    font-weight: bold;
+}
+.code .kc, .code .kp,
+.highlight .kc, .highlight .kp {
     color: var(--orange);
-}  /* Comment.Preproc */
-.code .cpf, .highlight .cpf { color: var(--faint-fg-color); font-style: italic }  /* Comment.PreprocFile */
-.code .c1 , .highlight .c1  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Single */
-.code .cs , .highlight .cs  { color: var(--faint-fg-color); font-style: italic }  /* Comment.Special */
+}
+.code .kr, .highlight .kr {
+    border: 1px solid var(--red);
+    text-decoration: line-through solid var(--main-fg-color);
+}
+.code .kt, .highlight .kt {
+    /* See also: Name.Class (nc) */
+    color: var(--blue);
+    font-weight: bold;
+    text-decoration: underline solid var(--faint-fg-color);
+}
 
-.code .n  , .highlight .n   { color: var(--strong-fg-color) }  /* Name */
-.code .w  , .highlight .w   { color: var(--strong-fg-color) }  /* Text.Whitespace */
-.code .p  , .highlight .p   { color: var(--faint-fg-color ) }  /* Punctuation */
+/* Names
+ *
+ * n: Name; no: Name.Constant; nx: Name.Other
+ * nv: Name.Variable; vg: Name.Variable.Global
+ * vc: Name.Variable.Class; vi: Name.Variable.Instance
+ * na: Name.Attribute
+ * nb: Name.Builtin
+ * bp: Name.Builtin.Pseudo; fm: Name.Function.Magic; vm: Name.Variable.Magic
+ * nc: Name.Class; ne: Name.Exception; nn: Name.Namespace
+ * nd: Name.Decorator
+ * ni: Name.Entity
+ * nf: Name.Function
+ * fm: Name.Function.Magic
+ * py: Name.Property
+ * nl: Name.Label
+ * nt: Name.Tag
+ */
+.code .n, .code .no, .code .py, .code .nx,
+.code .nv, .code .vc, .code .vg, .code .vi,
+.highlight .n, .highlight .no, .highlight .py, .highlight .nx,
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi {
+    /* See also: String.Symbol */
+}
+.code .na, .highlight .na {
+    color: var(--yellow);
+}
+.code .nb, .highlight .nb {
+    color: var(--strong-fg-color);
+    text-decoration: underline solid var(--faint-fg-color);
+}
+.code .bp, .code .fm, .code .vm,
+.highlight .bp, .highlight .fm, .highlight .vm {
+    color: var(--orange);
+}
+.code .nc, .code .ne, .code .nn,
+.highlight .nc, .highlight .ne, .highlight .nn {
+    /* See also: Keyword.Type (kt) */
+    color: var(--blue);
+    font-weight: bold;
+}
+.code .nd, .highlight .nd {
+    color: var(--magenta);
+}
+.code .ni, .highlight .ni {
+    /* border: 1px solid var(--magenta); */
+    color: var(--orange);
+}
+.code .nf, .highlight .nf {
+    color: var(--blue);
+}
+.code .nl, .highlight .nl {
+    color: var(--violet);
+}
+.code .nt, .highlight .nt {
+    /* See also: Keyword (k) */
+    color: var(--green);
+    font-weight: bold;
+}
 
-.code .k  , .highlight .k   { color: var(--green  ); font-weight: bold }  /* Keyword */
-.code .kd , .highlight .kd  { color: var(--green  ); font-weight: bold }  /* Keyword.Declaration */
-.code .kp , .highlight .kp  { color: var(--green  ); font-weight: bold }  /* Keyword.Pseudo */
-.code .kr , .highlight .kr  { color: var(--green  ); font-weight: bold }  /* Keyword.Reserved */
-.code .kt , .highlight .kt  { color: var(--green  ); font-weight: bold }  /* Keyword.Type */
+/* Literals
+ *
+ * l: Literal; ld: Literal.Date
+ * m: Number; mb: Number.Bin; mh: Number.Hex; mo: Number.Oct
+ * mf: Number.Float; mi: Number.Integer; il: Number.Integer.Long
+ * s: String; sb: String.Backtick; s2: String.Double; s1: String.Single
+ * sh: String.Heredoc
+ * sa: String.Affix
+ * sc: String.Char
+ * dl: String.Delimiter
+ * sd: String.Doc
+ * se: String.Escape
+ * si: String.Interpol
+ * sx: String.Other
+ * sr: String.Regex
+ * ss: String.Symbol
+ */
+.code .l, .code .ld,
+.code .s, .code .sb, .code .s2, .code .s1,
+.code .sh,
+.highlight .l, .highlight .ld,
+.highlight .s, .highlight .sb, .highlight .s2, .highlight .s1,
+.highlight .sh {
+    color: var(--strong-fg-color);
+}
+.code .m, .code .mb, .code .mh, .code .mo,
+.code .mf, .code .mi, .code .il,
+.highlight .m, .highlight .mb, .highlight .mh, .highlight .mo,
+.highlight .mf, .highlight .mi, .highlight .il {
+    color: var(--cyan);
+}
+.code .sa, .highlight .sa {
+    color: var(--magenta);
+}
+.code .sc, .highlight .sc {
+    color: var(--strong-fg-color);
+}
+.code .dl, .highlight .dl {
+    color: var(--cyan);
+}
+.code .sd, .highlight .sd {
+    /* See also: Comment (c) */
+    color: var(--faint-fg-color);
+    font-style: italic;
+}
+.code .se, .highlight .se {
+    color: var(--magenta);
+}
+.code .si, .highlight .si {
+    color: var(--magenta);
+}
+.code .sx, .highlight .sx {
+    color: var(--magenta);
+}
+.code .sr, .highlight .sr {
+    color: var(--strong-fg-color);
+}
+.code .ss, .highlight .ss {
+    /* See also: Name */
+}
 
-.code .o  , .highlight .o   { color: var(--green  ) }                     /* Operator */
-.code .ow , .highlight .ow  { color: var(--green  ); font-weight: bold }  /* Operator.Word */
+/* Operators
+ *
+ * o: Operator; ow: Operator.Word
+ */
+.code .o, .code .ow, .highlight .o, .highlight .ow {
+    color: var(--green);
+}
 
-.code .kn , .highlight .kn  { color: var(--green  ); font-weight: bold }   /* Keyword.Namespace */
-.code .kc , .highlight .kc  { color: var(--orange ); font-weight: normal } /* Keyword.Constant (None) */
-.code .bp , .highlight .bp  { color: var(--orange ); font-weight: normal } /* Builtin.Pseudo (True/False) */
+/* Punctuation */
+.code .p, .highlight .p {
+    color: var(--faint-fg-color);
+}
 
-.code .l  , .highlight .l   { color: var(--faint-fg-color  ) }  /* Literal */
-.code .ld , .highlight .ld  { color: var(--faint-fg-color  ) }  /* Literal.Date */
-.code .m  , .highlight .m   { color: var(--faint-fg-color  ) }  /* Literal.Number */
-.code .mb , .highlight .mb  { color: var(--faint-fg-color  ) }  /* Literal.Number.Bin */
-.code .mf , .highlight .mf  { color: var(--faint-fg-color  ) }  /* Literal.Number.Float */
-.code .mh , .highlight .mh  { color: var(--faint-fg-color  ) }  /* Literal.Number.Hex */
-.code .mi , .highlight .mi  { color: var(--faint-fg-color  ) }  /* Literal.Number.Integer */
-.code .il , .highlight .il  { color: var(--faint-fg-color  ) }  /* Literal.Number.Integer.Long */
-.code .mo , .highlight .mo  { color: var(--faint-fg-color  ) }  /* Literal.Number.Oct */
+/* Comments
+ *
+ * c: Comment; cm: Comment.Multiline; c1: Comment.Single
+ * ch: Comment.Hashbang
+ * cp: Comment.Preproc; cpf: Comment.PreprocFile
+ * cs: Comment.Special
+ */
+.code .c, .code .cm, .code .c1,
+.highlight .c, .highlight .cm, .highlight .c1 {
+    /* See also: String.Doc (sd) */
+    color: var(--faint-fg-color);
+    font-style: italic;
+}
+.code .ch, .highlight .ch {
+    color: var(--orange);
+}
+.code .cp, .code .cpf,
+.highlight .cp, .highlight .cpf {
+    color: var(--yellow);
+}
+.code .cs, .highlight .cs {
+    color: var(--magenta);
+    font-style: italic
+}
 
-.code .s  , .highlight .s   { color: var(--faint-fg-color  ) }  /* Literal.String */
-.code .sa , .highlight .sa  { color: var(--magenta) }  /* Literal.String.Affix */
-.code .sb , .highlight .sb  { color: var(--faint-fg-color  ) }  /* Literal.String.Backtick */
-.code .sc , .highlight .sc  { color: var(--faint-fg-color  ) }  /* Literal.String.Char */
-.code .dl , .highlight .dl  { color: var(--faint-fg-color  ) }  /* Literal.String.Delimiter */
-.code .sd , .highlight .sd  { color: var(--faint-fg-color  ) }  /* Literal.String.Doc */
-.code .s2 , .highlight .s2  { color: var(--faint-fg-color  ) }  /* Literal.String.Double */
-.code .se , .highlight .se  { color: var(--magenta) }  /* Literal.String.Escape */
-.code .sh , .highlight .sh  { color: var(--faint-fg-color  ) }  /* Literal.String.Heredoc */
-.code .si , .highlight .si  { color: var(--magenta) }  /* Literal.String.Interpol */
-.code .sx , .highlight .sx  { color: var(--faint-fg-color  ) }  /* Literal.String.Other */
-.code .sr , .highlight .sr  { color: var(--faint-fg-color  ) }  /* Literal.String.Regex */
-.code .s1 , .highlight .s1  { color: var(--faint-fg-color  ) }  /* Literal.String.Single */
-.code .ss , .highlight .ss  { color: var(--faint-fg-color  ) }  /* Literal.String.Symbol */
-
-.code .nc , .highlight .nc  { color: var(--blue   ); font-weight: bold }  /* Name.Class */
-.code .nf , .highlight .nf  { color: var(--blue   ) }  /* Name.Function */
-.code .fm , .highlight .fm  { color: var(--orange ) }  /* Name.Function.Magic */
-.code .nb , .highlight .nb  { color: var(--yellow ) }  /* Name.Builtin (lib functions) */
-
-.code .nv , .highlight .nv  { color: var(--strong-fg-color  ) }  /* Name.Variable */
-.code .vc , .highlight .vc  { color: var(--strong-fg-color  ) }  /* Name.Variable.Class */
-.code .vg , .highlight .vg  { color: var(--strong-fg-color  ) }  /* Name.Variable.Global */
-.code .vi , .highlight .vi  { color: var(--strong-fg-color  ) }  /* Name.Variable.Instance */
-.code .vm , .highlight .vm  { color: var(--yellow ) }  /* Name.Variable.Magic */
-
-.code .nt , .highlight .nt  { color: var(--green  ); font-weight: bold  }  /* Name.Tag */
-.code .na , .highlight .na  { color: var(--yellow ); font-style: italic }  /* Name.Attribute */
-
-.code .no , .highlight .no  { color: var(--strong-fg-color  ) }  /* Name.Constant */
-.code .nd , .highlight .nd  { color: var(--blue   ) }  /* Name.Decorator */
-.code .ni , .highlight .ni  { color: var(--violet ) }  /* Name.Entity */
-.code .ne , .highlight .ne  { color: var(--blue   ) }  /* Name.Exception */
-.code .nl , .highlight .nl  { color: var(--violet ) }  /* Name.Label */
-.code .nn , .highlight .nn  { color: var(--strong-fg-color  ) }  /* Name.Namespace */
-.code .nx , .highlight .nx  { color: var(--strong-fg-color  ) }  /* Name.Other */
-.code .py , .highlight .py  { color: var(--strong-fg-color  ) }  /* Name.Property */
-
-.code .gp , .highlight .gp  { color: var(--strong-fg-color  ) }  /* Generic.Prompt */
-.code .go , .highlight .go  { color: var(--strong-fg-color  ) }  /* Generic.Output */
-.code .gd , .highlight .gd  { color: var(--red    ) }  /* Generic.Deleted */
-.code .gi , .highlight .gi  { color: var(--green  ) }  /* Generic.Inserted */
-.code .gh , .highlight .gh  { color: var(--strong-fg-color  ) }  /* Generic.Heading */
-.code .gu , .highlight .gu  { color: var(--main-fg-color    ) }  /* Generic.Subheading */
-.code .ge , .highlight .ge  { font-style: italic }  /* Generic.Emph */
-.code .gs , .highlight .gs  { font-weight: bold  }  /* Generic.Strong */
+/* Generic Elements
+ *
+ * g: Generic
+ * gd: Generic.Deleted; gi: Generic.Inserted
+ * ge: Generic.Emph; gs: Generic.Strong
+ * gr: Generic.Error
+ * gh: Generic.Heading; gu: Generic.Subheading
+ * go: Generic.Output; gp: Generic.Prompt
+ * gt: Generic.Traceback
+ */
+.code .g, .highlight .g {
+    /* Same as plain text. */
+}
+.code .gd, .highlight .gd {
+    text-decoration: line-through solid var(--red);
+}
+.code .gi, .highlight .gi {
+    text-decoration: underline overline dashed var(--green);
+}
+.code .ge, .highlight .ge {
+    font-style: italic;
+}
+.code .gs, .highlight .gs {
+    font-weight: bold;
+}
+.code .gr, .highlight .gr {
+    border: 1px solid var(--red);
+    font-style: italic;
+}
+.code .gh, .highlight .gh {
+    /* Same as h5 tag. */
+    font-size: var(--body-font-size);
+    text-decoration: underline solid;
+}
+.code .gu, .highlight .gu {
+    /* Same as h6 tag. */
+    font-size: var(--body-font-size);
+    text-decoration: underline dotted;
+}
+.code .go, .highlight .go {
+    background-color: var(--standout-bg-color);
+    color: var(--faint-fg-color);
+}
+.code .gp, .highlight .gp {
+    border: 1px solid var(--orange);
+    font-weight: bold;
+}
+.code .gt, .highlight .gt {
+    background-color: var(--standout-bg-color);
+    color: var(--yellow);
+}

@@ -13,8 +13,8 @@
 * All single ASCII alphanumeric characters followed by one or more ASCII
   punctuation characters are reserved for use as operators.
 
-* All unary operators, except ``..`` and ``>..``, are in the prefix position
-  relative to their operands.
+* All unary operators, except ``..``, are in the prefix position relative to
+  their operands.
 
 * All binary operators are in the infix position relative to their operands.
 

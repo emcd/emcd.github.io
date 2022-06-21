@@ -1,0 +1,619 @@
+literal =
+    boolean literal | compact sequence literal |
+    number literal | unicode literal;
+
+boolean literal = "false" | "true";
+
+compact sequence literal = bytes literal | text literal;
+
+bytes literal =
+    nonescapable noninterpolative bytes literal |
+    nonescapable interpolative bytes literal |
+    escapable noninterpolative bytes literal |
+    escapable interpolative bytes literal;
+nonescapable bytes literal =
+    nonescapable noninterpolative bytes literal |
+    nonescapable interpolative bytes literal;
+escapable bytes literal =
+    escapable noninterpolative bytes literal |
+    escapable interpolative bytes literal;
+noninterpolative bytes literal =
+    nonescapable noninterpolative bytes literal |
+    escapable noninterpolative bytes literal;
+interpolative bytes literal =
+    nonescapable interpolative bytes literal |
+    escapable interpolative bytes literal;
+
+nonescapable noninterpolative bytes literal =
+    nonescapable noninterpolative uniquote bytes literal |
+    nonescapable noninterpolative triquote bytes literal |
+    nonescapable noninterpolative bytes literal clause;
+nonescapable noninterpolative uniquote bytes literal =
+    "\B",
+    "\\'", nonescapable noninterpolative uniquote bytes content, "'";
+nonescapable noninterpolative triquote bytes literal =
+    "\B",
+    "\\'''", nonescapable noninterpolative triquote bytes content, "'''";
+nonescapable noninterpolative bytes literal clause =
+    "\B", "\\\':", [ bytes literal caput ],
+    { ? corporal line initiator ?,
+      nonescapable noninterpolative bytes corpus content };
+
+nonescapable noninterpolative uniquote bytes content =
+    { ? printable byte ? - "'" };
+nonescapable noninterpolative triquote bytes content =
+    { ? printable byte ? } - "'''";
+nonescapable noninterpolative bytes corpus content =
+    { ? printable byte ? };
+
+nonescapable interpolative bytes literal =
+    nonescapable interpolative uniquote bytes literal |
+    nonescapable interpolative triquote bytes literal |
+    nonescapable interpolative bytes literal clause;
+nonescapable interpolative uniquote bytes literal =
+    "\B",
+    '\\"', nonescapable interpolative uniquote bytes content, '"';
+nonescapable interpolative triquote bytes literal =
+    "\B",
+    '\\"""', nonescapable interpolative triquote bytes content, '"""';
+nonescapable interpolative bytes literal clause =
+    "\B", '\\\":', [ bytes literal caput ],
+    { ? corporal line initiator ?,
+      nonescapable interpolative bytes corpus content };
+
+nonescapable interpolative uniquote bytes content =
+    { byteswise interpolation |
+      ? printable byte ? - ( '"' | "{" | "}" ) };
+nonescapable interpolative triquote bytes content =
+    { byteswise interpolation |
+      ? printable byte ? - ( "{" | "}" ) } - '"""';
+nonescapable interpolative triquote bytes content =
+    { byteswise interpolation |
+      ? printable byte ? - ( "{" | "}" ) };
+
+escapable noninterpolative bytes literal =
+    escapable noninterpolative uniquote bytes literal |
+    escapable noninterpolative triquote bytes literal |
+    escapable noninterpolative bytes literal clause;
+escapable noninterpolative uniquote bytes literal =
+    "\B",
+    "'", escapable noninterpolative uniquote bytes content, "'";
+escapable noninterpolative triquote bytes literal =
+    "\B",
+    "'''", escapable noninterpolative triquote bytes content, "'''";
+escapable noninterpolative bytes literal clause =
+    "\B", "\':", [ bytes literal caput ],
+    { ? corporal line initiator ?,
+      escapable noninterpolative bytes corpus content };
+
+escapable noninterpolative uniquote bytes content =
+    { byteswise escape sequence | ? printable byte ? - ( "'" | "\" ) };
+escapable noninterpolative triquote bytes content =
+    { byteswise escape sequence | ? printable byte ? - "\" } - "'''";
+escapable noninterpolative bytes corpus content =
+    { byteswise escape sequence | ? printable byte ? - "\" };
+
+escapable interpolative bytes literal =
+    escapable interpolative uniquote bytes literal |
+    escapable interpolative triquote bytes literal |
+    escapable interpolative bytes literal clause;
+escapable interpolative uniquote bytes literal =
+    "\B",
+    '"', escapable interpolative uniquote bytes content, '"';
+escapable interpolative triquote bytes literal =
+    "\B",
+    '"""', escapable interpolative triquote bytes content, '"""';
+escapable interpolative bytes literal clause =
+    "\B", '\":', [ bytes literal caput ],
+    { ? corporal line initiator ?,
+      escapable interpolative bytes corpus content };
+
+escapable interpolative uniquote bytes content =
+    { byteswise escape sequence | byteswise interpolation |
+      ? printable byte ? - ( '"' | "\" | "{" | "}" ) };
+escapable interpolative triquote bytes content =
+    { byteswise escape sequence | byteswise interpolation |
+      ? printable byte ? - ( "\" | "{" | "}" ) } - '"""';
+escapable interpolative triquote bytes content =
+    { byteswise escape sequence | byteswise interpolation |
+      ? printable byte ? - ( "\" | "{" | "}" ) };
+
+byteswise interpolation = "{{" | "}}" | ( "{", byteswise interpolant, "}" );
+byteswise interpolant =
+    interpolant identifier cascade,
+    [ "!", byteswise rendition form ],
+    [ ":", byteswise format specification ];
+byteswise rendition form = "H" | "h" | "r";
+(* H: human-legible, complete expression, possibly multiline
+   h: human-legible, abbreviated expression, single line
+   r: machine-reproducible representation, possibly multiline *)
+byteswise format specification =
+    [ byteswise interpolation alignment specifier ],
+    [ "+" | "-" | " " ], [ "#" ], [ "0" ],
+    [ minimum interpolation capacity ],
+    [ numeric presentation specifier ], [ ".", numeric precision ],
+    [ class dependent interpolation format specifier ];
+byteswise interpolation alignment specifier =
+    [ ? printable byte ? ], "<" | ">" | "^";
+
+byteswise escape sequence =
+    ( "\", "\" | "'" | '"' | "e" | "n" | "r" | "t" ) |
+    ( "\", ? line terminator ? ) |
+    nominative c zero escape sequence |
+    hexadecimal byte escape sequence;
+hexadecimal byte escape sequence =
+    "\x", hexadecimal digit, hexadecimal digit;
+
+bytes literal caput =
+    bytes literal caput item, { bytes literal caput item };
+bytes literal caput item =
+    interlinear bytes separator specification |
+    postcorporal bytes terminator specification |
+    prelinear bytes injector specification |
+    postlinear bytes injector specification |
+    ( mandatory horizontal space, comment line );
+
+interlinear bytes separator specification =
+    mandatory horizontal space, "|",
+    "&" |
+    ( [ "&" ], [ repetition factor ],
+      "=", bytes corpus modification specifiers );
+postcorporal bytes terminator specification =
+    mandatory horizontal space, ":",
+    repetition factor |
+    ( [ repetition factor ], "=", bytes corpus modification specifiers );
+prelinear bytes injector specification =
+    mandatory horizontal space, ">",
+    repetition factor |
+    ( [ repetition factor ], "=", bytes corpus modification specifiers );
+postlinear bytes injector specification =
+    mandatory horizontal space, "<",
+    repetition factor |
+    ( [ repetition factor ], "=", bytes corpus modification specifiers ) |
+    ( line capacity, "|",
+      [ "=", bytes corpus modification specifier ]
+    );
+
+bytes corpus modification specifiers =
+    bytes corpus modification specifier,
+    { bytes corpus modification specifier };
+bytes corpus modification specifier =
+    ? printable byte ? - ? horizontal space ? |
+    ( "\", "\" | "e" | "n" | "r" | "t" ) |
+    nominative c zero escape sequence |
+    hexadecimal byte escape sequence;
+
+text literal =
+    nonescapable noninterpolative text literal |
+    nonescapable interpolative text literal |
+    escapable noninterpolative text literal |
+    escapable interpolative text literal;
+nonescapable text literal =
+    nonescapable noninterpolative text literal |
+    nonescapable interpolative text literal;
+escapable text literal =
+    escapable noninterpolative text literal |
+    escapable interpolative text literal;
+noninterpolative text literal =
+    nonescapable noninterpolative text literal |
+    escapable noninterpolative text literal;
+interpolative text literal =
+    nonescapable interpolative text literal |
+    escapable interpolative text literal;
+
+nonescapable noninterpolative text literal =
+    nonescapable noninterpolative uniquote text literal |
+    nonescapable noninterpolative triquote text literal |
+    nonescapable noninterpolative text literal clause;
+nonescapable noninterpolative uniquote text literal =
+    "\\'", nonescapable noninterpolative uniquote text content, "'";
+nonescapable noninterpolative triquote text literal =
+    "\\'''", nonescapable noninterpolative triquote text content, "'''";
+nonescapable noninterpolative text literal clause =
+    "\\\':", [ text literal caput ],
+    { ? corporal line initiator ?,
+      nonescapable noninterpolative text corpus content };
+
+nonescapable noninterpolative uniquote text content =
+    { ? unicode text element ? - "'" };
+nonescapable noninterpolative triquote text content =
+    { ? unicode text element ? } - "'''";
+nonescapable noninterpolative text corpus content =
+    { ? unicode text element ? };
+
+nonescapable interpolative text literal =
+    nonescapable interpolative uniquote text literal |
+    nonescapable interpolative triquote text literal |
+    nonescapable interpolative text literal clause;
+nonescapable interpolative uniquote text literal =
+    '\\"', nonescapable interpolative uniquote text content, '"';
+nonescapable interpolative triquote text literal =
+    '\\"""', nonescapable interpolative triquote text content, '"""';
+nonescapable interpolative text literal clause =
+    '\\\":', [ text literal caput ],
+    { ? corporal line initiator ?,
+      nonescapable interpolative text corpus content };
+
+nonescapable interpolative uniquote text content =
+    { textual interpolation |
+      ? unicode text element ? - ( '"' | "{" | "}" ) };
+nonescapable interpolative triquote text content =
+    { textual interpolation |
+      ? unicode text element ? - ( "{" | "}" ) } - '"""';
+nonescapable interpolative text corpus content =
+    { textual interpolation |
+      ? unicode text element ? - ( "{" | "}" ) };
+
+escapable noninterpolative text literal =
+    escapable noninterpolative uniquote text literal |
+    escapable noninterpolative triquote text literal |
+    escapable noninterpolative text literal clause;
+escapable noninterpolative uniquote text literal =
+    "'", escapable noninterpolative uniquote text content, "'";
+escapable noninterpolative triquote text literal =
+    "'''", escapable noninterpolative triquote text content, "'''";
+escapable noninterpolative text literal clause =
+    "\':", [ text literal caput ],
+    { ? corporal line initiator ?,
+      escapable noninterpolative text corpus content };
+
+escapable noninterpolative uniquote text content =
+    { textual escape sequence | ? unicode text element ? - ( "'" | "\" ) };
+escapable noninterpolative triquote text content =
+    { textual escape sequence | ? unicode text element ? - "\" } - "'''";
+escapable noninterpolative text corpus content =
+    { textual escape sequence | ? unicode text element ? - "\" };
+
+escapable interpolative text literal =
+    escapable interpolative uniquote text literal |
+    escapable interpolative triquote text literal |
+    escapable interpolative text literal clause;
+escapable interpolative uniquote text literal =
+    '"', escapable interpolative uniquote text content, '"';
+escapable interpolative triquote text literal =
+    '"""', escapable interpolative triquote text content, '"""';
+escapable interpolative text literal clause =
+    '\":', [ text literal caput ],
+    { ? corporal line initiator ?,
+      escapable interpolative text corpus content };
+
+escapable interpolative uniquote text content =
+    { textual escape sequence | textual interpolation |
+      ? unicode text element ? - ( '"' | "\" | "{" | "}" ) };
+escapable interpolative triquote text content =
+    { textual escape sequence | textual interpolation |
+      ? unicode text element ? - ( "\" | "{" | "}" ) } - '"""';
+escapable interpolative text corpus content =
+    { textual escape sequence | textual interpolation |
+      ? unicode text element ? - ( "\" | "{" | "}" ) };
+
+textual interpolation = "{{" | "}}" | ( "{", textual interpolant, "}" );
+textual interpolant =
+    interpolant identifier cascade,
+    [ "!", textual rendition form ],
+    [ ":", textual format specification ];
+textual rendition form = "H" | "h" | "r";
+(* H: human-legible, complete expression, possibly multiline
+   h: human-legible, abbreviated expression, single line
+   r: machine-reproducible representation, possibly multiline *)
+textual format specification =
+    [ textual interpolation alignment specifier ],
+    [ "+" | "-" | " " ], [ "#" ], [ "0" ],
+    [ minimum interpolation capacity ],
+    [ numeric presentation specifier ], [ ".", numeric precision ],
+    [ class dependent interpolation format specifier ];
+textual interpolation alignment specifier =
+    [ ? printable unicode text element ? ], "<" | ">" | "^";
+
+textual escape sequence =
+    ( "\", "\" | "'" | '"' | "e" | "n" | "r" | "t" ) |
+    ( "\", ? line terminator ? ) |
+    nominative c zero escape sequence | unicode escape sequence;
+
+text literal caput =
+    text literal caput item, { text literal caput item };
+text literal caput item =
+    interlinear text separator specificationan |
+    postcorporal text terminator specification |
+    prelinear text injector specification |
+    postlinear text injector specification |
+    ( mandatory horizontal space, comment line );
+
+interlinear text separator specification =
+    mandatory horizontal space, "|",
+    "&" |
+    ( [ "&" ], [ repetition factor ],
+      "=", text corpus modification specifiers );
+postcorporal text terminator specification =
+    mandatory horizontal space, ":",
+    repetition factor |
+    ( [ repetition factor ], "=", text corpus modification specifiers );
+prelinear text injector specification =
+    mandatory horizontal space, ">",
+    repetition factor |
+    ( [ repetition factor ], "=", text corpus modification specifiers );
+postlinear text injector specification =
+    mandatory horizontal space, "<",
+    repetition factor |
+    ( [ repetition factor ], "=", text corpus modification specifiers ) |
+    ( line capacity, "|",
+      [ "=", text corpus modification specifier ]
+    );
+
+text corpus modification specifiers =
+    text corpus modification specifier,
+    { text corpus modification specifier };
+text corpus modification specifier =
+    ? unicode text element ? - ? horizontal space ? |
+    ( "\", "\" | "e" | "n" | "r" | "t" ) |
+    nominative c zero escape sequence |
+    unicode escape sequence;
+
+repetition factor = decimal digits;
+line capacity = decimal digits;
+
+nominative c zero escape sequence =
+    "\C0", "<", ? ascii control character name ?, ">";
+(* For the names of the ASCII control characters,
+   see "C0 controls" in https://unicode.org/charts/PDF/U0000.pdf
+   and look at the two- or three-letter codes in the dashed boxes.
+   Additional references:
+    https://en.wikipedia.org/wiki/C0_and_C1_control_codes *)
+
+unicode escape sequence =
+    quantitative unicode escape sequence |
+    nominative unicode escape sequence;
+quantitative unicode escape sequence =
+    quantitative unicode literal, "|";
+nominative unicode escape sequence = nominative unicode literal;
+
+minimum interpolation capacity =
+    ( decimal digit - "0", { decimal digit } ) |
+    ( "{", interpolant identifier cascade, "}" );
+numeric presentation specifier = "@" | "_" | ",";
+(* @: locale-dependent digit separation
+   _: underscore as thousands separator for decimal format
+      underscore every 4 digits for binary and hexadecimal formats
+   ,: comma as thousands separator *)
+numeric precision =
+    ( decimal digit - "0", { decimal digit } ) |
+    ( "{", interpolant identifier cascade, "}" );
+
+class dependent interpolation format specifier =
+    flp number interpolation format specifier |
+    integer interpolation format specifier;
+flp number interpolation format specifier =
+    ( "F" | "f", number base specifier ) |
+    ( "E" | "F" | "G" | "e" | "f" | "g" | "%",
+      [ "X" | "b" | "d" | "x" ] );
+integer interpolation format specifier =
+    "X" | "b" | "d" | "x" | number base specifier;
+number base specifier = "&#", number base, [ "^" ];
+(* ^: uppercase alphabetic letters *)
+number base =
+    ( decimal digit - ( "0" | "1" ) ) |
+    ( ( "1" | "2" ), decimal digit ) |
+    ( "3", decimal digit - ( "7", "8", "9" ) ) |
+    ( "{", interpolant identifier cascade, "}" );
+
+interpolant identifier cascade =
+    identifier, { ".", identifier | indices ) };
+
+number literal =
+    complex flp number literal | complex fxp number literal |
+    complex integer literal | complex rational number literal |
+    flp number literal | fxp number literal |
+    integer literal | rational number literal;
+
+complex flp number literal =
+    binary complex flp number literal |
+    decimal complex flp number literal |
+    hexadecimal complex flp number literal;
+binary complex flp number literal =
+    ( [ "+" | "-" ], "\b", binary flp number literal core,
+      "+" | "-", binary flp number literal core ) |
+    [ "+" | "-" ], "\b", binary flp number literal core,
+    "i" | "j", [ complex flp number classification ];
+decimal complex flp number literal =
+    ( [ "+" | "-" ], decimal flp number literal core,
+      "+" | "-", decimal flp number literal core ) |
+    [ "+" | "-" ], decimal flp number literal core,
+    "i" | "j", [ complex flp number classification ];
+hexadecimal complex flp number literal =
+    ( [ "+" | "-" ], "\x", hexadecimal flp number literal core,
+      "+" | "-", hexadecimal flp number literal core ) |
+    [ "+" | "-" ], "\x", hexadecimal flp number literal core,
+    "i" | "j", [ complex flp number classification ];
+
+flp number literal =
+    binary flp number literal |
+    decimal flp number literal |
+    hexadecimal flp number literal;
+binary flp number literal =
+    [ "+" | "-" ], "\b", binary flp number literal core,
+    [ flp number classification ];
+decimal flp number literal =
+    [ "+" | "-" ], decimal flp number literal core,
+    [ flp number classification ];
+hexadecimal flp number literal =
+    [ "+" | "-" ], "\x", hexadecimal flp number literal core,
+    [ flp number classification ];
+
+binary flp number literal core =
+    binary digits,
+    ( ".", binary digits, [ binary flp number exponentiation ] ) |
+    binary flp number exponentiation;
+decimal flp number literal core =
+    decimal digits,
+    ( ".", decimal digits, [ decimal flp number exponentiation ] ) |
+    decimal flp number exponentiation;
+hexadecimal flp number literal core =
+    hexadecimal digits,
+    ( ".", hexadecimal digits, [ hexadecimal flp number exponentiation ] ) |
+    hexadecimal flp number exponentiation;
+
+(* Non-decimal power notation copied from C++:
+    https://en.cppreference.com/w/cpp/language/floating_literal *)
+binary flp number exponentiation =
+    "P" | "p", [ "+" | "-" ], binary digits;
+decimal flp number exponentiation =
+    "E" | "e", [ "+" | "-" ], decimal digits;
+hexadecimal flp number exponentiation =
+    "P" | "p", [ "+" | "-" ], hexadecimal digits;
+
+complex fxp number literal =
+    binary complex fxp number literal |
+    decimal complex fxp number literal |
+    hexadecimal complex fxp number literal;
+binary complex fxp number literal =
+    ( [ "+" | "-" ], "\b", binary fxp number literal core,
+      "+" | "-", binary fxp number literal core ) |
+    [ "+" | "-" ], "\b", binary fxp number literal core,
+    "i" | "j", [ complex fxp number classification ];
+decimal complex fxp number literal =
+    ( [ "+" | "-" ], decimal fxp number literal core,
+      "+" | "-", decimal fxp number literal core ) |
+    [ "+" | "-" ], decimal fxp number literal core,
+    "i" | "j", [ complex fxp number classification ];
+hexadecimal complex fxp number literal =
+    ( [ "+" | "-" ], "\x", hexadecimal fxp number literal core,
+      "+" | "-", hexadecimal fxp number literal core ) |
+    [ "+" | "-" ], "\x", hexadecimal fxp number literal core,
+    "i" | "j", [ complex fxp number classification ];
+
+fxp number literal =
+    binary fxp number literal |
+    decimal fxp number literal |
+    hexadecimal fxp number literal;
+binary fxp number literal =
+    [ "+" | "-" ], "\b", binary fxp number literal core,
+    [ fxp number classification ];
+decimal fxp number literal =
+    [ "+" | "-" ], decimal fxp number literal core,
+    [ fxp number classification ];
+hexadecimal fxp number literal =
+    [ "+" | "-" ], "\x", hexadecimal fxp number literal core,
+    [ fxp number classification ];
+
+binary fxp number literal core =
+    binary digits, "'", binary digits;
+decimal fxp number literal core =
+    decimal digits, "'", decimal digits;
+hexadecimal fxp number literal core =
+    hexadecimal digits, "'", hexadecimal digits;
+
+complex integer literal =
+    binary complex integer literal |
+    decimal complex integer literal |
+    hexadecimal complex integer literal;
+binary complex integer literal =
+    ( [ "+" | "-" ], "\b", binary digits,
+      "+" | "-", binary digits ) |
+    [ "+" | "-" ], "\b", binary digits,
+    "i" | "j", [ complex integer classification ];
+decimal complex integer literal =
+    ( [ "+" | "-" ], decimal digits,
+      "+" | "-", decimal digits ) |
+    [ "+" | "-" ], decimal digits,
+    "i" | "j", [ complex integer classification ];
+hexadecimal complex integer literal =
+    ( [ "+" | "-" ], "\x", hexadecimal digits,
+      "+" | "-", hexadecimal digits ) |
+    [ "+" | "-" ], "\x", hexadecimal digits,
+    "i" | "j", [ complex integer classification ];
+
+integer literal = complementary integer literal | nonnegative integer literal;
+
+complementary integer literal =
+    binary complementary integer literal |
+    decimal complementary integer literal |
+    hexadecimal complementary integer literal;
+binary complementary integer literal =
+    [ "+" | "-" ], "\b", binary digits,
+    [ complementary integer classification ];
+decimal complementary integer literal =
+    [ "+" | "-" ], decimal digits,
+    [ complementary integer classification ];
+hexadecimal complementary integer literal =
+    [ "+" | "-" ], "\x", hexadecimal digits,
+    [ complementary integer classification ];
+
+nonnegative integer literal =
+    binary nonnegative integer literal |
+    decimal nonnegative integer literal |
+    hexadecimal nonnegative integer literal;
+binary nonnegative integer literal =
+    "\b", binary digits,
+    ( "N", [ nonnegative integer classification ] ) |
+    nonnegative integer classification;
+decimal nonnegative integer literal =
+    decimal digits,
+    ( "N", [ nonnegative integer classification ] ) |
+    nonnegative integer classification;
+hexadecimal nonnegative integer literal =
+    "\x", hexadecimal digits,
+    ( "N", [ nonnegative integer classification ] ) |
+    nonnegative integer classification;
+
+complex rational number literal =
+    binary complex rational number literal |
+    decimal complex rational number literal |
+    hexadecimal complex rational number literal;
+binary complex rational number literal =
+    ( [ "+" | "-" ], "\b", binary digits, "/", binary digits,
+      "+" | "-", binary digits, "/", binary digits ) |
+    [ "+" | "-" ], "\b", binary digits, "/", binary digits,
+    "i" | "j", [ complex rational number classification ];
+decimal complex rational number literal =
+    ( [ "+" | "-" ], decimal digits, "/", decimal digits,
+      "+" | "-", decimal digits, "/", decimal digits ) |
+    [ "+" | "-" ], decimal digits, "/", decimal digits,
+    "i" | "j", [ complex rational number classification ];
+hexadecimal complex rational number literal =
+    ( [ "+" | "-" ], "\x", hexadecimal digits, "/", hexadecimal digits,
+      "+" | "-", hexadecimal digits, "/", hexdecimal digits ) |
+    [ "+" | "-" ], "\x", hexadecimal digits, "/", hexadecimal digits,
+    "i" | "j", [ complex rational number classification ];
+
+rational number literal =
+    binary rational number literal |
+    decimal rational number literal |
+    hexadecimal rational number literal;
+binary ratonal number literal =
+    [ "+" | "-" ], "\b", binary digits, "/", binary digits,
+    [ rational number classification ];
+decimal rational number literal =
+    [ "+" | "-" ], decimal digits, "/", decimal digits,
+    [ rational number classification ];
+hexadecimal rational number literal =
+    [ "+" | "-" ], "\x", hexadecimal digits, "/", hexadecimal digits,
+    [ rational number classification ];
+
+unicode literal =
+    omnibit unicode literal | nominative unicode literal;
+quantitative unicode literal =
+    "\U", [ "10" | ( [ "0" ], hexadecimal digit ), [ "_" ] ],
+    [ hexadecimal digit ], [ hexadecimal digit ],
+    [ hexadecimal digit ], hexadecimal digit;
+nominative unicode literal =
+    "\U", "<", ? unicode point name ?, ">";
+(* Unicode point references:
+    https://unicode.org/charts
+    https://unicode.org/charts/charindex.html
+   Examples:
+    LATIN CAPITAL LETTER A WITH GRAVE
+    ANATOLIAN HIEROGLYPH A120 *)
+
+binary digits =
+    binary digit, [ { "_" | binary digit }, binary digit ];
+decimal digits =
+    decimal digit, [ { "_" | decimal digit }, decimal digit ];
+hexadecimal digits =
+    hexadecimal digit, [ { "_" | hexadecimal digit }, hexadecimal digit ];
+binary digit =
+    "0" | "1";
+decimal digit =
+    "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+hexadecimal digit =
+    "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" |
+    "A" | "B" | "C" | "D" | "E" | "F" | "a" | "b" | "c" | "d" | "e" | "f";
