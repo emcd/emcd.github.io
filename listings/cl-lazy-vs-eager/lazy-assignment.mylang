@@ -1,0 +1,24 @@
+from std.system.current-process let stdout
+let times6 factor does factor * 6
+
+# RHS lazily evaluates functions; results are partial functions.
+let greeter = stdout 'Hello'            # stdout 'Hello'
+let everything-answer = times6 7        # times6 7
+# RHS eagerly evaluates operators
+# Lazy evaluation would be too unexpected.
+let eleventy-one = 3 * 37               # 111
+let beast-number = times6 eleventy-one  # times6 111
+
+# RHS eagerly evaluates.
+let greeter = ( stdout 'Hello' )            # stdout
+let everything-answer = ( times6 7 )        # 42
+let eleventy-one = ( 3 * 37 )               # 111
+let beast-number = ( times6 eleventy-one )  # 666
+
+# RHS lazily evaluates; results are partial functions.
+let greeter = (. stdout 'Hello' .)      # stdout 'Hello'
+let everything-answer = (. times6 7 .)  # times6 7
+let eleventy-one = (. 3 * 37 .)         # (*) 3 37
+# Result is partial function with another partial function
+# as first argument: times6 (. (*) 3 37 .)
+let beast-number = (. times6 eleventy-one .)
