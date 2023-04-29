@@ -32,6 +32,15 @@ familiar computational language.
 With those questions in mind, let us walk through some code samples from
 various languages to look at how they handle select use cases.
 
+**UPDATE** (2023-04-29): Please see my `conversation with ChatGPT
+<../../supplements/chat-gpt/existence-oriented-programming.html>`_ for an
+alternative exposition on the subject. (The conversation got off to a rocky
+start since it hallucinated about this blog post in spite of not being able to
+access it. If you scroll down about a third of the way, I adopt a maieutic
+approach and things start to go well at that point. And, yes, I converse with
+it like it is a person, even though I know it is not.) A decent stack memory
+diagram emerged from that conversation and is being included in this post.
+
 Illustrative Cases
 ===============================================================================
 
@@ -680,6 +689,8 @@ General Proposal
   - The memory overhead of the additional stack slot is almost certainly not
     more than that of nullable boxes or tagged unions.
 
+  - See stack memory diagram below.
+
 * Implement generators, including iterators, with optional return values.
   (Similar to Rust, but without wrapped values.)
 
@@ -691,6 +702,29 @@ General Proposal
   optional return values, such that absence of return value indicates absence
   of item for which access was attempted. (Similar to Rust, but without wrapped
   values.)
+
+Stack memory diagram::
+
+  +-------------------+
+  |                   |
+  |  caller function  |
+  |                   |
+  +-------------------+
+  |   return address  |
+  +-------------------+
+  |     parameter a   | <--- 42 (4 bytes)
+  +-------------------+
+  |     parameter b   | <--- not set (4 bytes)
+  +-------------------+
+  |     parameter c   | <--- not set (4 bytes)
+  +-------------------+
+  |   bit vector for  |
+  | optional params   | <--- (2 bytes or more, depending on number of optional parameters)
+  +-------------------+
+  |                   |
+  |     local vars    |
+  |                   |
+  +-------------------+
 
 Exemplar Language
 ===============================================================================
