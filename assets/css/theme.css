@@ -83,6 +83,7 @@
 
 .solarized-dark {
     --body-bg-color:        var(--dark-gray);
+    --tint-bg-color:        var(--solarized-base03);
     --body-fg-color:        var(--off-white);
     --main-bg-color:        var(--solarized-base03);
     --standout-bg-color:    var(--solarized-base02);
@@ -101,6 +102,7 @@
 
 .solarized-light {
     --body-bg-color:        var(--white);
+    --tint-bg-color:        var(--off-white);
     --body-fg-color:        var(--black);
     --main-bg-color:        var(--solarized-base3);
     --standout-bg-color:    var(--solarized-base2);
@@ -260,6 +262,35 @@ aside.admonition p {
 .admonition.note .admonition-title,
 .admonition.tip {
     color: var(--blue);
+}
+
+table.pretty {
+    border-radius: 5px;
+    padding: 0.25em;
+}
+
+table.pretty caption {
+    text-decoration: underline solid;
+};
+
+table.pretty thead {
+    background-color: var(--tint-bg-color);
+}
+
+table.pretty th, table.pretty td {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+table.pretty th {
+    background-color: var(--tint-bg-color);
+    border-bottom: 1px solid;
+    border-color: var(--body-fg-color);
+}
+
+table.pretty td {
+    border-bottom: 1px dotted;
+    border-color: var(--main-fg-color);
 }
 
 /* Code and Special Text */

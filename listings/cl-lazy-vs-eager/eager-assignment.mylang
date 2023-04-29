@@ -1,0 +1,56 @@
+from std.system.current-process let stdout
+let times6 factor does factor * 6
+
+# RHS eagerly evaluates.
+let greeter = stdout 'Hello'            # stdout
+let everything-answer = times6 7        # 42
+let eleventy-one = 3 * 37               # 111
+let beast-number = times6 eleventy-one  # 666
+
+# RHS eagerly evaluates, same as above.
+let greeter = ( stdout 'Hello' )            # stdout
+let everything-answer = ( times6 7 )        # 42
+let eleventy-one = ( 3 * 37 )               # 111
+let beast-number = ( times6 eleventy-one )  # 666
+
+# RHS lazily evaluates; results are partial functions.
+let greeter = (. stdout 'Hello' .)      # stdout 'Hello'
+let everything-answer = (. times6 7 .)  # times6 7
+let eleventy-one = (. 3 * 37 .)         # (*) 3 37
+# Result is partial function with another partial function
+# as first argument: times6 (. (*) 3 37 .)
+let beast-number = (. times6 eleventy-one .)
+
+let operate`PositionalCollection` ^!...
+    task`Function`
+    arguments...
+    ( dry-run : false )
+does if not dry-run do task ...arguments else [ ]
+
+#:  Multiline comments are cool.
+
+    Picking up after intervening blank lines.
+    And no need for ending delimiters.
+
+2 + 3 == 5
+2 - 3 == -1
+2 * 3 == 6
+2 / 3 == 0.5
+
+2 ** 3 == 8
+[ 2, 3 ] *> [ 2, 3 ] == 13
+[ 2, 3 ] *< [ 2, 3 ] == [ [ 4, 6 ], [ 6, 9 ] ]
+
+2 Z/ 3 == 0
+2 Z% 3 == 2
+
+2 b& 3 == 2
+2 b| 3 == 3
+2 b^ 3 == 1
+b~ 13
+
+'Hello \
+world.\n'
+"Answer is {everything-answer}. {{foo}}"
+
+(and) true false

@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="literals.mylang">
+<meta name="viewport" content="width=device-width">
+<title>literals.mylang | Contemplations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../../assets/css/colors.css" type="text/css">
+<meta name="color-scheme" content="light dark">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://emcd.github.io/listings/cl-proposal/literals.mylang.html">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]-->
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+        
+    <header id="header"><h1 id="brand"><a href="../../" title="Contemplations" rel="home">
+
+        <span id="blog-title">Contemplations</span>
+    </a></h1>
+
+        
+
+        
+    <nav id="menu"><ul>
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+
+    
+
+    
+    
+    </ul></nav><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="svg-sun" viewbox="0 0 24 24"><title>Light Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></symbol><symbol id="svg-moon" viewbox="0 0 24 24"><title>Dark Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></symbol><symbol id="svg-sun-half" viewbox="0 0 24 24"><title>Auto Light/Dark Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><path d="M13 12h5"></path><path d="M13 15h4"></path><path d="M13 18h1"></path><path d="M13 9h4"></path><path d="M13 6h1"></path></svg></symbol></svg><p class="palette-selector-container palette-selector-content">
+    <button class="palette-selector">
+      <div class="visually-hidden">Toggle Light / Dark / Auto Color Theme</div>
+      <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg><svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg><svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg></button>
+    </p>
+
+    </header><main id="content"><nav class="breadcrumbs"><ul class="breadcrumb">
+<li><a href="../">listings</a></li>
+                <li><a href=".">cl-proposal</a></li>
+                <li>literals.mylang</li>
+</ul></nav><h1>literals.mylang
+            <small><a href="literals.mylang">(Source)</a></small>
+        </h1>
+    <div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-1"><code data-line-number="  1"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-1" name="listingscl-proposalliteralsmylang-1"></a><span class="c">####:</span><span class="cm"> Booleans</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-2"><code data-line-number="  2"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-2" name="listingscl-proposalliteralsmylang-2"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-3"><code data-line-number="  3"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-3" name="listingscl-proposalliteralsmylang-3"></a><span class="kc">false</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-4"><code data-line-number="  4"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-4" name="listingscl-proposalliteralsmylang-4"></a><span class="kc">true</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-5"><code data-line-number="  5"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-5" name="listingscl-proposalliteralsmylang-5"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-6"><code data-line-number="  6"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-6" name="listingscl-proposalliteralsmylang-6"></a><span class="c">####:</span><span class="cm"> Compact Sequences</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-7"><code data-line-number="  7"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-7" name="listingscl-proposalliteralsmylang-7"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-8"><code data-line-number="  8"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-8" name="listingscl-proposalliteralsmylang-8"></a><span class="cm">    Four forms from two dimensions of two variants apiece:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-9"><code data-line-number="  9"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-9" name="listingscl-proposalliteralsmylang-9"></a><span class="cm">    * escapable / non-escapable</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-10"><code data-line-number=" 10"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-10" name="listingscl-proposalliteralsmylang-10"></a><span class="cm">    * interpolable / non-interpolable</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-11"><code data-line-number=" 11"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-11" name="listingscl-proposalliteralsmylang-11"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-12"><code data-line-number=" 12"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-12" name="listingscl-proposalliteralsmylang-12"></a><span class="c">###:</span><span class="cm"> Literal Clauses</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-13"><code data-line-number=" 13"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-13" name="listingscl-proposalliteralsmylang-13"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-14"><code data-line-number=" 14"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-14" name="listingscl-proposalliteralsmylang-14"></a><span class="sa">\B</span><span class="dl">"</span><span class="si">{</span><span class="nv">peter-piper</span><span class="o">.</span><span class="nv">pickled-peppers</span><span class="si">!</span><span class="sa">r</span><span class="si">}</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-15"><code data-line-number=" 15"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-15" name="listingscl-proposalliteralsmylang-15"></a><span class="dl">"</span><span class="si">{</span><span class="nv">peter-piper</span><span class="o">.</span><span class="nv">pickled-peppers</span><span class="si">!</span><span class="sa">H</span><span class="si">:</span><span class="s">^</span><span class="o">^+#</span><span class="sa">0</span><span class="m">30</span><span class="p">@.</span><span class="m">15</span><span class="sa">f&amp;#</span><span class="m">12</span><span class="sa">^</span><span class="si">}</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-16"><code data-line-number=" 16"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-16" name="listingscl-proposalliteralsmylang-16"></a><span class="dl">"</span><span class="si">{</span><span class="nv">peter-piper</span><span class="o">.</span><span class="nv">pickled-peppers</span><span class="si">!</span><span class="sa">H</span><span class="si">:</span><span class="s">^</span><span class="o">^+#</span><span class="sa">0</span><span class="si">{</span><span class="nv">peck</span><span class="si">}</span><span class="p">@.</span><span class="si">{</span><span class="nv">peck</span><span class="si">}</span><span class="sa">f&amp;#</span><span class="si">{</span><span class="nv">peck</span><span class="si">}</span><span class="sa">^</span><span class="si">}</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-17"><code data-line-number=" 17"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-17" name="listingscl-proposalliteralsmylang-17"></a><span class="dl">"</span><span class="si">{</span><span class="nv">peter-piper</span><span class="o">.</span><span class="nv">pickled-peppers</span><span class="si">!</span><span class="sa">H</span><span class="si">:</span><span class="s">}</span><span class="o">^ #</span><span class="sa">0</span><span class="m">30</span><span class="p">@.</span><span class="m">15</span><span class="sa">f&amp;#</span><span class="m">12</span><span class="sa">^</span><span class="si">}</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-18"><code data-line-number=" 18"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-18" name="listingscl-proposalliteralsmylang-18"></a><span class="dl">"</span><span class="si">{</span><span class="nv">peter-piper</span><span class="o">.</span><span class="nv">pickled-peppers</span><span class="si">!</span><span class="sa">H</span><span class="si">:</span><span class="s">{</span><span class="o">^-#</span><span class="sa">0</span><span class="m">30</span><span class="p">@.</span><span class="m">15</span><span class="sa">f&amp;#</span><span class="m">3</span><span class="err">7^</span><span class="si">}</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-19"><code data-line-number=" 19"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-19" name="listingscl-proposalliteralsmylang-19"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-20"><code data-line-number=" 20"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-20" name="listingscl-proposalliteralsmylang-20"></a><span class="c">##:</span><span class="cm"> Bytes</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-21"><code data-line-number=" 21"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-21" name="listingscl-proposalliteralsmylang-21"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-22"><code data-line-number=" 22"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-22" name="listingscl-proposalliteralsmylang-22"></a><span class="sa">\B</span><span class="se">\\</span><span class="sx">\'</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-23"><code data-line-number=" 23"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-23" name="listingscl-proposalliteralsmylang-23"></a><span class="sh">    Test</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-24"><code data-line-number=" 24"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-24" name="listingscl-proposalliteralsmylang-24"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-25"><code data-line-number=" 25"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-25" name="listingscl-proposalliteralsmylang-25"></a><span class="sh">    Without \escapes. \x00 == \C0&lt;NUL&gt;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-26"><code data-line-number=" 26"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-26" name="listingscl-proposalliteralsmylang-26"></a><span class="sh">    No interpolation </span><span class="c">{</span><span class="nv">here</span><span class="c">}</span><span class="sh">.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-27"><code data-line-number=" 27"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-27" name="listingscl-proposalliteralsmylang-27"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-28"><code data-line-number=" 28"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-28" name="listingscl-proposalliteralsmylang-28"></a><span class="sa">\B</span><span class="se">\\</span><span class="sx">\"</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-29"><code data-line-number=" 29"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-29" name="listingscl-proposalliteralsmylang-29"></a><span class="sh">    Test</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-30"><code data-line-number=" 30"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-30" name="listingscl-proposalliteralsmylang-30"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-31"><code data-line-number=" 31"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-31" name="listingscl-proposalliteralsmylang-31"></a><span class="sh">    Without \escapes. \x00 == \C0&lt;NUL&gt;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-32"><code data-line-number=" 32"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-32" name="listingscl-proposalliteralsmylang-32"></a><span class="sh">    Interpolation </span><span class="si">{</span><span class="nv">here</span><span class="si">}</span><span class="sh">, but not </span><span class="si">{{</span><span class="sh">here</span><span class="si">}}</span><span class="sh">.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-33"><code data-line-number=" 33"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-33" name="listingscl-proposalliteralsmylang-33"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-34"><code data-line-number=" 34"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-34" name="listingscl-proposalliteralsmylang-34"></a><span class="sa">\B</span><span class="sx">\'</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-35"><code data-line-number=" 35"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-35" name="listingscl-proposalliteralsmylang-35"></a><span class="sh">    Test</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-36"><code data-line-number=" 36"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-36" name="listingscl-proposalliteralsmylang-36"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-37"><code data-line-number=" 37"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-37" name="listingscl-proposalliteralsmylang-37"></a><span class="sh">    With </span><span class="se">\e</span><span class="sh">scapes. </span><span class="se">\x</span><span class="mh">00</span><span class="sh"> == </span><span class="se">\C0&lt;</span><span class="ni">NUL</span><span class="se">&gt;</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-38"><code data-line-number=" 38"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-38" name="listingscl-proposalliteralsmylang-38"></a><span class="sh">    No interpolation </span><span class="c">{</span><span class="nv">here</span><span class="c">}</span><span class="sh">.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-39"><code data-line-number=" 39"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-39" name="listingscl-proposalliteralsmylang-39"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-40"><code data-line-number=" 40"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-40" name="listingscl-proposalliteralsmylang-40"></a><span class="sa">\B</span><span class="sx">\"</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-41"><code data-line-number=" 41"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-41" name="listingscl-proposalliteralsmylang-41"></a><span class="sh">    Test</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-42"><code data-line-number=" 42"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-42" name="listingscl-proposalliteralsmylang-42"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-43"><code data-line-number=" 43"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-43" name="listingscl-proposalliteralsmylang-43"></a><span class="sh">    With </span><span class="se">\e</span><span class="sh">scapes. </span><span class="se">\x</span><span class="mh">00</span><span class="sh"> == </span><span class="se">\C0&lt;</span><span class="ni">NUL</span><span class="se">&gt;</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-44"><code data-line-number=" 44"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-44" name="listingscl-proposalliteralsmylang-44"></a><span class="sh">    Interpolation </span><span class="si">{</span><span class="nv">here</span><span class="si">}</span><span class="sh">, but not </span><span class="si">{{</span><span class="sh">here</span><span class="si">}}</span><span class="sh">.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-45"><code data-line-number=" 45"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-45" name="listingscl-proposalliteralsmylang-45"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-46"><code data-line-number=" 46"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-46" name="listingscl-proposalliteralsmylang-46"></a><span class="sa">\B</span><span class="sx">\'</span><span class="sa">:</span> <span class="o">|&amp;</span> <span class="o">:</span><span class="m">1</span> <span class="o">&gt;</span><span class="m">2</span> <span class="o">&lt;</span><span class="m">2</span> <span class="c">## Inline comment at head of clause.</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-47"><code data-line-number=" 47"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-47" name="listingscl-proposalliteralsmylang-47"></a><span class="sh">    |&amp;  Single line separators within clause converted to spaces.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-48"><code data-line-number=" 48"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-48" name="listingscl-proposalliteralsmylang-48"></a><span class="sh">    :N  N number of line terminators appended to end of clause.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-49"><code data-line-number=" 49"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-49" name="listingscl-proposalliteralsmylang-49"></a><span class="sh">        (Example: One line terminator appended to end of clause.)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-50"><code data-line-number=" 50"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-50" name="listingscl-proposalliteralsmylang-50"></a><span class="sh">    &gt;N  N number of spaces prepended to start of each line within clause.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-51"><code data-line-number=" 51"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-51" name="listingscl-proposalliteralsmylang-51"></a><span class="sh">        (Example: Two spaces prepended to start of each line within clause.)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-52"><code data-line-number=" 52"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-52" name="listingscl-proposalliteralsmylang-52"></a><span class="sh">    &lt;N  N number of spaces appended to end of each line within clause.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-53"><code data-line-number=" 53"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-53" name="listingscl-proposalliteralsmylang-53"></a><span class="sh">        (Example: Two spaces appended to end of each line within clause.)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-54"><code data-line-number=" 54"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-54" name="listingscl-proposalliteralsmylang-54"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-55"><code data-line-number=" 55"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-55" name="listingscl-proposalliteralsmylang-55"></a><span class="sa">\B</span><span class="sx">\'</span><span class="sa">:</span> <span class="o">|=</span><span class="se">\C0&lt;</span><span class="ni">BEL</span><span class="se">&gt;\n</span> <span class="o">:=</span><span class="se">\r\n</span> <span class="o">&gt;=</span><span class="se">\e</span><span class="s">[31m</span> <span class="o">&lt;=</span><span class="se">\e</span><span class="s">[0m</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-56"><code data-line-number=" 56"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-56" name="listingscl-proposalliteralsmylang-56"></a><span class="sh">    |=  All line separators within clause replaced with given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-57"><code data-line-number=" 57"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-57" name="listingscl-proposalliteralsmylang-57"></a><span class="sh">        (Example: console bell followed by linefeed)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-58"><code data-line-number=" 58"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-58" name="listingscl-proposalliteralsmylang-58"></a><span class="sh">    :=  Append given sequence to end of clause.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-59"><code data-line-number=" 59"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-59" name="listingscl-proposalliteralsmylang-59"></a><span class="sh">        (Example: DOS/Windows line terminator.)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-60"><code data-line-number=" 60"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-60" name="listingscl-proposalliteralsmylang-60"></a><span class="sh">    &gt;=  Prepend start of each line within clause with given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-61"><code data-line-number=" 61"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-61" name="listingscl-proposalliteralsmylang-61"></a><span class="sh">        (Example: ANSI SGR escape sequence for foreground color red)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-62"><code data-line-number=" 62"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-62" name="listingscl-proposalliteralsmylang-62"></a><span class="sh">    &lt;=  Append end of each line within clause with given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-63"><code data-line-number=" 63"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-63" name="listingscl-proposalliteralsmylang-63"></a><span class="sh">        (Example: ANSI SGR escape sequence for character attribute reset)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-64"><code data-line-number=" 64"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-64" name="listingscl-proposalliteralsmylang-64"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-65"><code data-line-number=" 65"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-65" name="listingscl-proposalliteralsmylang-65"></a><span class="sa">\B</span><span class="sx">\'</span><span class="sa">:</span> <span class="o">|&amp;=</span><span class="se">\r\n</span> <span class="o">:</span><span class="m">2</span><span class="o">=</span><span class="se">\n</span> <span class="o">&gt;</span><span class="m">2</span><span class="o">=</span><span class="se">\t</span> <span class="o">&lt;</span><span class="m">3</span><span class="o">=</span><span class="s">|</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-66"><code data-line-number=" 66"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-66" name="listingscl-proposalliteralsmylang-66"></a><span class="sh">    |&amp;= Single line separators within clause converted to spaces.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-67"><code data-line-number=" 67"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-67" name="listingscl-proposalliteralsmylang-67"></a><span class="sh">        Then, remaining line separators within clause replaced</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-68"><code data-line-number=" 68"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-68" name="listingscl-proposalliteralsmylang-68"></a><span class="sh">        with given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-69"><code data-line-number=" 69"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-69" name="listingscl-proposalliteralsmylang-69"></a><span class="sh">    :N= Append given sequence to end of clause N times.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-70"><code data-line-number=" 70"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-70" name="listingscl-proposalliteralsmylang-70"></a><span class="sh">    &gt;N= Prepend start of each line within clause with given sequence N times.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-71"><code data-line-number=" 71"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-71" name="listingscl-proposalliteralsmylang-71"></a><span class="sh">    &lt;N= Append end of each line within clause with given sequence N times.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-72"><code data-line-number=" 72"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-72" name="listingscl-proposalliteralsmylang-72"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-73"><code data-line-number=" 73"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-73" name="listingscl-proposalliteralsmylang-73"></a><span class="sa">\B</span><span class="sx">\'</span><span class="sa">:</span> <span class="o">|</span><span class="m">3</span><span class="o">=</span><span class="se">\x</span><span class="mh">ff</span> <span class="o">&lt;</span><span class="m">79</span><span class="o">|</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-74"><code data-line-number=" 74"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-74" name="listingscl-proposalliteralsmylang-74"></a><span class="sh">    |N= All line separators within clause replaced with given sequence N times.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-75"><code data-line-number=" 75"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-75" name="listingscl-proposalliteralsmylang-75"></a><span class="sh">    &lt;N| Extend line to width N using spaces.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-76"><code data-line-number=" 76"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-76" name="listingscl-proposalliteralsmylang-76"></a><span class="sh">        If line length is greater than or equal to width N,</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-77"><code data-line-number=" 77"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-77" name="listingscl-proposalliteralsmylang-77"></a><span class="sh">        then nothing is appended.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-78"><code data-line-number=" 78"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-78" name="listingscl-proposalliteralsmylang-78"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-79"><code data-line-number=" 79"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-79" name="listingscl-proposalliteralsmylang-79"></a><span class="sa">\B</span><span class="sx">\'</span><span class="sa">:</span> <span class="o">|&amp;</span><span class="m">3</span><span class="o">=</span><span class="se">\x</span><span class="mh">00</span><span class="se">\x</span><span class="mh">ff</span> <span class="o">&lt;</span><span class="m">79</span><span class="o">|=</span><span class="s">.</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-80"><code data-line-number=" 80"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-80" name="listingscl-proposalliteralsmylang-80"></a><span class="sh">    |&amp;N= Single line separators within clause coverted to spaces.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-81"><code data-line-number=" 81"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-81" name="listingscl-proposalliteralsmylang-81"></a><span class="sh">         Then, remaining line separators within clause replaced</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-82"><code data-line-number=" 82"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-82" name="listingscl-proposalliteralsmylang-82"></a><span class="sh">         with an N-fold repetition of given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-83"><code data-line-number=" 83"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-83" name="listingscl-proposalliteralsmylang-83"></a><span class="sh">    &lt;N|= Extend line to width N using given byte.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-84"><code data-line-number=" 84"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-84" name="listingscl-proposalliteralsmylang-84"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-85"><code data-line-number=" 85"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-85" name="listingscl-proposalliteralsmylang-85"></a><span class="c">##:</span><span class="cm"> Text</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-86"><code data-line-number=" 86"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-86" name="listingscl-proposalliteralsmylang-86"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-87"><code data-line-number=" 87"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-87" name="listingscl-proposalliteralsmylang-87"></a><span class="se">\\</span><span class="sx">\'</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-88"><code data-line-number=" 88"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-88" name="listingscl-proposalliteralsmylang-88"></a><span class="sh">    Test</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-89"><code data-line-number=" 89"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-89" name="listingscl-proposalliteralsmylang-89"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-90"><code data-line-number=" 90"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-90" name="listingscl-proposalliteralsmylang-90"></a><span class="sh">    Without \escapes. \U0| == \C0&lt;NUL&gt; == \U&lt;Null&gt;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-91"><code data-line-number=" 91"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-91" name="listingscl-proposalliteralsmylang-91"></a><span class="sh">    No interpolation </span><span class="c">{</span><span class="nv">here</span><span class="c">}</span><span class="sh">.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-92"><code data-line-number=" 92"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-92" name="listingscl-proposalliteralsmylang-92"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-93"><code data-line-number=" 93"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-93" name="listingscl-proposalliteralsmylang-93"></a><span class="se">\\</span><span class="sx">\"</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-94"><code data-line-number=" 94"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-94" name="listingscl-proposalliteralsmylang-94"></a><span class="sh">    Test</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-95"><code data-line-number=" 95"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-95" name="listingscl-proposalliteralsmylang-95"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-96"><code data-line-number=" 96"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-96" name="listingscl-proposalliteralsmylang-96"></a><span class="sh">    Without \escapes. \U0| == \C0&lt;NUL&gt; == \U&lt;Null&gt;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-97"><code data-line-number=" 97"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-97" name="listingscl-proposalliteralsmylang-97"></a><span class="sh">    Interpolation </span><span class="si">{</span><span class="nv">here</span><span class="si">}</span><span class="sh">, but not </span><span class="si">{{</span><span class="sh">here</span><span class="si">}}</span><span class="sh">.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-98"><code data-line-number=" 98"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-98" name="listingscl-proposalliteralsmylang-98"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-99"><code data-line-number=" 99"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-99" name="listingscl-proposalliteralsmylang-99"></a><span class="sx">\'</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-100"><code data-line-number="100"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-100" name="listingscl-proposalliteralsmylang-100"></a><span class="sh">    Test</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-101"><code data-line-number="101"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-101" name="listingscl-proposalliteralsmylang-101"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-102"><code data-line-number="102"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-102" name="listingscl-proposalliteralsmylang-102"></a><span class="sh">    With </span><span class="se">\e</span><span class="sh">scapes. </span><span class="se">\U</span><span class="mh">0</span><span class="se">|</span><span class="sh"> == </span><span class="se">\C0&lt;</span><span class="ni">NUL</span><span class="se">&gt;</span><span class="sh"> == </span><span class="se">\U&lt;</span><span class="ni">Null</span><span class="se">&gt;</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-103"><code data-line-number="103"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-103" name="listingscl-proposalliteralsmylang-103"></a><span class="sh">    No interpolation </span><span class="c">{</span><span class="nv">here</span><span class="c">}</span><span class="sh">.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-104"><code data-line-number="104"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-104" name="listingscl-proposalliteralsmylang-104"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-105"><code data-line-number="105"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-105" name="listingscl-proposalliteralsmylang-105"></a><span class="sx">\"</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-106"><code data-line-number="106"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-106" name="listingscl-proposalliteralsmylang-106"></a><span class="sh">    Test</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-107"><code data-line-number="107"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-107" name="listingscl-proposalliteralsmylang-107"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-108"><code data-line-number="108"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-108" name="listingscl-proposalliteralsmylang-108"></a><span class="sh">    With </span><span class="se">\e</span><span class="sh">scapes. </span><span class="se">\U</span><span class="mh">0</span><span class="se">|</span><span class="sh"> == </span><span class="se">\C0&lt;</span><span class="ni">NUL</span><span class="se">&gt;</span><span class="sh"> == </span><span class="se">\U&lt;</span><span class="ni">Null</span><span class="se">&gt;</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-109"><code data-line-number="109"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-109" name="listingscl-proposalliteralsmylang-109"></a><span class="sh">    Interpolation </span><span class="si">{</span><span class="nv">here</span><span class="si">}</span><span class="sh">, but not </span><span class="si">{{</span><span class="sh">here</span><span class="si">}}</span><span class="sh">.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-110"><code data-line-number="110"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-110" name="listingscl-proposalliteralsmylang-110"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-111"><code data-line-number="111"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-111" name="listingscl-proposalliteralsmylang-111"></a><span class="sx">\'</span><span class="sa">:</span> <span class="o">|&amp;</span> <span class="o">:</span><span class="m">1</span> <span class="o">&gt;</span><span class="m">2</span> <span class="o">&lt;</span><span class="m">2</span> <span class="c">## Inline comment at head of clause.</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-112"><code data-line-number="112"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-112" name="listingscl-proposalliteralsmylang-112"></a><span class="sh">    |&amp;  Single line separators within clause converted to spaces.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-113"><code data-line-number="113"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-113" name="listingscl-proposalliteralsmylang-113"></a><span class="sh">    :N  N number of line terminators appended to end of clause.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-114"><code data-line-number="114"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-114" name="listingscl-proposalliteralsmylang-114"></a><span class="sh">        (Example: One line terminator appended to end of clause.)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-115"><code data-line-number="115"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-115" name="listingscl-proposalliteralsmylang-115"></a><span class="sh">    &gt;N  N number of spaces prepended to start of each line within clause.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-116"><code data-line-number="116"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-116" name="listingscl-proposalliteralsmylang-116"></a><span class="sh">        (Example: Two spaces prepended to start of each line within clause.)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-117"><code data-line-number="117"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-117" name="listingscl-proposalliteralsmylang-117"></a><span class="sh">    &lt;N  N number of spaces appended to end of each line within clause.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-118"><code data-line-number="118"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-118" name="listingscl-proposalliteralsmylang-118"></a><span class="sh">        (Example: Two spaces appended to end of each line within clause.)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-119"><code data-line-number="119"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-119" name="listingscl-proposalliteralsmylang-119"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-120"><code data-line-number="120"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-120" name="listingscl-proposalliteralsmylang-120"></a><span class="sx">\'</span><span class="sa">:</span> <span class="o">|=</span><span class="se">\C0&lt;</span><span class="ni">BEL</span><span class="se">&gt;\n</span> <span class="o">:=</span><span class="se">\r\n</span> <span class="o">&gt;=</span><span class="se">\e</span><span class="s">[31m</span> <span class="o">&lt;=</span><span class="se">\e</span><span class="s">[0m</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-121"><code data-line-number="121"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-121" name="listingscl-proposalliteralsmylang-121"></a><span class="sh">    |=  All line separators within clause replaced with given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-122"><code data-line-number="122"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-122" name="listingscl-proposalliteralsmylang-122"></a><span class="sh">        (Example: console bell followed by linefeed)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-123"><code data-line-number="123"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-123" name="listingscl-proposalliteralsmylang-123"></a><span class="sh">    :=  Append given sequence to end of clause.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-124"><code data-line-number="124"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-124" name="listingscl-proposalliteralsmylang-124"></a><span class="sh">        (Example: DOS/Windows line terminator.)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-125"><code data-line-number="125"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-125" name="listingscl-proposalliteralsmylang-125"></a><span class="sh">    &gt;=  Prepend start of each line within clause with given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-126"><code data-line-number="126"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-126" name="listingscl-proposalliteralsmylang-126"></a><span class="sh">        (Example: ANSI SGR escape sequence for foreground color red)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-127"><code data-line-number="127"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-127" name="listingscl-proposalliteralsmylang-127"></a><span class="sh">    &lt;=  Append end of each line within clause with given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-128"><code data-line-number="128"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-128" name="listingscl-proposalliteralsmylang-128"></a><span class="sh">        (Example: ANSI SGR escape sequence for character attribute reset)</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-129"><code data-line-number="129"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-129" name="listingscl-proposalliteralsmylang-129"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-130"><code data-line-number="130"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-130" name="listingscl-proposalliteralsmylang-130"></a><span class="sx">\'</span><span class="sa">:</span> <span class="o">|&amp;=</span><span class="se">\r\n</span> <span class="o">:</span><span class="m">2</span><span class="o">=</span><span class="se">\n</span> <span class="o">&gt;</span><span class="m">2</span><span class="o">=</span><span class="se">\t</span> <span class="o">&lt;</span><span class="m">3</span><span class="o">=</span><span class="s">|</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-131"><code data-line-number="131"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-131" name="listingscl-proposalliteralsmylang-131"></a><span class="sh">    |&amp;= Single line separators within clause converted to spaces.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-132"><code data-line-number="132"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-132" name="listingscl-proposalliteralsmylang-132"></a><span class="sh">        Then, remaining line separators within clause replaced</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-133"><code data-line-number="133"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-133" name="listingscl-proposalliteralsmylang-133"></a><span class="sh">        with given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-134"><code data-line-number="134"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-134" name="listingscl-proposalliteralsmylang-134"></a><span class="sh">    :N= Append given sequence to end of clause N times.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-135"><code data-line-number="135"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-135" name="listingscl-proposalliteralsmylang-135"></a><span class="sh">    &gt;N= Prepend start of each line within clause with given sequence N times.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-136"><code data-line-number="136"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-136" name="listingscl-proposalliteralsmylang-136"></a><span class="sh">    &lt;N= Append end of each line within clause with given sequence N times.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-137"><code data-line-number="137"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-137" name="listingscl-proposalliteralsmylang-137"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-138"><code data-line-number="138"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-138" name="listingscl-proposalliteralsmylang-138"></a><span class="sx">\'</span><span class="sa">:</span> <span class="o">|</span><span class="m">3</span><span class="o">=</span><span class="se">\U&lt;</span><span class="ni">Null</span><span class="se">&gt;</span> <span class="o">&lt;</span><span class="m">79</span><span class="o">|</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-139"><code data-line-number="139"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-139" name="listingscl-proposalliteralsmylang-139"></a><span class="sh">    |N= All line separators within clause replaced with given sequence N times.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-140"><code data-line-number="140"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-140" name="listingscl-proposalliteralsmylang-140"></a><span class="sh">    &lt;N| Extend line to width N using spaces.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-141"><code data-line-number="141"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-141" name="listingscl-proposalliteralsmylang-141"></a><span class="sh">        If line length is greater than or equal to width N,</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-142"><code data-line-number="142"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-142" name="listingscl-proposalliteralsmylang-142"></a><span class="sh">        then nothing is appended.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-143"><code data-line-number="143"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-143" name="listingscl-proposalliteralsmylang-143"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-144"><code data-line-number="144"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-144" name="listingscl-proposalliteralsmylang-144"></a><span class="sx">\'</span><span class="sa">:</span> <span class="o">|&amp;</span><span class="m">3</span><span class="o">=</span><span class="se">\U&lt;</span><span class="ni">Null</span><span class="se">&gt;</span> <span class="o">&lt;</span><span class="m">79</span><span class="o">|=</span><span class="s">.</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-145"><code data-line-number="145"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-145" name="listingscl-proposalliteralsmylang-145"></a><span class="sh">    |&amp;N= Single line separators within clause coverted to spaces.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-146"><code data-line-number="146"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-146" name="listingscl-proposalliteralsmylang-146"></a><span class="sh">         Then, remaining line separators within clause replaced</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-147"><code data-line-number="147"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-147" name="listingscl-proposalliteralsmylang-147"></a><span class="sh">         with an N-fold repetition of given sequence.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-148"><code data-line-number="148"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-148" name="listingscl-proposalliteralsmylang-148"></a><span class="sh">    &lt;N|= Extend line to width N using given byte.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-149"><code data-line-number="149"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-149" name="listingscl-proposalliteralsmylang-149"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-150"><code data-line-number="150"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-150" name="listingscl-proposalliteralsmylang-150"></a><span class="k">if</span> <span class="nv">coolness</span> <span class="o">&gt;</span> <span class="m">1</span> <span class="k">do</span> <span class="sx">\'</span><span class="sa">:</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-151"><code data-line-number="151"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-151" name="listingscl-proposalliteralsmylang-151"></a><span class="sh">    Can start at any position in a line. </span><span class="se">\C0&lt;</span><span class="ni">BEL</span><span class="se">&gt;</span><span class="sh"></span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-152"><code data-line-number="152"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-152" name="listingscl-proposalliteralsmylang-152"></a><span class="k">if</span> <span class="nv">coolness</span> <span class="o">&gt;</span> <span class="m">2</span> <span class="k">do</span><span class="p">:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-153"><code data-line-number="153"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-153" name="listingscl-proposalliteralsmylang-153"></a>    <span class="k">let</span> <span class="nv">demo</span> <span class="k">=</span> \':
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-154"><code data-line-number="154"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-154" name="listingscl-proposalliteralsmylang-154"></a>        <span class="nv">Can</span> <span class="nv">appear</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">nested</span> <span class="nv">block</span>.
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-155"><code data-line-number="155"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-155" name="listingscl-proposalliteralsmylang-155"></a>    <span class="nv">demo</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-156"><code data-line-number="156"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-156" name="listingscl-proposalliteralsmylang-156"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-157"><code data-line-number="157"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-157" name="listingscl-proposalliteralsmylang-157"></a><span class="c">###:</span><span class="cm"> with Quote Delimitation</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-158"><code data-line-number="158"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-158" name="listingscl-proposalliteralsmylang-158"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-159"><code data-line-number="159"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-159" name="listingscl-proposalliteralsmylang-159"></a><span class="c">##:</span><span class="cm"> Bytes</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-160"><code data-line-number="160"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-160" name="listingscl-proposalliteralsmylang-160"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-161"><code data-line-number="161"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-161" name="listingscl-proposalliteralsmylang-161"></a><span class="sa">\B</span><span class="se">\\</span><span class="dl">'</span><span class="s1">Without \escapes. \x00 == \C0&lt;NUL&gt;</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-162"><code data-line-number="162"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-162" name="listingscl-proposalliteralsmylang-162"></a><span class="sa">\B</span><span class="se">\\</span><span class="dl">'</span><span class="s1">No interpolation </span><span class="c">{</span><span class="nv">here</span><span class="c">}</span><span class="s1">.</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-163"><code data-line-number="163"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-163" name="listingscl-proposalliteralsmylang-163"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-164"><code data-line-number="164"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-164" name="listingscl-proposalliteralsmylang-164"></a><span class="sa">\B</span><span class="se">\\</span><span class="dl">"</span><span class="s2">Without \escapes. \x00 == \C0&lt;NUL&gt;</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-165"><code data-line-number="165"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-165" name="listingscl-proposalliteralsmylang-165"></a><span class="sa">\B</span><span class="se">\\</span><span class="dl">"</span><span class="s2">Interpolation </span><span class="si">{</span><span class="nv">here</span><span class="si">}</span><span class="s2">, but not </span><span class="si">{{</span><span class="s2">here</span><span class="si">}}</span><span class="s2">.</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-166"><code data-line-number="166"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-166" name="listingscl-proposalliteralsmylang-166"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-167"><code data-line-number="167"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-167" name="listingscl-proposalliteralsmylang-167"></a><span class="sa">\B</span><span class="dl">'</span><span class="s1">With </span><span class="se">\e</span><span class="s1">scapes. </span><span class="se">\x</span><span class="mh">00</span><span class="s1"> == </span><span class="se">\C0&lt;</span><span class="ni">NUL</span><span class="se">&gt;</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-168"><code data-line-number="168"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-168" name="listingscl-proposalliteralsmylang-168"></a><span class="sa">\B</span><span class="dl">'</span><span class="s1">No interpolation </span><span class="c">{</span><span class="nv">here</span><span class="c">}</span><span class="s1">.</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-169"><code data-line-number="169"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-169" name="listingscl-proposalliteralsmylang-169"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-170"><code data-line-number="170"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-170" name="listingscl-proposalliteralsmylang-170"></a><span class="sa">\B</span><span class="dl">"</span><span class="s2">With </span><span class="se">\e</span><span class="s2">scapes. </span><span class="se">\x</span><span class="mh">00</span><span class="s2"> == </span><span class="se">\C0&lt;</span><span class="ni">NUL</span><span class="se">&gt;</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-171"><code data-line-number="171"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-171" name="listingscl-proposalliteralsmylang-171"></a><span class="sa">\B</span><span class="dl">"</span><span class="s2">Interpolation </span><span class="si">{</span><span class="nv">here</span><span class="si">}</span><span class="s2">, but not </span><span class="si">{{</span><span class="s2">here</span><span class="si">}}</span><span class="s2">.</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-172"><code data-line-number="172"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-172" name="listingscl-proposalliteralsmylang-172"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-173"><code data-line-number="173"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-173" name="listingscl-proposalliteralsmylang-173"></a><span class="c">##:</span><span class="cm"> Text</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-174"><code data-line-number="174"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-174" name="listingscl-proposalliteralsmylang-174"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-175"><code data-line-number="175"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-175" name="listingscl-proposalliteralsmylang-175"></a><span class="se">\\</span><span class="dl">'</span><span class="s2">Without \escapes. \U0| == \C0&lt;NUL&gt; == \U&lt;Null&gt;</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-176"><code data-line-number="176"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-176" name="listingscl-proposalliteralsmylang-176"></a><span class="se">\\</span><span class="dl">'</span><span class="s2">No interpolation </span><span class="c">{</span><span class="nv">here</span><span class="c">}</span><span class="s2">.</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-177"><code data-line-number="177"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-177" name="listingscl-proposalliteralsmylang-177"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-178"><code data-line-number="178"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-178" name="listingscl-proposalliteralsmylang-178"></a><span class="se">\\</span><span class="dl">"</span><span class="s2">Without \escapes. \U0| == \C0&lt;NUL&gt; == \U&lt;Null&gt;</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-179"><code data-line-number="179"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-179" name="listingscl-proposalliteralsmylang-179"></a><span class="se">\\</span><span class="dl">"</span><span class="s2">Interpolation </span><span class="si">{</span><span class="nv">here</span><span class="si">}</span><span class="s2">, but not </span><span class="si">{{</span><span class="s2">here</span><span class="si">}}</span><span class="s2">.</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-180"><code data-line-number="180"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-180" name="listingscl-proposalliteralsmylang-180"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-181"><code data-line-number="181"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-181" name="listingscl-proposalliteralsmylang-181"></a><span class="dl">'</span><span class="s1">With </span><span class="se">\e</span><span class="s1">scapes. </span><span class="se">\U</span><span class="mh">0</span><span class="se">|</span><span class="s1"> == </span><span class="se">\C0&lt;</span><span class="ni">NUL</span><span class="se">&gt;</span><span class="s1"> == </span><span class="se">\U&lt;</span><span class="ni">Null</span><span class="se">&gt;</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-182"><code data-line-number="182"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-182" name="listingscl-proposalliteralsmylang-182"></a><span class="dl">'</span><span class="s1">No interpolation </span><span class="c">{</span><span class="nv">here</span><span class="c">}</span><span class="s1">.</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-183"><code data-line-number="183"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-183" name="listingscl-proposalliteralsmylang-183"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-184"><code data-line-number="184"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-184" name="listingscl-proposalliteralsmylang-184"></a><span class="dl">"</span><span class="s2">With </span><span class="se">\e</span><span class="s2">scapes. </span><span class="se">\U</span><span class="mh">0</span><span class="se">|</span><span class="s2"> == </span><span class="se">\C0&lt;</span><span class="ni">NUL</span><span class="se">&gt;</span><span class="s2"> == </span><span class="se">\U&lt;</span><span class="ni">Null</span><span class="se">&gt;</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-185"><code data-line-number="185"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-185" name="listingscl-proposalliteralsmylang-185"></a><span class="dl">"</span><span class="s2">Interpolation </span><span class="si">{</span><span class="nv">here</span><span class="si">}</span><span class="s2">, but not </span><span class="si">{{</span><span class="s2">here</span><span class="si">}}</span><span class="s2">.</span><span class="dl">"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-186"><code data-line-number="186"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-186" name="listingscl-proposalliteralsmylang-186"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-187"><code data-line-number="187"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-187" name="listingscl-proposalliteralsmylang-187"></a><span class="dl">'</span><span class="s1">foo</span><span class="se">\C0&lt;</span><span class="err">BAD</span><span class="se">&gt;</span><span class="s1">bar</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-188"><code data-line-number="188"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-188" name="listingscl-proposalliteralsmylang-188"></a><span class="dl">'</span><span class="s1">foo</span><span class="se">\U</span><span class="err">10_deadbeef</span><span class="se">|</span><span class="s1">bar</span><span class="dl">'</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-189"><code data-line-number="189"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-189" name="listingscl-proposalliteralsmylang-189"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-190"><code data-line-number="190"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-190" name="listingscl-proposalliteralsmylang-190"></a><span class="c">##:</span><span class="cm"> Decimal Integers</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-191"><code data-line-number="191"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-191" name="listingscl-proposalliteralsmylang-191"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-192"><code data-line-number="192"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-192" name="listingscl-proposalliteralsmylang-192"></a><span class="cm">    Can be signed or natural/non-negative.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-193"><code data-line-number="193"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-193" name="listingscl-proposalliteralsmylang-193"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-194"><code data-line-number="194"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-194" name="listingscl-proposalliteralsmylang-194"></a><span class="m">123</span><span class="p">_</span><span class="m">456</span><span class="p">_</span><span class="m">789</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-195"><code data-line-number="195"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-195" name="listingscl-proposalliteralsmylang-195"></a><span class="o">+</span><span class="m">123</span><span class="p">_</span><span class="m">456</span><span class="p">_</span><span class="m">789</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-196"><code data-line-number="196"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-196" name="listingscl-proposalliteralsmylang-196"></a><span class="o">-</span><span class="m">123</span><span class="p">_</span><span class="m">456</span><span class="p">_</span><span class="m">789</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-197"><code data-line-number="197"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-197" name="listingscl-proposalliteralsmylang-197"></a><span class="m">123</span><span class="p">_</span><span class="m">456</span><span class="p">_</span><span class="m">789</span><span class="sa">N</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-198"><code data-line-number="198"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-198" name="listingscl-proposalliteralsmylang-198"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-199"><code data-line-number="199"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-199" name="listingscl-proposalliteralsmylang-199"></a><span class="m">12</span><span class="sx">e</span><span class="o">+</span><span class="m">5</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-200"><code data-line-number="200"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-200" name="listingscl-proposalliteralsmylang-200"></a><span class="m">12</span><span class="sx">.</span><span class="m">34</span><span class="sx">e</span><span class="m">5</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-201"><code data-line-number="201"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-201" name="listingscl-proposalliteralsmylang-201"></a><span class="m">12</span><span class="o">-</span><span class="m">21</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-202"><code data-line-number="202"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-202" name="listingscl-proposalliteralsmylang-202"></a><span class="m">12</span><span class="sx">e</span><span class="o">-</span><span class="m">5</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-203"><code data-line-number="203"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-203" name="listingscl-proposalliteralsmylang-203"></a><span class="m">12</span><span class="sx">.</span><span class="m">34</span><span class="sx">e</span><span class="m">5</span><span class="sx">j</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-204"><code data-line-number="204"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-204" name="listingscl-proposalliteralsmylang-204"></a><span class="m">12</span><span class="sx">.</span><span class="m">34</span><span class="o">+</span><span class="m">56</span><span class="sx">j</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-205"><code data-line-number="205"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-205" name="listingscl-proposalliteralsmylang-205"></a><span class="m">12</span><span class="sx">.</span><span class="m">34</span><span class="o">+</span><span class="m">56</span><span class="sx">.</span><span class="m">78</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-206"><code data-line-number="206"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-206" name="listingscl-proposalliteralsmylang-206"></a><span class="m">12</span><span class="sx">.</span><span class="m">34</span><span class="o">-</span><span class="m">56</span><span class="sx">.</span><span class="m">78</span><span class="sx">e</span><span class="o">-</span><span class="m">2</span><span class="sx">j</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-207"><code data-line-number="207"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-207" name="listingscl-proposalliteralsmylang-207"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-208"><code data-line-number="208"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-208" name="listingscl-proposalliteralsmylang-208"></a><span class="m">12</span><span class="sx">'</span><span class="m">34</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-209"><code data-line-number="209"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-209" name="listingscl-proposalliteralsmylang-209"></a><span class="m">12</span><span class="sx">'</span><span class="m">34</span><span class="o">-</span><span class="m">56</span><span class="sx">'</span><span class="m">78</span><span class="sx">j</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-210"><code data-line-number="210"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-210" name="listingscl-proposalliteralsmylang-210"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-211"><code data-line-number="211"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-211" name="listingscl-proposalliteralsmylang-211"></a><span class="m">3</span><span class="sx">/</span><span class="m">5</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-212"><code data-line-number="212"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-212" name="listingscl-proposalliteralsmylang-212"></a><span class="m">3</span><span class="sx">/</span><span class="m">5</span><span class="o">-</span><span class="m">2</span><span class="sx">/</span><span class="m">5</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-213"><code data-line-number="213"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-213" name="listingscl-proposalliteralsmylang-213"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-214"><code data-line-number="214"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-214" name="listingscl-proposalliteralsmylang-214"></a><span class="c">## TODO: Malformed literals with error highlights.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-215"><code data-line-number="215"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-215" name="listingscl-proposalliteralsmylang-215"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-216"><code data-line-number="216"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-216" name="listingscl-proposalliteralsmylang-216"></a><span class="c">##:</span><span class="cm"> Binary Integers</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-217"><code data-line-number="217"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-217" name="listingscl-proposalliteralsmylang-217"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-218"><code data-line-number="218"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-218" name="listingscl-proposalliteralsmylang-218"></a><span class="cm">    Prefix: \b</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-219"><code data-line-number="219"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-219" name="listingscl-proposalliteralsmylang-219"></a><span class="cm">    Can be signed or natural/non-negative.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-220"><code data-line-number="220"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-220" name="listingscl-proposalliteralsmylang-220"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-221"><code data-line-number="221"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-221" name="listingscl-proposalliteralsmylang-221"></a><span class="sa">\b</span><span class="mb">1011</span><span class="p">_</span><span class="mb">1110</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-222"><code data-line-number="222"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-222" name="listingscl-proposalliteralsmylang-222"></a><span class="o">+</span><span class="sa">\b</span><span class="mb">1011</span><span class="p">_</span><span class="mb">1110</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-223"><code data-line-number="223"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-223" name="listingscl-proposalliteralsmylang-223"></a><span class="o">-</span><span class="sa">\b</span><span class="mb">1011</span><span class="p">_</span><span class="mb">1110</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-224"><code data-line-number="224"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-224" name="listingscl-proposalliteralsmylang-224"></a><span class="sa">\b</span><span class="mb">1011</span><span class="p">_</span><span class="mb">1110</span><span class="sa">N</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-225"><code data-line-number="225"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-225" name="listingscl-proposalliteralsmylang-225"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-226"><code data-line-number="226"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-226" name="listingscl-proposalliteralsmylang-226"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">.</span><span class="mb">10</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-227"><code data-line-number="227"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-227" name="listingscl-proposalliteralsmylang-227"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">.</span><span class="mb">10</span><span class="sx">p</span><span class="mb">11</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-228"><code data-line-number="228"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-228" name="listingscl-proposalliteralsmylang-228"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-229"><code data-line-number="229"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-229" name="listingscl-proposalliteralsmylang-229"></a><span class="sa">\b</span><span class="mb">10</span><span class="o">-</span><span class="mb">01</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-230"><code data-line-number="230"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-230" name="listingscl-proposalliteralsmylang-230"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">p</span><span class="o">-</span><span class="mb">11</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-231"><code data-line-number="231"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-231" name="listingscl-proposalliteralsmylang-231"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">.</span><span class="mb">10</span><span class="sx">p</span><span class="o">+</span><span class="mb">11</span><span class="sx">j</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-232"><code data-line-number="232"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-232" name="listingscl-proposalliteralsmylang-232"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">.</span><span class="mb">10</span><span class="o">+</span><span class="mb">10</span><span class="sx">j</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-233"><code data-line-number="233"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-233" name="listingscl-proposalliteralsmylang-233"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">.</span><span class="mb">10</span><span class="o">+</span><span class="mb">10</span><span class="sx">.</span><span class="mb">10</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-234"><code data-line-number="234"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-234" name="listingscl-proposalliteralsmylang-234"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">.</span><span class="mb">10</span><span class="o">-</span><span class="mb">01</span><span class="sx">.</span><span class="mb">01</span><span class="sx">p</span><span class="o">-</span><span class="mb">01</span><span class="sx">j</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-235"><code data-line-number="235"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-235" name="listingscl-proposalliteralsmylang-235"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-236"><code data-line-number="236"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-236" name="listingscl-proposalliteralsmylang-236"></a><span class="sa">\b</span><span class="mb">10</span><span class="sx">'</span><span class="mb">11</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-237"><code data-line-number="237"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-237" name="listingscl-proposalliteralsmylang-237"></a><span class="sa">\b</span><span class="mb">11</span><span class="sx">'</span><span class="mb">00</span><span class="o">-</span><span class="mb">10</span><span class="sx">'</span><span class="mb">01</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-238"><code data-line-number="238"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-238" name="listingscl-proposalliteralsmylang-238"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-239"><code data-line-number="239"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-239" name="listingscl-proposalliteralsmylang-239"></a><span class="sa">\b</span><span class="mb">100</span><span class="sx">/</span><span class="mb">10</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-240"><code data-line-number="240"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-240" name="listingscl-proposalliteralsmylang-240"></a><span class="o">-</span><span class="sa">\b</span><span class="mb">100</span><span class="sx">/</span><span class="mb">10</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-241"><code data-line-number="241"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-241" name="listingscl-proposalliteralsmylang-241"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-242"><code data-line-number="242"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-242" name="listingscl-proposalliteralsmylang-242"></a><span class="c">##:</span><span class="cm"> Hexadecimal Integers</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-243"><code data-line-number="243"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-243" name="listingscl-proposalliteralsmylang-243"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-244"><code data-line-number="244"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-244" name="listingscl-proposalliteralsmylang-244"></a><span class="cm">    Prefix: \x</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-245"><code data-line-number="245"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-245" name="listingscl-proposalliteralsmylang-245"></a><span class="cm">    Can be signed or natural/non-negative.</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-246"><code data-line-number="246"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-246" name="listingscl-proposalliteralsmylang-246"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-247"><code data-line-number="247"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-247" name="listingscl-proposalliteralsmylang-247"></a><span class="sa">\x</span><span class="mh">dead</span><span class="p">_</span><span class="mh">BEEF</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-248"><code data-line-number="248"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-248" name="listingscl-proposalliteralsmylang-248"></a><span class="o">+</span><span class="sa">\x</span><span class="mh">dead</span><span class="p">_</span><span class="mh">BEEF</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-249"><code data-line-number="249"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-249" name="listingscl-proposalliteralsmylang-249"></a><span class="o">-</span><span class="sa">\x</span><span class="mh">dead</span><span class="p">_</span><span class="mh">BEEF</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-250"><code data-line-number="250"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-250" name="listingscl-proposalliteralsmylang-250"></a><span class="sa">\x</span><span class="mh">dead</span><span class="p">_</span><span class="mh">BEEF</span><span class="sa">N</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-251"><code data-line-number="251"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-251" name="listingscl-proposalliteralsmylang-251"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-252"><code data-line-number="252"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-252" name="listingscl-proposalliteralsmylang-252"></a><span class="sa">\x</span><span class="mh">dead</span><span class="sx">.</span><span class="mh">beef</span><span class="sx">P</span><span class="mh">ac</span><span class="o">-</span><span class="mh">beef</span><span class="sx">.</span><span class="mh">dead</span><span class="sx">P</span><span class="mh">ac</span><span class="sx">j</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-253"><code data-line-number="253"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-253" name="listingscl-proposalliteralsmylang-253"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-254"><code data-line-number="254"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-254" name="listingscl-proposalliteralsmylang-254"></a><span class="sa">\x</span><span class="mh">dead</span><span class="sx">'</span><span class="mh">beef</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-255"><code data-line-number="255"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-255" name="listingscl-proposalliteralsmylang-255"></a><span class="sa">\x</span><span class="mh">dead</span><span class="sx">'</span><span class="mh">beef</span><span class="o">-</span><span class="mh">beef</span><span class="sx">'</span><span class="mh">dead</span><span class="sx">i</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-256"><code data-line-number="256"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-256" name="listingscl-proposalliteralsmylang-256"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-257"><code data-line-number="257"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-257" name="listingscl-proposalliteralsmylang-257"></a><span class="sa">\x</span><span class="mh">4a</span><span class="sx">/</span><span class="mh">5</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-258"><code data-line-number="258"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-258" name="listingscl-proposalliteralsmylang-258"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-259"><code data-line-number="259"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-259" name="listingscl-proposalliteralsmylang-259"></a><span class="c">##:</span><span class="cm"> Bytes</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-260"><code data-line-number="260"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-260" name="listingscl-proposalliteralsmylang-260"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-261"><code data-line-number="261"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-261" name="listingscl-proposalliteralsmylang-261"></a><span class="se">\C0&lt;</span><span class="ni">FF</span><span class="se">&gt;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-262"><code data-line-number="262"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-262" name="listingscl-proposalliteralsmylang-262"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-263"><code data-line-number="263"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-263" name="listingscl-proposalliteralsmylang-263"></a><span class="c">##:</span><span class="cm"> Unicodes</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-264"><code data-line-number="264"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-264" name="listingscl-proposalliteralsmylang-264"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-265"><code data-line-number="265"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-265" name="listingscl-proposalliteralsmylang-265"></a><span class="se">\U</span><span class="mh">10</span><span class="p">_</span><span class="mh">dead</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="#listingscl-proposalliteralsmylang-266"><code data-line-number="266"></code></a></td>
+<td class="code"><code><a id="listingscl-proposalliteralsmylang-266" name="listingscl-proposalliteralsmylang-266"></a><span class="se">\U&lt;</span><span class="ni">HORIZONTAL TABULATION</span><span class="se">&gt;</span>
+</code></td>
+</tr>
+</table></div>
+
+        </main><br><footer id="footer"><p>
+    Contents © 2023 Eric McDonald, licensed under 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"></a>.<br>
+    Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>.
+</p>
+            
+        </footer>
+</div>
+    
+            <script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/palette.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

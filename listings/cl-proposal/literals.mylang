@@ -1,0 +1,266 @@
+####: Booleans
+
+false
+true
+
+####: Compact Sequences
+
+    Four forms from two dimensions of two variants apiece:
+    * escapable / non-escapable
+    * interpolable / non-interpolable
+
+###: Literal Clauses
+
+\B"{peter-piper.pickled-peppers!r}"
+"{peter-piper.pickled-peppers!H:^^+#030@.15f&#12^}"
+"{peter-piper.pickled-peppers!H:^^+#0{peck}@.{peck}f&#{peck}^}"
+"{peter-piper.pickled-peppers!H:}^ #030@.15f&#12^}"
+"{peter-piper.pickled-peppers!H:{^-#030@.15f&#37^}"
+
+##: Bytes
+
+\B\\\':
+    Test
+
+    Without \escapes. \x00 == \C0<NUL>
+    No interpolation {here}.
+
+\B\\\":
+    Test
+
+    Without \escapes. \x00 == \C0<NUL>
+    Interpolation {here}, but not {{here}}.
+
+\B\':
+    Test
+
+    With \escapes. \x00 == \C0<NUL>
+    No interpolation {here}.
+
+\B\":
+    Test
+
+    With \escapes. \x00 == \C0<NUL>
+    Interpolation {here}, but not {{here}}.
+
+\B\': |& :1 >2 <2 ## Inline comment at head of clause.
+    |&  Single line separators within clause converted to spaces.
+    :N  N number of line terminators appended to end of clause.
+        (Example: One line terminator appended to end of clause.)
+    >N  N number of spaces prepended to start of each line within clause.
+        (Example: Two spaces prepended to start of each line within clause.)
+    <N  N number of spaces appended to end of each line within clause.
+        (Example: Two spaces appended to end of each line within clause.)
+
+\B\': |=\C0<BEL>\n :=\r\n >=\e[31m <=\e[0m
+    |=  All line separators within clause replaced with given sequence.
+        (Example: console bell followed by linefeed)
+    :=  Append given sequence to end of clause.
+        (Example: DOS/Windows line terminator.)
+    >=  Prepend start of each line within clause with given sequence.
+        (Example: ANSI SGR escape sequence for foreground color red)
+    <=  Append end of each line within clause with given sequence.
+        (Example: ANSI SGR escape sequence for character attribute reset)
+
+\B\': |&=\r\n :2=\n >2=\t <3=|
+    |&= Single line separators within clause converted to spaces.
+        Then, remaining line separators within clause replaced
+        with given sequence.
+    :N= Append given sequence to end of clause N times.
+    >N= Prepend start of each line within clause with given sequence N times.
+    <N= Append end of each line within clause with given sequence N times.
+
+\B\': |3=\xff <79|
+    |N= All line separators within clause replaced with given sequence N times.
+    <N| Extend line to width N using spaces.
+        If line length is greater than or equal to width N,
+        then nothing is appended.
+
+\B\': |&3=\x00\xff <79|=.
+    |&N= Single line separators within clause coverted to spaces.
+         Then, remaining line separators within clause replaced
+         with an N-fold repetition of given sequence.
+    <N|= Extend line to width N using given byte.
+
+##: Text
+
+\\\':
+    Test
+
+    Without \escapes. \U0| == \C0<NUL> == \U<Null>
+    No interpolation {here}.
+
+\\\":
+    Test
+
+    Without \escapes. \U0| == \C0<NUL> == \U<Null>
+    Interpolation {here}, but not {{here}}.
+
+\':
+    Test
+
+    With \escapes. \U0| == \C0<NUL> == \U<Null>
+    No interpolation {here}.
+
+\":
+    Test
+
+    With \escapes. \U0| == \C0<NUL> == \U<Null>
+    Interpolation {here}, but not {{here}}.
+
+\': |& :1 >2 <2 ## Inline comment at head of clause.
+    |&  Single line separators within clause converted to spaces.
+    :N  N number of line terminators appended to end of clause.
+        (Example: One line terminator appended to end of clause.)
+    >N  N number of spaces prepended to start of each line within clause.
+        (Example: Two spaces prepended to start of each line within clause.)
+    <N  N number of spaces appended to end of each line within clause.
+        (Example: Two spaces appended to end of each line within clause.)
+
+\': |=\C0<BEL>\n :=\r\n >=\e[31m <=\e[0m
+    |=  All line separators within clause replaced with given sequence.
+        (Example: console bell followed by linefeed)
+    :=  Append given sequence to end of clause.
+        (Example: DOS/Windows line terminator.)
+    >=  Prepend start of each line within clause with given sequence.
+        (Example: ANSI SGR escape sequence for foreground color red)
+    <=  Append end of each line within clause with given sequence.
+        (Example: ANSI SGR escape sequence for character attribute reset)
+
+\': |&=\r\n :2=\n >2=\t <3=|
+    |&= Single line separators within clause converted to spaces.
+        Then, remaining line separators within clause replaced
+        with given sequence.
+    :N= Append given sequence to end of clause N times.
+    >N= Prepend start of each line within clause with given sequence N times.
+    <N= Append end of each line within clause with given sequence N times.
+
+\': |3=\U<Null> <79|
+    |N= All line separators within clause replaced with given sequence N times.
+    <N| Extend line to width N using spaces.
+        If line length is greater than or equal to width N,
+        then nothing is appended.
+
+\': |&3=\U<Null> <79|=.
+    |&N= Single line separators within clause coverted to spaces.
+         Then, remaining line separators within clause replaced
+         with an N-fold repetition of given sequence.
+    <N|= Extend line to width N using given byte.
+
+if coolness > 1 do \':
+    Can start at any position in a line. \C0<BEL>
+if coolness > 2 do:
+    let demo = \':
+        Can appear in a nested block.
+    demo
+
+###: with Quote Delimitation
+
+##: Bytes
+
+\B\\'Without \escapes. \x00 == \C0<NUL>'
+\B\\'No interpolation {here}.'
+
+\B\\"Without \escapes. \x00 == \C0<NUL>"
+\B\\"Interpolation {here}, but not {{here}}."
+
+\B'With \escapes. \x00 == \C0<NUL>'
+\B'No interpolation {here}.'
+
+\B"With \escapes. \x00 == \C0<NUL>"
+\B"Interpolation {here}, but not {{here}}."
+
+##: Text
+
+\\'Without \escapes. \U0| == \C0<NUL> == \U<Null>'
+\\'No interpolation {here}.'
+
+\\"Without \escapes. \U0| == \C0<NUL> == \U<Null>"
+\\"Interpolation {here}, but not {{here}}."
+
+'With \escapes. \U0| == \C0<NUL> == \U<Null>'
+'No interpolation {here}.'
+
+"With \escapes. \U0| == \C0<NUL> == \U<Null>"
+"Interpolation {here}, but not {{here}}."
+
+'foo\C0<BAD>bar'
+'foo\U10_deadbeef|bar'
+
+##: Decimal Integers
+
+    Can be signed or natural/non-negative.
+
+123_456_789
++123_456_789
+-123_456_789
+123_456_789N
+
+12e+5
+12.34e5
+12-21i
+12e-5i
+12.34e5j
+12.34+56j
+12.34+56.78i
+12.34-56.78e-2j
+
+12'34
+12'34-56'78j
+
+3/5
+3/5-2/5i
+
+## TODO: Malformed literals with error highlights.
+
+##: Binary Integers
+
+    Prefix: \b
+    Can be signed or natural/non-negative.
+
+\b1011_1110
++\b1011_1110
+-\b1011_1110
+\b1011_1110N
+
+\b10.10
+\b10.10p11
+\b10i
+\b10-01i
+\b10p-11i
+\b10.10p+11j
+\b10.10+10j
+\b10.10+10.10i
+\b10.10-01.01p-01j
+
+\b10'11
+\b11'00-10'01i
+
+\b100/10
+-\b100/10i
+
+##: Hexadecimal Integers
+
+    Prefix: \x
+    Can be signed or natural/non-negative.
+
+\xdead_BEEF
++\xdead_BEEF
+-\xdead_BEEF
+\xdead_BEEFN
+
+\xdead.beefPac-beef.deadPacj
+
+\xdead'beef
+\xdead'beef-beef'deadi
+
+\x4a/5
+
+##: Bytes
+
+\C0<FF>
+
+##: Unicodes
+
+\U10_dead
+\U<HORIZONTAL TABULATION>

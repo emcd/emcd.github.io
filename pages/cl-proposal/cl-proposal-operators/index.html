@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html prefix="        og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Operators | Contemplations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../../../assets/css/colors.css" type="text/css">
+<meta name="color-scheme" content="light dark">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../rss.xml">
+<link rel="canonical" href="https://emcd.github.io/pages/cl-proposal/cl-proposal-operators/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="Eric McDonald">
+<meta property="og:site_name" content="Contemplations">
+<meta property="og:title" content="Operators">
+<meta property="og:url" content="https://emcd.github.io/pages/cl-proposal/cl-proposal-operators/">
+<meta property="og:description" content="All combinations of one or more ASCII punctuation characters are reserved for
+use as operators.
+All single ASCII alphanumeric characters followed by one or more ASCII
+punctuation characters are reserv">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-06-19T15:57:46-07:00">
+<meta property="article:tag" content="computational language">
+<meta property="article:tag" content="computer science">
+<meta property="article:tag" content="language design">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+        
+    <header id="header"><h1 id="brand"><a href="../../../" title="Contemplations" rel="home">
+
+        <span id="blog-title">Contemplations</span>
+    </a></h1>
+
+        
+
+        
+    <nav id="menu"><ul>
+<li><a href="../../../archive.html">Archive</a></li>
+                <li><a href="../../../categories/">Tags</a></li>
+
+    
+
+    
+    
+    </ul></nav><svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="svg-sun" viewbox="0 0 24 24"><title>Light Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></symbol><symbol id="svg-moon" viewbox="0 0 24 24"><title>Dark Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg></symbol><symbol id="svg-sun-half" viewbox="0 0 24 24"><title>Auto Light/Dark Mode</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><path d="M13 12h5"></path><path d="M13 15h4"></path><path d="M13 18h1"></path><path d="M13 9h4"></path><path d="M13 6h1"></path></svg></symbol></svg><p class="palette-selector-container palette-selector-content">
+    <button class="palette-selector">
+      <div class="visually-hidden">Toggle Light / Dark / Auto Color Theme</div>
+      <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg><svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg><svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg></button>
+    </p>
+
+    </header><main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Operators</a></h1>
+
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <ul class="simple">
+<li><p>All combinations of one or more ASCII punctuation characters are reserved for
+use as operators.</p></li>
+<li><p>All single ASCII alphanumeric characters followed by one or more ASCII
+punctuation characters are reserved for use as operators.</p></li>
+<li><p>All unary operators, except <code class="docutils literal">..</code>, are in the prefix position relative to
+their operands.</p></li>
+<li><p>All binary operators are in the infix position relative to their operands.</p></li>
+<li><p>Binary operators are left-associative, unless otherwise noted.</p></li>
+<li>
+<p>All binary operators, except <code class="docutils literal">.</code>, require whitespace between themselves and
+their operands.</p>
+<ul>
+<li><p>The <code class="docutils literal">-</code> operator needs this to disambiguate the use of hyphens inside of
+identifiers.</p></li>
+<li><p>The other operators follow the same rule for consistency and readability.</p></li>
+</ul>
+</li>
+<li><p>All unary operators require whitespace between themselves and their operands.</p></li>
+</ul>
+<table class="pretty" style="width: 100%;">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 85%">
+</colgroup>
+<thead><tr>
+<th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p><code class="docutils literal">.</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Access attributes of objects.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">..</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Range from left operand, inclusive, to right operand,
+inclusive. Operands must be countable.</div>
+<div class="line">
+<em>Unary</em>, <em>prefix</em>. Range from start of sequence to right operand,
+inclusive. Operand must be countable. Only for slicing, not looping.</div>
+<div class="line">
+<em>Unary</em>, <em>postfix</em>. Range from left operand, inclusive, to end of
+sequence. Operand must be countable. Only for slicing, not looping.</div>
+<div class="line">
+<em>Nullary</em>. Range over entire sequence. Only for slicing, not looping.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">...</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Unary</em>. Wildcard expansion of argument list.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">+</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Addition of quantities. Concatenation of sequences. Has
+n-ary function form: <code class="docutils literal">(+)</code>.</div>
+<div class="line">
+<em>Unary</em>. Affirmation of signed quantity. Activation or enablement of
+option.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">-</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Subtraction of quantities.</div>
+<div class="line">
+<em>Unary</em>. Negation of signed quantity. Deactivation or disablement of
+option.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">*</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Multiplication of quantities. Generation of sequences by
+repetition of elements or subsequences. Has n-ary function form:
+<code class="docutils literal">(*)</code>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">**</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>, <em>right-associative</em>. Exponentiation of quantities.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">*&lt;</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Expansive vectorial multiplication. I.e., <a class="reference external" href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian
+product</a>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">*&gt;</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Contractive vectorial multiplication. I.e., <a class="reference external" href="https://en.wikipedia.org/wiki/Dot_product">scalar product</a>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">/</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Fractional or floating-point division.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">Z/</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Integral or modular division, yielding quotient. Partition
+a sequence into subsequences, yielding all complete subsequences.
+Division of a range into steps.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">Z%</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Integral or modular division, yielding remainder. Partition
+a sequence into subsequences, yielding an incomplete, possibly empty,
+subsequence.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">Z/?</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Results in <code class="docutils literal">true</code> if left operand is evenly divisible by
+right operand. Equivalent to testing if the remainder from <code class="docutils literal">Z%</code>
+division is zero.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">&lt;</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Comparison between objects which have an ordering relative
+to one another, such that the result is <code class="docutils literal">true</code> if the left operand
+is lesser than the right operand. Comparison between objects, which
+have no ordering relative to one another, is forbidden.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">&lt;&gt;</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Comparison between objects which have an ordering or
+equality test relative to one another, such that the result is
+<code class="docutils literal">true</code> if the left operand is not equal to the right operand.
+Comparison between objects, which have no ordering or equality test
+relative to one another, is forbidden. Has n-ary function form:
+<code class="docutils literal"><span class="pre">(&lt;&gt;)</span></code>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">&gt;</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Comparison between objects which have an ordering relative
+to one another, such that the result is <code class="docutils literal">true</code> if the left operand
+is greater than the right operand. Comparison between objects, which
+have no ordering relative to one another, is forbidden.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">&lt;=</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Comparison between objects which have an ordering relative
+to one another, such that the result is <code class="docutils literal">true</code> if the left operand
+is lesser than or equal to the right operand. Comparison between
+objects, which have no ordering relative to one another, is
+forbidden.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">==</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Comparison between objects which have an ordering or
+equality test relative to one another, such that the result is
+<code class="docutils literal">true</code> if the left operand is equal to the right operand.
+Comparison between objects, which have no ordering or equality test
+relative to one another, is forbidden. Has n-ary function form:
+<code class="docutils literal"><span class="pre">(==)</span></code>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">&gt;=</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Comparison between objects which have an ordering relative
+to one another, such that the result is <code class="docutils literal">true</code> if the left operand
+is greater than or equal to the right operand. Comparison between
+objects, which have no ordering relative to one another, is
+forbidden.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">!=</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Similar to the <cite>&lt;&gt;</cite> operator except that comparison between
+objects, which have no ordering or equality test relative to one
+another, is allowed and results in <code class="docutils literal">false</code>. Has n-ary function
+form: <code class="docutils literal"><span class="pre">(!=)</span></code>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">is?</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Comparison, such that the result is <code class="docutils literal">true</code> if the left
+operand is identical to the right operand.</div>
+<div class="line">
+<em>Unary</em>. Results in <code class="docutils literal">true</code> if the operand is a literal value or a
+variable which is bound to a value.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">!is?</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Comparison, such that the result is <code class="docutils literal">true</code> if the left
+operand is not identical to the right operand.</div>
+<div class="line">
+<em>Unary</em>. Results in <code class="docutils literal">true</code> if the operand is a variable which is
+not bound to a value.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">and?</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Results in <code class="docutils literal">false</code> if any operand is untruthy.
+Short-circuits evaluation at first untruthy operand. Evaluation of an
+operand with no truthiness is forbidden. Has n-ary function form:
+<code class="docutils literal"><span class="pre">(and?)</span></code>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">or?</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Results in <code class="docutils literal">true</code> if any operand is truthy.
+Short-circuits evaluation at first truthy operand. Evaluation of an
+operand with no truthiness is forbidden. Has n-ary function form:
+<code class="docutils literal"><span class="pre">(or?)</span></code>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">not?</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Unary</em>. Results in the complement of the truthiness of the operand.
+Evaluation of an operand with no truthiness is forbidden.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">and</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Results in the first operand that is untruthy or the last
+operand if all operands are truthy. Short-circuits evaluation at
+first untruthy operand. Evaluation of an operand with no truthiness
+is forbidden. Has n-ary function form: <code class="docutils literal">(and)</code>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">or</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Results in the first operand that is truthy or the last
+operand if all operands are untruthy. Short-circuits evaluation at
+first truthy operand. Evaluation of an operand with no truthiness is
+forbidden. Has n-ary function form: <code class="docutils literal">(or)</code>.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">b&amp;</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Bitwise AND of primitives or bit fields.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">b|</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Bitwise inclusive-OR of primitives or bit fields.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">b^</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Bitwise exclusive-OR of primitives or bit fields.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">b~</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Unary</em>. Bitwise complement of primitives or bit fields.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">b&lt;&lt;</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Bitwise left shift of primitives or bit fields. Replaces
+with clear bit at rightmost position. Discards overflow bits.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td><p><code class="docutils literal">b&gt;&gt;</code></p></td>
+<td>
+<div class="line-block">
+<div class="line">
+<em>Binary</em>. Bitwise right shift of primitives or bit fields. In the
+case of unsigned values, replaces with clear bit at leftmost
+position. (I.e., zero-filling via <a class="reference external" href="https://en.wikipedia.org/wiki/Logical_shift">logical right shift</a>.) In the case of
+signed values, duplicates sign bit from leftmost position. (I.e.,
+sign extension via <a class="reference external" href="https://en.wikipedia.org/wiki/Arithmetic_shift">arithmetic right shift</a>.)</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference external" href="../../../listings/cl-proposal/operators.mylang.html">cl-proposal/operators.mylang</a>  <a class="reference external" href="../../../listings/cl-proposal/operators.mylang">(Source)</a></p>
+<div class="code"><pre class="code mylang"><a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-1" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-1" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-1"></a><span class="k">let</span> <span class="nv">array</span> <span class="k">=</span> <span class="p">[</span> <span class="m">13</span> <span class="m">11</span> <span class="m">7</span> <span class="m">5</span> <span class="m">3</span> <span class="m">2</span> <span class="p">]</span>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-2" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-2" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-2"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="m">1</span> <span class="o">..</span> <span class="m">3</span> <span class="p">]</span>        <span class="cs"># </span><span class="c">[ 13 11 7 ]</span>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-3" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-3" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-3"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="m">1</span> <span class="o">..</span> <span class="p">]</span>          <span class="cs"># </span><span class="c">[ 13 11 7 5 3 2 ]</span>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-4" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-4" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-4"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="m">3</span> <span class="p">]</span>          <span class="cs"># </span><span class="c">[ 13 11 7 ]</span>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-5" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-5" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-5"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="p">]</span>            <span class="cs"># </span><span class="c">[ 13 11 7 5 3 2 ]</span>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-6" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-6" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-6"></a>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-7" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-7" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-7"></a><span class="cs"># </span><span class="c">TODO: for .. do</span>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-8" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-8" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-8"></a>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-9" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-9" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-9"></a><span class="m">1</span> <span class="o">+</span> <span class="m">2</span>                   <span class="cs"># </span><span class="c">3</span>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-10" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-10" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-10"></a><span class="o">(+)</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>               <span class="cs"># </span><span class="c">6</span>
+<a id="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-11" name="rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-11" href="#rest_code_a39f54bf366a4e7b9d4dc8d459a7bb24-11"></a><span class="m">1</span> <span class="o">-</span> <span class="m">2</span>                   <span class="cs"># </span><span class="c">-1</span>
+</pre></div>
+    </div>
+    
+
+</article></main><br><footer id="footer"><p>
+    Contents © 2023 Eric McDonald, licensed under 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"></a>.<br>
+    Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>.
+</p>
+            
+        </footer>
+</div>
+    
+            <script src="../../../assets/js/all-nocdn.js"></script><script src="../../../assets/js/palette.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
