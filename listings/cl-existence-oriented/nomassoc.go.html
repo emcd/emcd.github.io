@@ -53,7 +53,7 @@
     <div class="code"><table class="codetable">
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-1"><code data-line-number=" 1"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-1" name="listingscl-existence-orientednomassocgo-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-1" name="listingscl-existence-orientednomassocgo-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 </code></td>
 </tr>
 <tr>
@@ -63,12 +63,12 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-3"><code data-line-number=" 3"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-3" name="listingscl-existence-orientednomassocgo-3"></a><span class="kn">import</span><span class="w"> </span><span class="s">"fmt"</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-3" name="listingscl-existence-orientednomassocgo-3"></a><span class="kn">import</span><span class="w"> </span><span class="s">"fmt"</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-4"><code data-line-number=" 4"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-4" name="listingscl-existence-orientednomassocgo-4"></a><span class="kn">import</span><span class="w"> </span><span class="s">"os"</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-4" name="listingscl-existence-orientednomassocgo-4"></a><span class="kn">import</span><span class="w"> </span><span class="s">"os"</span>
 </code></td>
 </tr>
 <tr>
@@ -78,47 +78,47 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-6"><code data-line-number=" 6"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-6" name="listingscl-existence-orientednomassocgo-6"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-6" name="listingscl-existence-orientednomassocgo-6"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-7"><code data-line-number=" 7"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-7" name="listingscl-existence-orientednomassocgo-7"></a><span class="w">	</span><span class="nx">emptyHaystack</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-7" name="listingscl-existence-orientednomassocgo-7"></a><span class="w">	</span><span class="nx">emptyHaystack</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-8"><code data-line-number=" 8"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-8" name="listingscl-existence-orientednomassocgo-8"></a><span class="w">	</span><span class="nx">haystack</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-8" name="listingscl-existence-orientednomassocgo-8"></a><span class="w">	</span><span class="nx">haystack</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-9"><code data-line-number=" 9"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-9" name="listingscl-existence-orientednomassocgo-9"></a><span class="w">	</span><span class="nx">haystack</span><span class="p">[</span><span class="s">"needle"</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">42</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-9" name="listingscl-existence-orientednomassocgo-9"></a><span class="w">	</span><span class="nx">haystack</span><span class="p">[</span><span class="s">"needle"</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">42</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-10"><code data-line-number="10"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-10" name="listingscl-existence-orientednomassocgo-10"></a><span class="w">	</span><span class="nx">safePrintNeedle</span><span class="p">(</span><span class="nx">haystack</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-10" name="listingscl-existence-orientednomassocgo-10"></a><span class="w">	</span><span class="nx">safePrintNeedle</span><span class="p">(</span><span class="nx">haystack</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-11"><code data-line-number="11"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-11" name="listingscl-existence-orientednomassocgo-11"></a><span class="w">	</span><span class="nx">safePrintNeedle</span><span class="p">(</span><span class="nx">emptyHaystack</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-11" name="listingscl-existence-orientednomassocgo-11"></a><span class="w">	</span><span class="nx">safePrintNeedle</span><span class="p">(</span><span class="nx">emptyHaystack</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-12"><code data-line-number="12"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-12" name="listingscl-existence-orientednomassocgo-12"></a><span class="w">	</span><span class="nx">printNeedle</span><span class="p">(</span><span class="nx">haystack</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-12" name="listingscl-existence-orientednomassocgo-12"></a><span class="w">	</span><span class="nx">printNeedle</span><span class="p">(</span><span class="nx">haystack</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-13"><code data-line-number="13"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-13" name="listingscl-existence-orientednomassocgo-13"></a><span class="w">	</span><span class="nx">printNeedle</span><span class="p">(</span><span class="nx">emptyHaystack</span><span class="p">)</span><span class="w"> </span><span class="cm">/* prints 0, which is not the needle */</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-13" name="listingscl-existence-orientednomassocgo-13"></a><span class="w">	</span><span class="nx">printNeedle</span><span class="p">(</span><span class="nx">emptyHaystack</span><span class="p">)</span><span class="w"> </span><span class="cm">/* prints 0, which is not the needle */</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-14"><code data-line-number="14"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-14" name="listingscl-existence-orientednomassocgo-14"></a><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-14" name="listingscl-existence-orientednomassocgo-14"></a><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
@@ -128,22 +128,22 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-16"><code data-line-number="16"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-16" name="listingscl-existence-orientednomassocgo-16"></a><span class="kd">func</span><span class="w"> </span><span class="nx">printNeedle</span><span class="p">(</span><span class="nx">haystack</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-16" name="listingscl-existence-orientednomassocgo-16"></a><span class="kd">func</span><span class="w"> </span><span class="nx">printNeedle</span><span class="p">(</span><span class="nx">haystack</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-17"><code data-line-number="17"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-17" name="listingscl-existence-orientednomassocgo-17"></a><span class="w">	</span><span class="nx">needle</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">haystack</span><span class="p">[</span><span class="s">"needle"</span><span class="p">]</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-17" name="listingscl-existence-orientednomassocgo-17"></a><span class="w">	</span><span class="nx">needle</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">haystack</span><span class="p">[</span><span class="s">"needle"</span><span class="p">]</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-18"><code data-line-number="18"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-18" name="listingscl-existence-orientednomassocgo-18"></a><span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"needle: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">needle</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-18" name="listingscl-existence-orientednomassocgo-18"></a><span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"needle: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">needle</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-19"><code data-line-number="19"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-19" name="listingscl-existence-orientednomassocgo-19"></a><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-19" name="listingscl-existence-orientednomassocgo-19"></a><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
@@ -153,38 +153,38 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-21"><code data-line-number="21"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-21" name="listingscl-existence-orientednomassocgo-21"></a><span class="kd">func</span><span class="w"> </span><span class="nx">safePrintNeedle</span><span class="p">(</span><span class="nx">haystack</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-21" name="listingscl-existence-orientednomassocgo-21"></a><span class="kd">func</span><span class="w"> </span><span class="nx">safePrintNeedle</span><span class="p">(</span><span class="nx">haystack</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-22"><code data-line-number="22"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-22" name="listingscl-existence-orientednomassocgo-22"></a><span class="w">	</span><span class="nx">needle</span><span class="p">,</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">haystack</span><span class="p">[</span><span class="s">"needle"</span><span class="p">]</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-22" name="listingscl-existence-orientednomassocgo-22"></a><span class="w">	</span><span class="nx">needle</span><span class="p">,</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">haystack</span><span class="p">[</span><span class="s">"needle"</span><span class="p">]</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-23"><code data-line-number="23"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-23" name="listingscl-existence-orientednomassocgo-23"></a><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-23" name="listingscl-existence-orientednomassocgo-23"></a><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-24"><code data-line-number="24"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-24" name="listingscl-existence-orientednomassocgo-24"></a><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"needle: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">needle</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-24" name="listingscl-existence-orientednomassocgo-24"></a><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"needle: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">needle</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-25"><code data-line-number="25"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-25" name="listingscl-existence-orientednomassocgo-25"></a><span class="w">	</span><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-25" name="listingscl-existence-orientednomassocgo-25"></a><span class="w">	</span><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednomassocgo-26"><code data-line-number="26"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednomassocgo-26" name="listingscl-existence-orientednomassocgo-26"></a><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednomassocgo-26" name="listingscl-existence-orientednomassocgo-26"></a><span class="p">}</span>
 </code></td>
 </tr>
 </table></div>
 
         </main><br><footer id="footer"><p>
-    Contents © 2023 Eric McDonald, licensed under 
+    Contents © 2025 Eric McDonald, licensed under 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
 <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"></a>.<br>
     Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>.

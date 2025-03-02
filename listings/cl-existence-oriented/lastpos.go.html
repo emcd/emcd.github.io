@@ -53,7 +53,7 @@
     <div class="code"><table class="codetable">
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-1"><code data-line-number=" 1"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-1" name="listingscl-existence-orientedlastposgo-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-1" name="listingscl-existence-orientedlastposgo-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 </code></td>
 </tr>
 <tr>
@@ -63,12 +63,12 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-3"><code data-line-number=" 3"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-3" name="listingscl-existence-orientedlastposgo-3"></a><span class="kn">import</span><span class="w"> </span><span class="s">"fmt"</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-3" name="listingscl-existence-orientedlastposgo-3"></a><span class="kn">import</span><span class="w"> </span><span class="s">"fmt"</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-4"><code data-line-number=" 4"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-4" name="listingscl-existence-orientedlastposgo-4"></a><span class="kn">import</span><span class="w"> </span><span class="s">"os"</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-4" name="listingscl-existence-orientedlastposgo-4"></a><span class="kn">import</span><span class="w"> </span><span class="s">"os"</span>
 </code></td>
 </tr>
 <tr>
@@ -78,42 +78,42 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-6"><code data-line-number=" 6"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-6" name="listingscl-existence-orientedlastposgo-6"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-6" name="listingscl-existence-orientedlastposgo-6"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-7"><code data-line-number=" 7"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-7" name="listingscl-existence-orientedlastposgo-7"></a><span class="w">	</span><span class="nx">items</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">42</span><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-7" name="listingscl-existence-orientedlastposgo-7"></a><span class="w">	</span><span class="nx">items</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">42</span><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-8"><code data-line-number=" 8"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-8" name="listingscl-existence-orientedlastposgo-8"></a><span class="w">	</span><span class="nx">emptyItems</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-8" name="listingscl-existence-orientedlastposgo-8"></a><span class="w">	</span><span class="nx">emptyItems</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{}</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-9"><code data-line-number=" 9"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-9" name="listingscl-existence-orientedlastposgo-9"></a><span class="w">	</span><span class="nx">safePrintLastItem</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-9" name="listingscl-existence-orientedlastposgo-9"></a><span class="w">	</span><span class="nx">safePrintLastItem</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-10"><code data-line-number="10"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-10" name="listingscl-existence-orientedlastposgo-10"></a><span class="w">	</span><span class="nx">safePrintLastItem</span><span class="p">(</span><span class="nx">emptyItems</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-10" name="listingscl-existence-orientedlastposgo-10"></a><span class="w">	</span><span class="nx">safePrintLastItem</span><span class="p">(</span><span class="nx">emptyItems</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-11"><code data-line-number="11"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-11" name="listingscl-existence-orientedlastposgo-11"></a><span class="w">	</span><span class="nx">printLastItem</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-11" name="listingscl-existence-orientedlastposgo-11"></a><span class="w">	</span><span class="nx">printLastItem</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-12"><code data-line-number="12"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-12" name="listingscl-existence-orientedlastposgo-12"></a><span class="w">	</span><span class="nx">printLastItem</span><span class="p">(</span><span class="nx">emptyItems</span><span class="p">)</span><span class="w"> </span><span class="cm">/* panics */</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-12" name="listingscl-existence-orientedlastposgo-12"></a><span class="w">	</span><span class="nx">printLastItem</span><span class="p">(</span><span class="nx">emptyItems</span><span class="p">)</span><span class="w"> </span><span class="cm">/* panics */</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-13"><code data-line-number="13"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-13" name="listingscl-existence-orientedlastposgo-13"></a><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-13" name="listingscl-existence-orientedlastposgo-13"></a><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
@@ -123,17 +123,17 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-15"><code data-line-number="15"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-15" name="listingscl-existence-orientedlastposgo-15"></a><span class="kd">func</span><span class="w"> </span><span class="nx">printLastItem</span><span class="p">(</span><span class="nx">items</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-15" name="listingscl-existence-orientedlastposgo-15"></a><span class="kd">func</span><span class="w"> </span><span class="nx">printLastItem</span><span class="p">(</span><span class="nx">items</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-16"><code data-line-number="16"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-16" name="listingscl-existence-orientedlastposgo-16"></a><span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"last item: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">items</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-16" name="listingscl-existence-orientedlastposgo-16"></a><span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"last item: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">items</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-17"><code data-line-number="17"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-17" name="listingscl-existence-orientedlastposgo-17"></a><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-17" name="listingscl-existence-orientedlastposgo-17"></a><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
@@ -143,43 +143,43 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-19"><code data-line-number="19"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-19" name="listingscl-existence-orientedlastposgo-19"></a><span class="kd">func</span><span class="w"> </span><span class="nx">safePrintLastItem</span><span class="p">(</span><span class="nx">items</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-19" name="listingscl-existence-orientedlastposgo-19"></a><span class="kd">func</span><span class="w"> </span><span class="nx">safePrintLastItem</span><span class="p">(</span><span class="nx">items</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-20"><code data-line-number="20"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-20" name="listingscl-existence-orientedlastposgo-20"></a><span class="w">	</span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-20" name="listingscl-existence-orientedlastposgo-20"></a><span class="w">	</span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-21"><code data-line-number="21"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-21" name="listingscl-existence-orientedlastposgo-21"></a><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-21" name="listingscl-existence-orientedlastposgo-21"></a><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-22"><code data-line-number="22"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-22" name="listingscl-existence-orientedlastposgo-22"></a><span class="w">		</span><span class="nx">lastItem</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">items</span><span class="p">[</span><span class="nx">count</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-22" name="listingscl-existence-orientedlastposgo-22"></a><span class="w">		</span><span class="nx">lastItem</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">items</span><span class="p">[</span><span class="nx">count</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-23"><code data-line-number="23"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-23" name="listingscl-existence-orientedlastposgo-23"></a><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"last item: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">lastItem</span><span class="p">)</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-23" name="listingscl-existence-orientedlastposgo-23"></a><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"last item: %d\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">lastItem</span><span class="p">)</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-24"><code data-line-number="24"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-24" name="listingscl-existence-orientedlastposgo-24"></a><span class="w">	</span><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-24" name="listingscl-existence-orientedlastposgo-24"></a><span class="w">	</span><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientedlastposgo-25"><code data-line-number="25"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientedlastposgo-25" name="listingscl-existence-orientedlastposgo-25"></a><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientedlastposgo-25" name="listingscl-existence-orientedlastposgo-25"></a><span class="p">}</span>
 </code></td>
 </tr>
 </table></div>
 
         </main><br><footer id="footer"><p>
-    Contents © 2023 Eric McDonald, licensed under 
+    Contents © 2025 Eric McDonald, licensed under 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
 <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"></a>.<br>
     Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>.

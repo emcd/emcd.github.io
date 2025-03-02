@@ -53,12 +53,12 @@
     <div class="code"><table class="codetable">
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-1"><code data-line-number=" 1"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-1" name="listingscl-existence-orientednext-set-itemcxx-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-1" name="listingscl-existence-orientednext-set-itemcxx-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-2"><code data-line-number=" 2"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-2" name="listingscl-existence-orientednext-set-itemcxx-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-2" name="listingscl-existence-orientednext-set-itemcxx-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;set&gt;</span>
 </code></td>
 </tr>
 <tr>
@@ -68,32 +68,32 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-4"><code data-line-number=" 4"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-4" name="listingscl-existence-orientednext-set-itemcxx-4"></a><span class="kt">void</span><span class="w"> </span><span class="nf">unwrap_print_set_element</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">elements</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-4" name="listingscl-existence-orientednext-set-itemcxx-4"></a><span class="kt">void</span><span class="w"> </span><span class="nf">unwrap_print_set_element</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">elements</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-5"><code data-line-number=" 5"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-5" name="listingscl-existence-orientednext-set-itemcxx-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elements</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-5" name="listingscl-existence-orientednext-set-itemcxx-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elements</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(</span><span class="w"> </span><span class="p">);</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-6"><code data-line-number=" 6"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-6" name="listingscl-existence-orientednext-set-itemcxx-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">elements</span><span class="p">.</span><span class="n">cend</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-6" name="listingscl-existence-orientednext-set-itemcxx-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">elements</span><span class="p">.</span><span class="n">cend</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-7"><code data-line-number=" 7"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-7" name="listingscl-existence-orientednext-set-itemcxx-7"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"set element: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-7" name="listingscl-existence-orientednext-set-itemcxx-7"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"set element: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">wrapped_element</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-8"><code data-line-number=" 8"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-8" name="listingscl-existence-orientednext-set-itemcxx-8"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-8" name="listingscl-existence-orientednext-set-itemcxx-8"></a><span class="w">    </span><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-9"><code data-line-number=" 9"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-9" name="listingscl-existence-orientednext-set-itemcxx-9"></a><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-9" name="listingscl-existence-orientednext-set-itemcxx-9"></a><span class="p">}</span>
 </code></td>
 </tr>
 <tr>
@@ -103,17 +103,17 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-11"><code data-line-number="11"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-11" name="listingscl-existence-orientednext-set-itemcxx-11"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-11" name="listingscl-existence-orientednext-set-itemcxx-11"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-12"><code data-line-number="12"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-12" name="listingscl-existence-orientednext-set-itemcxx-12"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nothing</span><span class="p">;</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-12" name="listingscl-existence-orientednext-set-itemcxx-12"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nothing</span><span class="p">;</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-13"><code data-line-number="13"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-13" name="listingscl-existence-orientednext-set-itemcxx-13"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-13" name="listingscl-existence-orientednext-set-itemcxx-13"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="p">};</span>
 </code></td>
 </tr>
 <tr>
@@ -123,23 +123,23 @@
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-15"><code data-line-number="15"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-15" name="listingscl-existence-orientednext-set-itemcxx-15"></a><span class="w">    </span><span class="n">unwrap_print_set_element</span><span class="p">(</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-15" name="listingscl-existence-orientednext-set-itemcxx-15"></a><span class="w">    </span><span class="n">unwrap_print_set_element</span><span class="p">(</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="p">);</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-16"><code data-line-number="16"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-16" name="listingscl-existence-orientednext-set-itemcxx-16"></a><span class="w">    </span><span class="n">unwrap_print_set_element</span><span class="p">(</span><span class="w"> </span><span class="n">nothing</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-16" name="listingscl-existence-orientednext-set-itemcxx-16"></a><span class="w">    </span><span class="n">unwrap_print_set_element</span><span class="p">(</span><span class="w"> </span><span class="n">nothing</span><span class="w"> </span><span class="p">);</span>
 </code></td>
 </tr>
 <tr>
 <td class="linenos linenodiv"><a href="#listingscl-existence-orientednext-set-itemcxx-17"><code data-line-number="17"></code></a></td>
-<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-17" name="listingscl-existence-orientednext-set-itemcxx-17"></a><span class="p">}</span><span class="w"></span>
+<td class="code"><code><a id="listingscl-existence-orientednext-set-itemcxx-17" name="listingscl-existence-orientednext-set-itemcxx-17"></a><span class="p">}</span>
 </code></td>
 </tr>
 </table></div>
 
         </main><br><footer id="footer"><p>
-    Contents © 2023 Eric McDonald, licensed under 
+    Contents © 2025 Eric McDonald, licensed under 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
 <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"></a>.<br>
     Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>.

@@ -81,8 +81,8 @@ identifiers.</p></li>
 </ul>
 <table class="pretty" style="width: 100%;">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 85%">
+<col style="width: 15.0%">
+<col style="width: 85.0%">
 </colgroup>
 <thead><tr>
 <th class="head"><p>Operator</p></th>
@@ -467,23 +467,23 @@ sign extension via <a class="reference external" href="https://en.wikipedia.org/
 </tbody>
 </table>
 <p><a class="reference external" href="../../../listings/cl-proposal/operators.mylang.html">cl-proposal/operators.mylang</a>  <a class="reference external" href="../../../listings/cl-proposal/operators.mylang">(Source)</a></p>
-<div class="code"><pre class="code mylang"><a id="rest_code_c44b58fec60848b5a445945a546c7f5a-1" name="rest_code_c44b58fec60848b5a445945a546c7f5a-1" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-1"></a><span class="k">let</span> <span class="nv">array</span> <span class="k">=</span> <span class="p">[</span> <span class="m">13</span> <span class="m">11</span> <span class="m">7</span> <span class="m">5</span> <span class="m">3</span> <span class="m">2</span> <span class="p">]</span>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-2" name="rest_code_c44b58fec60848b5a445945a546c7f5a-2" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-2"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="m">1</span> <span class="o">..</span> <span class="m">3</span> <span class="p">]</span>        <span class="cs"># </span><span class="c">[ 13 11 7 ]</span>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-3" name="rest_code_c44b58fec60848b5a445945a546c7f5a-3" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-3"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="m">1</span> <span class="o">..</span> <span class="p">]</span>          <span class="cs"># </span><span class="c">[ 13 11 7 5 3 2 ]</span>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-4" name="rest_code_c44b58fec60848b5a445945a546c7f5a-4" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-4"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="m">3</span> <span class="p">]</span>          <span class="cs"># </span><span class="c">[ 13 11 7 ]</span>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-5" name="rest_code_c44b58fec60848b5a445945a546c7f5a-5" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-5"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="p">]</span>            <span class="cs"># </span><span class="c">[ 13 11 7 5 3 2 ]</span>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-6" name="rest_code_c44b58fec60848b5a445945a546c7f5a-6" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-6"></a>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-7" name="rest_code_c44b58fec60848b5a445945a546c7f5a-7" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-7"></a><span class="cs"># </span><span class="c">TODO: for .. do</span>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-8" name="rest_code_c44b58fec60848b5a445945a546c7f5a-8" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-8"></a>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-9" name="rest_code_c44b58fec60848b5a445945a546c7f5a-9" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-9"></a><span class="m">1</span> <span class="o">+</span> <span class="m">2</span>                   <span class="cs"># </span><span class="c">3</span>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-10" name="rest_code_c44b58fec60848b5a445945a546c7f5a-10" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-10"></a><span class="o">(+)</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>               <span class="cs"># </span><span class="c">6</span>
-<a id="rest_code_c44b58fec60848b5a445945a546c7f5a-11" name="rest_code_c44b58fec60848b5a445945a546c7f5a-11" href="#rest_code_c44b58fec60848b5a445945a546c7f5a-11"></a><span class="m">1</span> <span class="o">-</span> <span class="m">2</span>                   <span class="cs"># </span><span class="c">-1</span>
+<div class="code"><pre class="code mylang"><a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-1" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-1" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-1"></a><span class="k">let</span> <span class="nv">array</span> <span class="k">=</span> <span class="p">[</span> <span class="m">13</span> <span class="m">11</span> <span class="m">7</span> <span class="m">5</span> <span class="m">3</span> <span class="m">2</span> <span class="p">]</span>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-2" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-2" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-2"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="m">1</span> <span class="o">..</span> <span class="m">3</span> <span class="p">]</span>        <span class="cs"># </span><span class="c">[ 13 11 7 ]</span>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-3" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-3" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-3"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="m">1</span> <span class="o">..</span> <span class="p">]</span>          <span class="cs"># </span><span class="c">[ 13 11 7 5 3 2 ]</span>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-4" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-4" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-4"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="m">3</span> <span class="p">]</span>          <span class="cs"># </span><span class="c">[ 13 11 7 ]</span>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-5" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-5" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-5"></a><span class="nv">array</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="p">]</span>            <span class="cs"># </span><span class="c">[ 13 11 7 5 3 2 ]</span>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-6" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-6" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-6"></a>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-7" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-7" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-7"></a><span class="cs"># </span><span class="c">TODO: for .. do</span>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-8" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-8" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-8"></a>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-9" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-9" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-9"></a><span class="m">1</span> <span class="o">+</span> <span class="m">2</span>                   <span class="cs"># </span><span class="c">3</span>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-10" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-10" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-10"></a><span class="o">(+)</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>               <span class="cs"># </span><span class="c">6</span>
+<a id="rest_code_f1ba811af795488cb1f595a8d2c614d2-11" name="rest_code_f1ba811af795488cb1f595a8d2c614d2-11" href="#rest_code_f1ba811af795488cb1f595a8d2c614d2-11"></a><span class="m">1</span> <span class="o">-</span> <span class="m">2</span>                   <span class="cs"># </span><span class="c">-1</span>
 </pre></div>
     </div>
     
 
 </article></main><br><footer id="footer"><p>
-    Contents © 2023 Eric McDonald, licensed under 
+    Contents © 2025 Eric McDonald, licensed under 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
 <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"></a>.<br>
     Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>.
