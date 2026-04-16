@@ -1,7 +1,6 @@
 /* Adapted from:
     - https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#aa-combining-all-the-things
     - https://github.com/pradyunsg/furo/blob/main/src/furo/assets/scripts/furo.js
-    - https://github.com/utterance/utterances/issues/549#issuecomment-907606127
  */
 const btn = document.querySelector(".palette-selector");
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -26,14 +25,6 @@ function setTheme(theme) {
     }
   }
   document.body.dataset.theme = theme;
-  const utterancesTheme = trueTheme === 'dark' ? 'github-dark' : 'github-light';
-  const utterancesIframe = document.querySelector('.utterances-frame');
-  if (utterancesIframe) {
-    utterancesIframe.contentWindow.postMessage(
-        { type: 'set-theme', theme: utterancesTheme },
-        'https://utteranc.es'
-    );
-  }
   localStorage.setItem("theme", theme);
 }
 
