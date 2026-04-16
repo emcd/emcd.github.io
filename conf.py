@@ -271,6 +271,10 @@ PAGES = (
 
 # Below this point, everything is optional
 
+# Doit dependency database configuration. Use the SQLite backend so all Nikola
+# commands agree with the existing .doit.db format.
+DOIT_CONFIG = {'backend': 'sqlite3'}
+
 # Post's dates are considered in UTC by default, if you want to use
 # another time zone, please set TIMEZONE to match. Check the available
 # list from Wikipedia:
