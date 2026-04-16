@@ -1,4 +1,9 @@
-/output/
-__pycache__/
 .doit.db
+.env
+*.so
 .*.swp
+__pycache__/
+/bugs/
+/build/
+/dist/
+/output/
