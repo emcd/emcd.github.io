@@ -7,194 +7,170 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://emcd.github.io/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/2022/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/archive.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/categories/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/categories/computational-language/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/categories/computer-science/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/categories/language-design/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://emcd.github.io/galleries/</loc>
-  <lastmod>2022-05-10T03:06:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/lastpos.cxx.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/lastpos.go.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/lastpos.mylang.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/lastpos.py.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/lastpos.rs.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/next-set-item.cxx.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/next-set-item.mylang.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/next-set-item.py.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/next-set-item.rs.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/nomassoc.cxx.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/nomassoc.go.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/nomassoc.mylang.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/nomassoc.py.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/nomassoc.rs.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.kt.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.mylang.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.py.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.rs.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-existence-oriented/optional-arguments.zig.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-lazy-vs-eager/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-lazy-vs-eager/eager-assignment.mylang.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-lazy-vs-eager/lazy-assignment.mylang.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-proposal/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-proposal/literals.ebnf.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-proposal/literals.mylang.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-proposal/operators.mylang.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/listings/cl-proposal/scrapbook.ebnf.html</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://emcd.github.io/listings/python-design-principles/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://emcd.github.io/listings/python-design-principles/chats/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://emcd.github.io/listings/python-design-principles/chats/gpt-4/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T21:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/pages/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/pages/cl-proposal/cl-proposal-literals/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/pages/cl-proposal/cl-proposal-operators/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/posts/cl-existence-oriented/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
- </url>
- <url>
-  <loc>https://emcd.github.io/posts/cl-syntactic-noise/</loc>
-  <lastmod>2022-06-26T14:14:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/supplements/chat-gpt/existence-oriented-programming.html</loc>
-  <lastmod>2024-05-27T23:58:00Z</lastmod>
- </url>
- <url>
-  <loc>https://emcd.github.io/supplements/chat-gpt/github-repo-creator.html</loc>
-  <lastmod>2023-04-30T16:02:00Z</lastmod>
+  <lastmod>2026-04-16T12:30:00Z</lastmod>
  </url>
  <url>
   <loc>https://emcd.github.io/weblog/</loc>
-  <lastmod>2025-03-02T19:10:00Z</lastmod>
+  <lastmod>2026-04-16T14:42:00Z</lastmod>
  </url>
 </urlset>
