@@ -105,11 +105,8 @@ builder = true
 dependencies = [
   'coverage[toml]',
   'furo',
-  'ghp-import',
   'isort',
-  'jinja2',
   'myst-parser',
-  'nikola==8.3.3',
   'pre-commit',
   'pyright',
   'pytest',
